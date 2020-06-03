@@ -22,15 +22,14 @@ public class TestScrape extends AsyncTask<Void, Void, Void> {
 
         List<String> imageList;
         List<String> idList;
-        List<String> descriptionList;
+        List<String> nameList;
         List<String> breedList;
         List<String> weightList;
         List<String> ageList;
         List<String> locationList;
 
         //Todo: Send data over to Main.
-        //Todo: Extract either (a)Just first sentence of Description scrape or (b)Sub-stringed Name and Breed Strings.
-        //Todo: Extract sub-string of Weight & Age (returns extra numbers).
+        //Todo: Use split() on substrings calling the first "." index char to scrape the Breed.
 
         try {
             String url = "https://petharbor.com/results.asp?searchtype=ADOPT&stylesheet=https://www.laanimalservices.com/wp-content/themes/laas/laasph.css&friends=1&samaritans=1&nosuccess=1&orderby=located%20at&rows=10&imght=120&imgres=detail&tWidth=200&view=sysadm.v_lact&nomax=1&fontface=arial&fontsize=10&miles=20&shelterlist='LACT','LACT1','LACT4','LACT3','LACT2','LACT5','LACT6'&atype=&where=type_dog&PAGE=2";
@@ -43,7 +42,7 @@ public class TestScrape extends AsyncTask<Void, Void, Void> {
 
             imageList = new ArrayList<>();
             idList = new ArrayList<>();
-            descriptionList = new ArrayList<>();
+            nameList = new ArrayList<>();
             breedList = new ArrayList<>();
             weightList = new ArrayList<>();
             ageList = new ArrayList<>();
@@ -62,28 +61,42 @@ public class TestScrape extends AsyncTask<Void, Void, Void> {
                     idList.add(holderTwo);
                 }
                 if (holder.contains("My name is")) {
-                    descriptionList.add(holder);
+                    String[] split = holder.split(" ");
+                    String shorten = split[3];
+                    nameList.add(shorten);
                 }
                 if (holderTwo.contains("My name is")) {
-                    descriptionList.add(holderTwo);
+                    String[] split = holderTwo.split(" ");
+                    String shorten = split[3];
+                    nameList.add(shorten);
                 }
                 if (holder.contains("Lbs")) {
-                    weightList.add(holder);
+                    String shorten = holder.substring(3);
+                    weightList.add(shorten);
                 }
                 if (holderTwo.contains("Lbs")) {
-                    weightList.add(holderTwo);
+                    String shorten = holderTwo.substring(3);
+                    weightList.add(shorten);
                 }
-                if (holder.contains("yrs")) {
-                    ageList.add(holder);
+                if (holder.contains("yr")) {
+                    String shorten = holder.substring(5);
+                    ageList.add(shorten);
                 }
-                if (holderTwo.contains("yrs")) {
-                    ageList.add(holderTwo);
+                if (holderTwo.contains("yr")) {
+                    String shorten = holderTwo.substring(5);
+                    ageList.add(shorten);
                 }
                 if (holder.contains("Los Angeles")) {
                     locationList.add(holder);
                 }
                 if (holderTwo.contains("Los Angeles")) {
                     locationList.add(holderTwo);
+                }
+                if (!holder.contains("A1") && !holder.contains("My name is") && !holder.contains("Lbs") && !holder.contains("yr") && !holder.contains("Los Angeles")) {
+                    breedList.add(holder);
+                }
+                if (!holderTwo.contains("A1") && !holderTwo.contains("My name is") && !holderTwo.contains("Lbs") && !holderTwo.contains("yr") && !holderTwo.contains("Los Angeles")) {
+                    breedList.add(holderTwo);
                 }
             }
 
@@ -93,8 +106,9 @@ public class TestScrape extends AsyncTask<Void, Void, Void> {
             }
 
 //            Log.i("testLog", testList.toString());
-            Log.i("ids", idList.toString());
-            Log.i("descriptions", descriptionList.toString());
+            Log.i("id", idList.toString());
+            Log.i("name", nameList.toString());
+            Log.i("breed", breedList.toString());
             Log.i("weight", weightList.toString());
             Log.i("age", ageList.toString());
             Log.i("location", locationList.toString());
