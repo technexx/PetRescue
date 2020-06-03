@@ -1,3 +1,10 @@
 <resources>
-    <string name="app_name">Pet Rescue</string>
+    <string name="app_name">Los Angeles Shelter Searcher</string>
+
+    <string name="loc_eastValley">East Valley></string>
+    <string name="loc_harbor">Harbor</string>
+    <string name="loc_northCentral">North Central</string>
+    <string name="loc_southLA">South Los Angeles</string>
+    <string name="loc_westLA">West Los Angeles</string>
+    <string name="loc_westValley">West Valley</string>
 </resources>

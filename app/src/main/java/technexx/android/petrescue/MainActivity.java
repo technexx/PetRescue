@@ -38,18 +38,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         aSyncRetrieval();
-
-        final TextView question = findViewById(R.id.question);
-        TextView answer = findViewById(R.id.answer);
-        Button testButton = findViewById(R.id.testButton);
-
-        testButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                question.setText(idList.get(0));
-            }
-        });
     }
+
 
     private void aSyncRetrieval() {
         AsyncTask.execute(new Runnable() {
