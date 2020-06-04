@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Button
+            android:id="@+id/all_dogs"
+            android:text="@string/all_dogs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/westValley">
+        </Button>
+
+
+        <Button
+            android:id="@+id/westValley"
+            android:text="@string/loc_westValley"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/all_dogs"
+            app:layout_constraintBottom_toTopOf="@id/eastValley"
+            android:layout_marginTop="8dp">
+        </Button>
+
+
+        <Button
+            android:id="@+id/eastValley"
+            android:text="@string/loc_eastValley"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/westValley"
+            app:layout_constraintBottom_toTopOf="@id/westLA"
+            android:layout_marginTop="8dp"/>
+
+        <Button
+            android:id="@+id/westLA"
+            android:text="@string/loc_westLA"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/eastValley"
+            app:layout_constraintBottom_toTopOf="@id/southLA"
+            android:layout_marginTop="8dp">
+        </Button>
+
+        <Button
+            android:id="@+id/southLA"
+            android:text="@string/loc_southLA"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/westLA"
+            app:layout_constraintBottom_toTopOf="@id/northCentral"
+            android:layout_marginTop="8dp">
+        </Button>
+
+        <Button
+            android:id="@+id/northCentral"
+            android:text="@string/loc_northCentral"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/southLA"
+            app:layout_constraintBottom_toTopOf="@id/harbor"
+            android:layout_marginTop="8dp">
+        </Button>
+
+        <Button
+            android:id="@+id/harbor"
+            android:text="@string/loc_northCentral"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/northCentral"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginTop="8dp"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

@@ -1,10 +1,18 @@
 <resources>
     <string name="app_name">Los Angeles Shelter Searcher</string>
 
-    <string name="loc_eastValley">East Valley></string>
-    <string name="loc_harbor">Harbor</string>
-    <string name="loc_northCentral">North Central</string>
-    <string name="loc_southLA">South Los Angeles</string>
-    <string name="loc_westLA">West Los Angeles</string>
-    <string name="loc_westValley">West Valley</string>
+    <string name="dogs">Dogs</string>
+    <string name="Cats">Cats</string>
+    <string name="others">Others</string>
+
+    <string name="all_dogs">All Dogs</string>
+    <string name="all_cats">All Cats</string>
+    <string name="all_other">All Other</string>
+
+    <string name="loc_eastValley">East Valley Shelter></string>
+    <string name="loc_harbor">Harbor Shelter</string>
+    <string name="loc_northCentral">North Central Shelter</string>
+    <string name="loc_southLA">South Los Angeles Shelter</string>
+    <string name="loc_westLA">West Los Angeles Shelter</string>
+    <string name="loc_westValley">West Valley Shelter</string>
 </resources>

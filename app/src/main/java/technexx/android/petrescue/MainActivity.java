@@ -1,6 +1,8 @@
 package technexx.android.petrescue;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -40,27 +42,17 @@ public class MainActivity extends AppCompatActivity {
 
         aSyncRetrieval();
 
-        Button eastValley = findViewById(R.id.eastValley);
-        Button harbor = findViewById(R.id.harbor);
-        Button northCentral = findViewById(R.id.northCentral);
-        Button southLA = findViewById(R.id.southLA);
-        Button westLA = findViewById(R.id.westLA);
-        Button westValley = findViewById(R.id.westValley);
-
-
     }
 
     private void aSyncRetrieval() {
         AsyncTask.execute(new Runnable() {
             @Override
             public void run() {
-
                 try {
                     String url = "https://petharbor.com/results.asp?searchtype=ADOPT&stylesheet=https://www.laanimalservices.com/wp-content/themes/laas/laasph.css&friends=1&samaritans=1&nosuccess=1&orderby=located%20at&rows=10&imght=120&imgres=detail&tWidth=200&view=sysadm.v_lact&nomax=1&fontface=arial&fontsize=10&miles=20&shelterlist='LACT','LACT1','LACT4','LACT3','LACT2','LACT5','LACT6'&atype=&where=type_dog&PAGE=2";
 
                     Document doc = Jsoup.connect(url).get();
 
-                    //Just need the correct fetching style here.
                     Elements content = doc.getElementsByClass("TableContent1");
                     Elements contentTwo = doc.getElementsByClass("TableContent2");
                     Elements testImage = content.select("img");
