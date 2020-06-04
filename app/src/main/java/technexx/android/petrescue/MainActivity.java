@@ -21,7 +21,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements MenuFragment.dogCallback, MenuFragment.catCallback, MenuFragment.othersCallback {
 
     List<String> testList = null;
     List<String> testListTwo = null;
@@ -40,8 +40,44 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        aSyncRetrieval();
+        FragmentManager fm = getSupportFragmentManager();
+        MenuFragment menuFragment = new MenuFragment();
 
+        fm.beginTransaction()
+                .add(R.id.animals, menuFragment)
+                .commit();
+
+        aSyncRetrieval();
+    }
+
+    @Override
+    public void onDogCalled() {
+        FragmentManager fm = getSupportFragmentManager();
+        DogFragment dogFragment = new DogFragment();
+
+        fm.beginTransaction()
+                .replace(R.id.animals, dogFragment)
+                .commit();
+    }
+
+    @Override
+    public void onCatCalled() {
+        FragmentManager fm = getSupportFragmentManager();
+        CatFragment catFragment = new CatFragment();
+
+        fm.beginTransaction()
+                .replace(R.id.animals, catFragment)
+                .commit();
+    }
+
+    @Override
+    public void onOthersCalled() {
+        FragmentManager fm = getSupportFragmentManager();
+        OthersFragment othersFragment = new OthersFragment();
+
+        fm.beginTransaction()
+                .replace(R.id.animals, othersFragment)
+                .commit();
     }
 
     private void aSyncRetrieval() {
@@ -144,4 +180,5 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
 }

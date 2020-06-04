@@ -21,6 +21,13 @@ public class DogFragment extends Fragment {
         Button northCentral = root.findViewById(R.id.northCentral);
         Button harbor = root.findViewById(R.id.harbor);
 
+        allDogs.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
         return  root;
     }
 }
