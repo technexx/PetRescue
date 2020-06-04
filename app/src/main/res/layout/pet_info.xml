@@ -13,11 +13,19 @@
     </ImageView>
 
     <TextView
-        android:id="@+id/pet_name"
+        android:id="@+id/pet_id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toEndOf="@id/pet_picture"
         app:layout_constraintTop_toTopOf="parent">
+    </TextView>
+
+    <TextView
+        android:id="@+id/pet_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@id/pet_picture"
+        app:layout_constraintTop_toBottomOf="@id/pet_id">
     </TextView>
 
     <TextView
