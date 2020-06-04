@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
 
     List<String> testList = null;
     List<String> testListTwo = null;
+    List<String> testListThree = null;
 
     ArrayList<String> imageList;
     ArrayList<String> idList;
@@ -38,16 +39,21 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         aSyncRetrieval();
-    }
 
+        Button eastValley = findViewById(R.id.eastValley);
+        Button harbor = findViewById(R.id.harbor);
+        Button northCentral = findViewById(R.id.northCentral);
+        Button southLA = findViewById(R.id.southLA);
+        Button westLA = findViewById(R.id.westLA);
+        Button westValley = findViewById(R.id.westValley);
+
+
+    }
 
     private void aSyncRetrieval() {
         AsyncTask.execute(new Runnable() {
             @Override
             public void run() {
-
-                //Todo: Send data over to Main.
-                //Todo: Use split() on substrings calling the first "." index char to scrape the Breed.
 
                 try {
                     String url = "https://petharbor.com/results.asp?searchtype=ADOPT&stylesheet=https://www.laanimalservices.com/wp-content/themes/laas/laasph.css&friends=1&samaritans=1&nosuccess=1&orderby=located%20at&rows=10&imght=120&imgres=detail&tWidth=200&view=sysadm.v_lact&nomax=1&fontface=arial&fontsize=10&miles=20&shelterlist='LACT','LACT1','LACT4','LACT3','LACT2','LACT5','LACT6'&atype=&where=type_dog&PAGE=2";
@@ -57,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
                     //Just need the correct fetching style here.
                     Elements content = doc.getElementsByClass("TableContent1");
                     Elements contentTwo = doc.getElementsByClass("TableContent2");
+                    Elements testImage = content.select("img");
 
                     imageList = new ArrayList<>();
                     idList = new ArrayList<>();
@@ -72,12 +79,22 @@ public class MainActivity extends AppCompatActivity {
                     for (int i=0; i<testList.size(); i++) {
                         String holder = testList.get(i);
                         String holderTwo = testListTwo.get(i);
+
                         if (holder.contains("A1")) {
                             idList.add(holder);
+                            String imgPre = "https://petharbor.com/get_image.asp?RES=Detail&ID=";
+                            String imgPost = holder+"&LOCATION=LACT";
+                            String fullImg = imgPre + imgPost;
+                            imageList.add(fullImg);
                         }
                         if (holderTwo.contains("A1")) {
                             idList.add(holderTwo);
+                            String imgPre = "https://petharbor.com/get_image.asp?RES=Detail&ID=";
+                            String imgPost = holderTwo+"&LOCATION=LACT";
+                            String fullImg = imgPre + imgPost;
+                            imageList.add(fullImg);
                         }
+
                         if (holder.contains("My name is")) {
                             String[] split = holder.split(" ");
                             String shorten = split[3];
@@ -118,18 +135,13 @@ public class MainActivity extends AppCompatActivity {
                         }
                     }
 
-                    for (Element postContent : content) {
-                        String outputOne = postContent.text();
-                        testList.add(outputOne);
-                    }
-
-//            Log.i("testLog", testList.toString());
                     Log.i("id", idList.toString());
                     Log.i("name", nameList.toString());
                     Log.i("breed", breedList.toString());
                     Log.i("weight", weightList.toString());
                     Log.i("age", ageList.toString());
                     Log.i("location", locationList.toString());
+                    Log.i("image", imageList.toString());
 
                     Intent intent = new Intent();
                     intent.putStringArrayListExtra("test", idList);
