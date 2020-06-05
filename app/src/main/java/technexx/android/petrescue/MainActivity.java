@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity implements MenuFragment.dogC
     }
 
     @Override
-    public void onList(ArrayList<String> petList) {
+    public void onDisplayList(ArrayList<String> petList) {
         FragmentManager fm = getSupportFragmentManager();
         DisplayFragment displayFragment = new DisplayFragment();
 
@@ -83,4 +83,5 @@ public class MainActivity extends AppCompatActivity implements MenuFragment.dogC
 
 
     }
+
 }

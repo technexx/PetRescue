@@ -9,7 +9,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toEndOf="parent">
+        app:layout_constraintStart_toStartOf="parent">
     </ImageView>
 
     <TextView
@@ -50,6 +50,14 @@
         android:layout_height="wrap_content"
         app:layout_constraintStart_toEndOf="@id/pet_picture"
         app:layout_constraintTop_toBottomOf="@id/pet_weight">
+    </TextView>
+
+    <TextView
+        android:id="@+id/pet_location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@id/pet_picture"
+        app:layout_constraintTop_toBottomOf="@id/pet_age">
     </TextView>
 
 

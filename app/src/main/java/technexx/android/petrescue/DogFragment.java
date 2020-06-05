@@ -50,7 +50,7 @@ public class DogFragment extends Fragment {
     private String url;
 
     public interface listCallback {
-        void onList(ArrayList<String> petList);
+        void onDisplayList(ArrayList<String> petList);
     }
 
     @Override
@@ -119,7 +119,6 @@ public class DogFragment extends Fragment {
         return  root;
     }
 
-    //Todo:
     private void aSyncRetrieval() {
         AsyncTask.execute(new Runnable() {
             @Override
@@ -183,11 +182,11 @@ public class DogFragment extends Fragment {
                             String shorten = holderTwo.substring(3);
                             weightList.add(shorten);
                         }
-                        if (holder.contains("yr") || holder.contains("Age Unknown")) {
+                        if (holder.contains("yr") || holder.contains("Age Unknown") || holder.contains("mos") || holder.contains("wks")) {
                             String shorten = holder.substring(5);
                             ageList.add(shorten);
                         }
-                        if (holderTwo.contains("yr") || holderTwo.contains("Age Unknown")) {
+                        if (holderTwo.contains("yr") || holderTwo.contains("Age Unknown") || holderTwo.contains("mos") || holderTwo.contains("wks")) {
                             String shorten = holderTwo.substring(5);
                             ageList.add(shorten);
                         }
@@ -213,19 +212,20 @@ public class DogFragment extends Fragment {
                         animalList.add(breedList.get(x));
                         animalList.add(weightList.get(x));
                         animalList.add(ageList.get(x));
+                        animalList.add(locationList.get(x));
                     }
 
-                    Log.i("id", idList.toString());
-                    Log.i("name", nameList.toString());
-                    Log.i("breed", breedList.toString());
-                    Log.i("weight", weightList.toString());
-                    Log.i("age", ageList.toString());
-                    Log.i("location", locationList.toString());
-                    Log.i("image", imageList.toString());
-                    Log.i("animal", animalList.toString());
+//                    Log.i("id", idList.toString());
+//                    Log.i("name", nameList.toString());
+//                    Log.i("breed", breedList.toString());
+//                    Log.i("weight", weightList.toString());
+//                    Log.i("age", ageList.toString());
+//                    Log.i("location", locationList.toString());
+//                    Log.i("image", imageList.toString());
+//                    Log.i("animal", animalList.toString());
 
-                    Intent intent = new Intent();
-                    intent.putStringArrayListExtra("test", idList);
+
+                    mListCallback.onDisplayList(animalList);
 
                 } catch (IOException e) {
                     e.printStackTrace();
