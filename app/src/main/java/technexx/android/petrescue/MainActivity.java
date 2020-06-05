@@ -7,7 +7,9 @@ import androidx.fragment.app.FragmentManager;
 import android.os.Bundle;
 import android.widget.Button;
 
-public class MainActivity extends AppCompatActivity implements MenuFragment.dogCallback, MenuFragment.catCallback, MenuFragment.othersCallback {
+import java.util.ArrayList;
+
+public class MainActivity extends AppCompatActivity implements MenuFragment.dogCallback, MenuFragment.catCallback, MenuFragment.othersCallback, DogFragment.listCallback {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,4 +67,20 @@ public class MainActivity extends AppCompatActivity implements MenuFragment.dogC
                 .commit();
     }
 
+    @Override
+    public void onList(ArrayList<String> petList) {
+        FragmentManager fm = getSupportFragmentManager();
+        DisplayFragment displayFragment = new DisplayFragment();
+
+        Bundle b = new Bundle();
+        b.putStringArrayList("petList", petList);
+
+        displayFragment.setArguments(b);
+
+        fm.beginTransaction()
+                .replace(R.id.animals, displayFragment)
+                .commit();
+
+
+    }
 }

@@ -1,5 +1,6 @@
 package technexx.android.petrescue;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -9,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import org.jsoup.Jsoup;
@@ -21,6 +23,8 @@ import java.util.List;
 
 public class DogFragment extends Fragment {
 
+    listCallback mListCallback;
+
     private List<String> testList = null;
     private List<String> testListTwo = null;
 
@@ -32,6 +36,12 @@ public class DogFragment extends Fragment {
     private ArrayList<String> ageList;
     private ArrayList<String> locationList;
 
+    private ArrayList<String> animalList;
+
+    private String holder;
+    private String holderTwo;
+    private int totalSize;
+
     private String dogs;
     private String cats;
     private String other;
@@ -39,6 +49,19 @@ public class DogFragment extends Fragment {
     private String urlPre;
     private String url;
 
+    public interface listCallback {
+        void onList(ArrayList<String> petList);
+    }
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        try {
+            mListCallback = (listCallback) context;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(context.toString() + "Must implement listCallback");
+        }
+    }
 
     public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.dog_fragment, container, false);
@@ -60,7 +83,6 @@ public class DogFragment extends Fragment {
 
         if (dogs != null) {
             allAnimals.setText(R.string.all_dogs);
-
         }
         if (cats != null) {
             allAnimals.setText(R.string.all_cats);
@@ -87,7 +109,7 @@ public class DogFragment extends Fragment {
                         if (other != null) {
                             url = urlPre + "other";
                         }
-
+                        //Calling the rest of the scrape on a subsequent aSync method.
                         aSyncRetrieval();
                     }
                 });
@@ -97,12 +119,12 @@ public class DogFragment extends Fragment {
         return  root;
     }
 
+    //Todo:
     private void aSyncRetrieval() {
         AsyncTask.execute(new Runnable() {
             @Override
             public void run() {
                 try {
-
                     Document doc = Jsoup.connect(url).get();
 
                     Elements content = doc.getElementsByClass("TableContent1");
@@ -116,13 +138,17 @@ public class DogFragment extends Fragment {
                     weightList = new ArrayList<>();
                     ageList = new ArrayList<>();
                     locationList = new ArrayList<>();
+                    animalList = new ArrayList<>();
 
                     testList = content.eachText();
                     testListTwo = contentTwo.eachText();
 
                     for (int i=0; i<testList.size(); i++) {
-                        String holder = testList.get(i);
-                        String holderTwo = testListTwo.get(i);
+                        holder = testList.get(i);
+                        //Setting a check on the second TableContents fetch. If an odd number of pets come back, it will throw an OOB exception because its index fetch is based on TableContents1's index.
+                        if (i < testListTwo.size()) {
+                            holderTwo = testListTwo.get(i);
+                        }
 
                         if (holder.contains("A1")) {
                             idList.add(holder);
@@ -157,11 +183,11 @@ public class DogFragment extends Fragment {
                             String shorten = holderTwo.substring(3);
                             weightList.add(shorten);
                         }
-                        if (holder.contains("yr")) {
+                        if (holder.contains("yr") || holder.contains("Age Unknown")) {
                             String shorten = holder.substring(5);
                             ageList.add(shorten);
                         }
-                        if (holderTwo.contains("yr")) {
+                        if (holderTwo.contains("yr") || holderTwo.contains("Age Unknown")) {
                             String shorten = holderTwo.substring(5);
                             ageList.add(shorten);
                         }
@@ -179,6 +205,16 @@ public class DogFragment extends Fragment {
                         }
                     }
 
+                    //Any individual list works for this loop's size check, since they are all the same size.
+                    for (int x=0; x<idList.size(); x++) {
+                        //Combining animal info into one list, to be passed into adapter and set to populate RecyclerView.
+                        animalList.add(imageList.get(x));
+                        animalList.add(idList.get(x));
+                        animalList.add(breedList.get(x));
+                        animalList.add(weightList.get(x));
+                        animalList.add(ageList.get(x));
+                    }
+
                     Log.i("id", idList.toString());
                     Log.i("name", nameList.toString());
                     Log.i("breed", breedList.toString());
@@ -186,6 +222,7 @@ public class DogFragment extends Fragment {
                     Log.i("age", ageList.toString());
                     Log.i("location", locationList.toString());
                     Log.i("image", imageList.toString());
+                    Log.i("animal", animalList.toString());
 
                     Intent intent = new Intent();
                     intent.putStringArrayListExtra("test", idList);

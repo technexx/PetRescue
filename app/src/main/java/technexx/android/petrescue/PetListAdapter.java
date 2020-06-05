@@ -13,12 +13,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-public class ListAdapter extends RecyclerView.Adapter {
+public class PetListAdapter extends RecyclerView.Adapter {
 
     List<AnimalList> animalList;
     Context context;
 
-    public ListAdapter(List<AnimalList> animalList, Context context) {
+    public PetListAdapter(List<AnimalList> animalList, Context context) {
         this.animalList = animalList;
         this.context = context;
     }
