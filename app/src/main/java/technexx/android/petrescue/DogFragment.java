@@ -50,7 +50,7 @@ public class DogFragment extends Fragment {
     private String url;
 
     public interface listCallback {
-        void onDisplayList(ArrayList<String> petList);
+        void onDisplayList(ArrayList<String> image, ArrayList<String> id, ArrayList<String> name, ArrayList<String> breed, ArrayList<String> weight, ArrayList<String> age, ArrayList<String> location);
     }
 
     @Override
@@ -215,17 +215,8 @@ public class DogFragment extends Fragment {
                         animalList.add(locationList.get(x));
                     }
 
-//                    Log.i("id", idList.toString());
-//                    Log.i("name", nameList.toString());
-//                    Log.i("breed", breedList.toString());
-//                    Log.i("weight", weightList.toString());
-//                    Log.i("age", ageList.toString());
-//                    Log.i("location", locationList.toString());
-//                    Log.i("image", imageList.toString());
-//                    Log.i("animal", animalList.toString());
 
-
-                    mListCallback.onDisplayList(animalList);
+                    mListCallback.onDisplayList(imageList, idList, nameList, breedList, weightList, ageList, locationList);
 
                 } catch (IOException e) {
                     e.printStackTrace();

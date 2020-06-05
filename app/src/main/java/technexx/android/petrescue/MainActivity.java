@@ -68,12 +68,18 @@ public class MainActivity extends AppCompatActivity implements MenuFragment.dogC
     }
 
     @Override
-    public void onDisplayList(ArrayList<String> petList) {
+    public void onDisplayList(ArrayList<String> image, ArrayList<String> id, ArrayList<String> name, ArrayList<String> breed, ArrayList<String> weight, ArrayList<String> age, ArrayList<String> location) {
         FragmentManager fm = getSupportFragmentManager();
         DisplayFragment displayFragment = new DisplayFragment();
 
         Bundle b = new Bundle();
-        b.putStringArrayList("petList", petList);
+        b.putStringArrayList("imageList", image);
+        b.putStringArrayList("idList", id);
+        b.putStringArrayList("nameList", name);
+        b.putStringArrayList("breedList", breed);
+        b.putStringArrayList("weightList", weight);
+        b.putStringArrayList("ageList", age);
+        b.putStringArrayList("locationList", location);
 
         displayFragment.setArguments(b);
 

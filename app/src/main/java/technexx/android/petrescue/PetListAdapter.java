@@ -19,19 +19,17 @@ import java.util.List;
 
 public class PetListAdapter extends RecyclerView.Adapter<PetListAdapter.ViewHolder> {
 
-    private ArrayList<String> animalList;
+    private ArrayList<String> imageList;
+    private ArrayList<String> idList;
+    private ArrayList<String> nameList;
+    private ArrayList<String> breedList;
+    private ArrayList<String> weightList;
+    private ArrayList<String> ageList;
+    private ArrayList<String> locationList;
     private Context context;
 
-    private static final int type_image = 0;
-    private static final int type_id = 1;
-    private static final int type_breed = 2;
-    private static final int type_weight = 3;
-    private static final int type_age = 4;
-    private static final int type_location = 5;
-
-
-    public PetListAdapter(ArrayList<String> animalList, Context context) {
-        this.animalList = animalList;
+    public PetListAdapter(ArrayList<String> image, ArrayList<String> id, ArrayList<String> name, ArrayList<String> breed, ArrayList<String> weight, ArrayList<String> age, ArrayList<String> location, Context context) {
+        this.imageList = image; this.idList = id; this.nameList = name; this.breedList = breed; this.weightList = weight; this.ageList = age; this.locationList = location;
         this.context = context;
     }
 
@@ -48,26 +46,25 @@ public class PetListAdapter extends RecyclerView.Adapter<PetListAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        switch (position) {
-
-        }
-        Picasso.get().load(animalList.get(position)).into(holder.image);
-        holder.animalID.setText(animalList.get(position +1));
-        holder.breed.setText(animalList.get(position +2));
-        holder.weight.setText(animalList.get(position +3));
-        holder.age.setText(animalList.get(position +4));
-        holder.location.setText(animalList.get(position +5));
+        Picasso.get().load(imageList.get(position)).into(holder.image);
+        holder.animalID.setText(idList.get(position));
+        holder.name.setText(nameList.get(position));
+        holder.breed.setText(breedList.get(position));
+        holder.age.setText(ageList.get(position));
+        holder.weight.setText(weightList.get(position));
+        holder.location.setText(locationList.get(position));
     }
 
 
     @Override
     public int getItemCount() {
-        return animalList.size();
+        return idList.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         ImageView image;
         TextView animalID;
+        TextView name;
         TextView breed;
         TextView age;
         TextView weight;
@@ -77,6 +74,7 @@ public class PetListAdapter extends RecyclerView.Adapter<PetListAdapter.ViewHold
             super((itemView));
             image = itemView.findViewById(R.id.pet_picture);
             animalID = itemView.findViewById(R.id.pet_id);
+            name = itemView.findViewById(R.id.pet_name);
             breed = itemView.findViewById(R.id.pet_breed);
             age = itemView.findViewById(R.id.pet_age);
             weight = itemView.findViewById(R.id.pet_weight);

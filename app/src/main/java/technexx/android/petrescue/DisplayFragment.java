@@ -15,7 +15,13 @@ import java.util.List;
 
 public class DisplayFragment extends Fragment {
 
-    private ArrayList<String> petList;
+    private ArrayList<String> imageList;
+    private ArrayList<String> idList;
+    private ArrayList<String> nameList;
+    private ArrayList<String> breedList;
+    private ArrayList<String> weightList;
+    private ArrayList<String> ageList;
+    private ArrayList<String> locationList;
 
     public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.display_fragment, container, false);
@@ -23,13 +29,17 @@ public class DisplayFragment extends Fragment {
         Bundle args = getArguments();
 
         if (args != null) {
-            petList = args.getStringArrayList("petList");
+            imageList = args.getStringArrayList("imageList");
+            idList = args.getStringArrayList("idList");
+            nameList = args.getStringArrayList("nameList");
+            breedList = args.getStringArrayList("breedList");
+            weightList = args.getStringArrayList("weightList");
+            ageList = args.getStringArrayList("ageList");
+            locationList = args.getStringArrayList("locationList");
         }
 
-        Log.i("test", petList.toString());
-
         RecyclerView animalRecycler = root.findViewById(R.id.pet_recycler);
-        PetListAdapter petListAdapter = new PetListAdapter(petList, getContext());
+        PetListAdapter petListAdapter = new PetListAdapter(imageList, idList, nameList, breedList, weightList, ageList, locationList, getContext());
 
         animalRecycler.setAdapter(petListAdapter);
         animalRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
