@@ -113,7 +113,7 @@
 
     <TextView
         android:id="@+id/pet_location"
-        android:layout_width="wrap_content"
+        android:layout_width="110dp"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toEndOf="@id/pet_picture"
         app:layout_constraintTop_toBottomOf="@id/pet_age"

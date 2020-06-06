@@ -1,15 +1,13 @@
 package technexx.android.petrescue;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import android.os.Bundle;
-import android.widget.Button;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity implements MenuFragment.dogCallback, MenuFragment.catCallback, MenuFragment.othersCallback, DogFragment.listCallback {
+public class MainActivity extends AppCompatActivity implements MenuFragment.dogCallback, MenuFragment.catCallback, MenuFragment.othersCallback, PetFragment.listCallback {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,42 +26,42 @@ public class MainActivity extends AppCompatActivity implements MenuFragment.dogC
     @Override
     public void onDogCalled() {
         FragmentManager fm = getSupportFragmentManager();
-        DogFragment dogFragment = new DogFragment();
+        PetFragment petFragment = new PetFragment();
 
         Bundle b = new Bundle();
         b.putString("dogs", "dogs");
-        dogFragment.setArguments(b);
+        petFragment.setArguments(b);
 
         fm.beginTransaction()
-                .replace(R.id.animals, dogFragment)
+                .replace(R.id.animals, petFragment)
                 .commit();
     }
 
     @Override
     public void onCatCalled() {
         FragmentManager fm = getSupportFragmentManager();
-        DogFragment dogFragment = new DogFragment();
+        PetFragment petFragment = new PetFragment();
 
         Bundle b = new Bundle();
         b.putString("cats", "cats");
-        dogFragment.setArguments(b);
+        petFragment.setArguments(b);
 
         fm.beginTransaction()
-                .replace(R.id.animals, dogFragment)
+                .replace(R.id.animals, petFragment)
                 .commit();
     }
 
     @Override
     public void onOthersCalled() {
         FragmentManager fm = getSupportFragmentManager();
-        DogFragment dogFragment = new DogFragment();
+        PetFragment petFragment = new PetFragment();
 
         Bundle b = new Bundle();
         b.putString("other", "other");
-        dogFragment.setArguments(b);
+        petFragment.setArguments(b);
 
         fm.beginTransaction()
-                .replace(R.id.animals, dogFragment)
+                .replace(R.id.animals, petFragment)
                 .commit();
     }
 

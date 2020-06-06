@@ -1,7 +1,6 @@
 package technexx.android.petrescue;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -15,13 +14,14 @@ import androidx.fragment.app.Fragment;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DogFragment extends Fragment {
+public class PetFragment extends Fragment {
 
     listCallback mListCallback;
 
@@ -64,7 +64,7 @@ public class DogFragment extends Fragment {
     }
 
     public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.dog_fragment, container, false);
+        View root = inflater.inflate(R.layout.pet_fragment, container, false);
 
         Button westValley = root.findViewById(R.id.westValley);
         Button eastValley = root.findViewById(R.id.eastValley);
@@ -96,30 +96,75 @@ public class DogFragment extends Fragment {
         allAnimals.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Depending on if Dog/Cat/Other is selected, setting uri and scraping data for list.
-                AsyncTask.execute(new Runnable() {
-                    @Override
-                    public void run() {
-                        if (dogs != null) {
-                            url = urlPre+"dog";
-                        }
-                        if (cats != null) {
-                            url = urlPre + "cat";
-                        }
-                        if (other != null) {
-                            url = urlPre + "other";
-                        }
-                        //Calling the rest of the scrape on a subsequent aSync method.
-                        aSyncRetrieval();
-                    }
-                });
+                aSyncUriFetch();
+                aSyncRetrieveAll();
             }
         });
 
-        return  root;
+        westValley.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        eastValley.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                aSyncUriFetch();
+                aSyncRetrieveNorthEast();
+            }
+        });
+
+        westLA.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        southLA.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        northCentral.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        harbor.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+        return root;
     }
 
-    private void aSyncRetrieval() {
+    //Depending on if Dog/Cat/Other is selected, setting uri and scraping data for list.
+    private void aSyncUriFetch() {
+        AsyncTask.execute(new Runnable() {
+            @Override
+            public void run() {
+                if (dogs != null) {
+                    url = urlPre + "dog";
+                }
+                if (cats != null) {
+                    url = urlPre + "cat";
+                }
+                if (other != null) {
+                    url = urlPre + "other";
+                }
+            }
+        });
+    }
+
+    private void aSyncRetrieveAll() {
         AsyncTask.execute(new Runnable() {
             @Override
             public void run() {
@@ -142,7 +187,7 @@ public class DogFragment extends Fragment {
                     testList = content.eachText();
                     testListTwo = contentTwo.eachText();
 
-                    for (int i=0; i<testList.size(); i++) {
+                    for (int i = 0; i < testList.size(); i++) {
                         holder = testList.get(i);
                         //Setting a check on the second TableContents fetch. If an odd number of pets come back, it will throw an OOB exception because its index fetch is based on TableContents1's index.
                         if (i < testListTwo.size()) {
@@ -152,14 +197,14 @@ public class DogFragment extends Fragment {
                         if (holder.contains("A1")) {
                             idList.add(holder);
                             String imgPre = "https://petharbor.com/get_image.asp?RES=Detail&ID=";
-                            String imgPost = holder+"&LOCATION=LACT";
+                            String imgPost = holder + "&LOCATION=LACT";
                             String fullImg = imgPre + imgPost;
                             imageList.add(fullImg);
                         }
                         if (holderTwo.contains("A1")) {
                             idList.add(holderTwo);
                             String imgPre = "https://petharbor.com/get_image.asp?RES=Detail&ID=";
-                            String imgPost = holderTwo+"&LOCATION=LACT";
+                            String imgPost = holderTwo + "&LOCATION=LACT";
                             String fullImg = imgPre + imgPost;
                             imageList.add(fullImg);
                         }
@@ -190,11 +235,13 @@ public class DogFragment extends Fragment {
                             String shorten = holderTwo.substring(5);
                             ageList.add(shorten);
                         }
-                        if (holder.contains("Los Angeles")) {
-                            locationList.add(holder);
+                        if (holder.contains("Los Angeles Animal")) {
+                            String shorten = holder.substring(30);
+                            locationList.add(shorten);
                         }
-                        if (holderTwo.contains("Los Angeles")) {
-                            locationList.add(holderTwo);
+                        if (holderTwo.contains("Los Angeles Animal")) {
+                            String shorten = holderTwo.substring(30);
+                            locationList.add(shorten);
                         }
                         if (!holder.contains("A1") && !holder.contains("My name is") && !holder.contains("Lbs") && !holder.contains("yr") && !holder.contains("Los Angeles")) {
                             breedList.add(holder);
@@ -204,19 +251,80 @@ public class DogFragment extends Fragment {
                         }
                     }
 
-                    //Any individual list works for this loop's size check, since they are all the same size.
-                    for (int x=0; x<idList.size(); x++) {
-                        //Combining animal info into one list, to be passed into adapter and set to populate RecyclerView.
-                        animalList.add(imageList.get(x));
-                        animalList.add(idList.get(x));
-                        animalList.add(breedList.get(x));
-                        animalList.add(weightList.get(x));
-                        animalList.add(ageList.get(x));
-                        animalList.add(locationList.get(x));
-                    }
-
-
                     mListCallback.onDisplayList(imageList, idList, nameList, breedList, weightList, ageList, locationList);
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+
+    private void aSyncRetrieveNorthEast() {
+        AsyncTask.execute(new Runnable() {
+            @Override
+            public void run() {
+
+                try {
+                    Document doc = Jsoup.connect(url).get();
+
+                    Elements content = doc.getElementsByClass("TableContent1");
+                    Elements contentTwo = doc.getElementsByClass("TableContent2");
+                    Elements testImage = content.select("img");
+
+                    imageList = new ArrayList<>();
+                    idList = new ArrayList<>();
+                    nameList = new ArrayList<>();
+                    breedList = new ArrayList<>();
+                    weightList = new ArrayList<>();
+                    ageList = new ArrayList<>();
+                    locationList = new ArrayList<>();
+                    animalList = new ArrayList<>();
+
+                    testList = content.eachText();
+                    testListTwo = contentTwo.eachText();
+
+                    for (int i = 0; i < testList.size(); i++) {
+                        holder = testList.get(i);
+                        //Setting a check on the second TableContents fetch. If an odd number of pets come back, it will throw an OOB exception because its index fetch is based on TableContents1's index.
+                        if (i < testListTwo.size()) {
+                            holderTwo = testListTwo.get(i);
+                        }
+
+                        if (holder.contains("East Valley") || holderTwo.contains("East Valley")) {
+                            String shortenLoc = holder.substring(30);
+                            locationList.add(shortenLoc);
+
+                            String shortenAge = testList.get(i-1).substring(5);
+                            ageList.add(shortenAge);
+
+                            String shortenWeight = testList.get(i-2).substring(3);
+                            weightList.add(shortenWeight);
+
+                            breedList.add(testList.get(i-3));
+
+                            String[] split = testList.get(i-4).split(" ");
+                            String shortenName = split[3];
+                            nameList.add(shortenName);
+
+                            idList.add(testList.get(i-5));
+                            String imgPre = "https://petharbor.com/get_image.asp?RES=Detail&ID=";
+                            String imgPost = testList.get(i-5) + "&LOCATION=LACT";
+                            String fullImg = imgPre + imgPost;
+                            imageList.add(fullImg);
+                        }
+                    }
+                    mListCallback.onDisplayList(imageList, idList, nameList, breedList, weightList, ageList, locationList);
+
+                    Log.i("id", idList.toString());
+                    Log.i("name", nameList.toString());
+                    Log.i("breed", breedList.toString());
+                    Log.i("weight", weightList.toString());
+                    Log.i("age", ageList.toString());
+                    Log.i("location", locationList.toString());
+                    Log.i("image", imageList.toString());
+
+//                    mListCallback.onDisplayList(imageList, idList, nameList, breedList, weightList, ageList, locationList);
 
                 } catch (IOException e) {
                     e.printStackTrace();
