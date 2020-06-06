@@ -84,8 +84,5 @@ public class MainActivity extends AppCompatActivity implements MenuFragment.dogC
         fm.beginTransaction()
                 .replace(R.id.animals, displayFragment)
                 .commit();
-
-
     }
-
 }
