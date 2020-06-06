@@ -9,6 +9,9 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements MenuFragment.dogCallback, MenuFragment.catCallback, MenuFragment.othersCallback, PetFragment.listCallback {
 
+
+    //Todo Add "rescue groups only".
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,7 +23,6 @@ public class MainActivity extends AppCompatActivity implements MenuFragment.dogC
         fm.beginTransaction()
                 .add(R.id.animals, menuFragment)
                 .commit();
-
     }
 
     @Override

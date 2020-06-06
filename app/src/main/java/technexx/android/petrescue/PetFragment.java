@@ -213,14 +213,16 @@ public class PetFragment extends Fragment {
                         }
 
                         if (holder.contains("My name is")) {
-                            String[] split = holder.split(" ");
-                            String shorten = split[3];
-                            nameList.add(shorten);
+                            String[] split = holder.split("and");
+                            String shorten = split[0];
+                            String cull = shorten.substring(11);
+                            nameList.add(cull);
                         }
                         if (holderTwo.contains("My name is")) {
-                            String[] split = holderTwo.split(" ");
-                            String shorten = split[3];
-                            nameList.add(shorten);
+                            String[] split = holderTwo.split("and");
+                            String shorten = split[0];
+                            String cull = shorten.substring(11);
+                            nameList.add(cull);
                         }
                         if (holder.contains("Lbs")) {
                             String shorten = holder.substring(3);
@@ -312,9 +314,10 @@ public class PetFragment extends Fragment {
 
                                 breedList.add(testList.get(i-3));
 
-                                String[] split = testList.get(i-4).split(" ");
-                                String shortenName = split[3];
-                                nameList.add(shortenName);
+                                String[] split = testList.get(i-4).split("and");
+                                String shortenName = split[0];
+                                String cull = shortenName.substring(11);
+                                nameList.add(cull);
 
                                 idList.add(testList.get(i-5));
                                 String imgPre = "https://petharbor.com/get_image.asp?RES=Detail&ID=";
@@ -344,9 +347,10 @@ public class PetFragment extends Fragment {
 
                                 breedList.add(testList.get(i-3));
 
-                                String[] split = testList.get(i-4).split(" ");
-                                String shortenName = split[3];
-                                nameList.add(shortenName);
+                                String[] split = testList.get(i-4).split("and");
+                                String shortenName = split[0];
+                                String cull = shortenName.substring(11);
+                                nameList.add(cull);
 
                                 idList.add(testList.get(i-5));
                                 String imgPre = "https://petharbor.com/get_image.asp?RES=Detail&ID=";
@@ -373,9 +377,10 @@ public class PetFragment extends Fragment {
 
                                 breedList.add(testList.get(i-3));
 
-                                String[] split = testList.get(i-4).split(" ");
-                                String shortenName = split[3];
-                                nameList.add(shortenName);
+                                String[] split = testList.get(i-4).split("and");
+                                String shortenName = split[0];
+                                String cull = shortenName.substring(11);
+                                nameList.add(cull);
 
                                 idList.add(testList.get(i-5));
                                 String imgPre = "https://petharbor.com/get_image.asp?RES=Detail&ID=";
@@ -402,9 +407,10 @@ public class PetFragment extends Fragment {
 
                                 breedList.add(testList.get(i-3));
 
-                                String[] split = testList.get(i-4).split(" ");
-                                String shortenName = split[3];
-                                nameList.add(shortenName);
+                                String[] split = testList.get(i-4).split("and");
+                                String shortenName = split[0];
+                                String cull = shortenName.substring(11);
+                                nameList.add(cull);
 
                                 idList.add(testList.get(i-5));
                                 String imgPre = "https://petharbor.com/get_image.asp?RES=Detail&ID=";
