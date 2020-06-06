@@ -6,7 +6,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -43,6 +45,11 @@ public class DisplayFragment extends Fragment {
 
         animalRecycler.setAdapter(petListAdapter);
         animalRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        DividerItemDecoration decoration = new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL);
+        decoration.setDrawable(ContextCompat.getDrawable(getContext(), R.drawable.horizontal_divider));
+
+        animalRecycler.addItemDecoration(decoration);
 
         return root;
     }
