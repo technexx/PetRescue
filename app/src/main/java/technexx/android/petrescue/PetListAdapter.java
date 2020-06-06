@@ -68,6 +68,7 @@ public class PetListAdapter extends RecyclerView.Adapter<PetListAdapter.ViewHold
         TextView age;
         TextView weight;
         TextView location;
+        View divider;
 
         public ViewHolder(@NonNull View itemView) {
             super((itemView));

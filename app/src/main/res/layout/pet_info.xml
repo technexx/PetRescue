@@ -4,6 +4,60 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <TextView
+        android:id="@+id/id_text"
+        android:text="@string/id_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@id/divider"
+        app:layout_constraintTop_toTopOf="parent">
+    </TextView>
+
+    <TextView
+        android:id="@+id/name_text"
+        android:text="@string/name_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@id/divider"
+        app:layout_constraintTop_toBottomOf="@id/id_text">
+    </TextView>
+
+    <TextView
+        android:id="@+id/breed_text"
+        android:text="@string/breed_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@id/divider"
+        app:layout_constraintTop_toBottomOf="@id/name_text">
+    </TextView>
+
+    <TextView
+        android:id="@+id/weight_text"
+        android:text="@string/weight_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@id/divider"
+        app:layout_constraintTop_toBottomOf="@id/breed_text">
+    </TextView>
+
+    <TextView
+        android:id="@+id/age_text"
+        android:text="@string/age_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@id/divider"
+        app:layout_constraintTop_toBottomOf="@id/weight_text">
+    </TextView>
+
+    <TextView
+        android:id="@+id/loc_text"
+        android:text="@string/loc_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@id/divider"
+        app:layout_constraintTop_toBottomOf="@id/age_text">
+    </TextView>
+
     <ImageView
         android:id="@+id/pet_picture"
         android:layout_width="wrap_content"
@@ -17,7 +71,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toEndOf="@id/pet_picture"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="100dp">
     </TextView>
 
     <TextView
@@ -25,7 +80,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toEndOf="@id/pet_picture"
-        app:layout_constraintTop_toBottomOf="@id/pet_id">
+        app:layout_constraintTop_toBottomOf="@id/pet_id"
+        android:layout_marginStart="100dp">
     </TextView>
 
     <TextView
@@ -33,7 +89,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toEndOf="@id/pet_picture"
-        app:layout_constraintTop_toBottomOf="@id/pet_name">
+        app:layout_constraintTop_toBottomOf="@id/pet_name"
+        android:layout_marginStart="100dp">
     </TextView>
 
     <TextView
@@ -41,7 +98,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toEndOf="@id/pet_picture"
-        app:layout_constraintTop_toBottomOf="@id/pet_breed">
+        app:layout_constraintTop_toBottomOf="@id/pet_breed"
+        android:layout_marginStart="100dp">
     </TextView>
 
     <TextView
@@ -49,7 +107,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toEndOf="@id/pet_picture"
-        app:layout_constraintTop_toBottomOf="@id/pet_weight">
+        app:layout_constraintTop_toBottomOf="@id/pet_weight"
+        android:layout_marginStart="100dp">
     </TextView>
 
     <TextView
@@ -57,8 +116,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toEndOf="@id/pet_picture"
-        app:layout_constraintTop_toBottomOf="@id/pet_age">
+        app:layout_constraintTop_toBottomOf="@id/pet_age"
+        android:layout_marginStart="100dp">
     </TextView>
 
+    <View
+        android:id="@+id/divider"
+        android:layout_width="2dp"
+        android:layout_height="133.25dp"
+        app:layout_constraintStart_toEndOf="@id/pet_picture"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@color/black">
+    </View>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -15,4 +15,11 @@
     <string name="loc_southLA">South Los Angeles Shelter</string>
     <string name="loc_westLA">West Los Angeles Shelter</string>
     <string name="loc_westValley">West Valley Shelter</string>
+
+    <string name="id_text">ID:</string>
+    <string name="name_text">Name:</string>
+    <string name="breed_text">Breed:</string>
+    <string name="weight_text">Weight:</string>
+    <string name="age_text">Age:</string>
+    <string name="loc_text">Location:</string>
 </resources>
