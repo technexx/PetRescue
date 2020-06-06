@@ -11,6 +11,8 @@ public class MainActivity extends AppCompatActivity implements MenuFragment.dogC
 
 
     //Todo Add "rescue groups only".
+    //Todo: A1938715, A1160213 in (all) has Breed as 00000Age Unknown.
+    //Todo: A1018511 A1939752 has weight as "bs". m
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

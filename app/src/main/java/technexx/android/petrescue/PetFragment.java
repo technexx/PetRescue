@@ -197,17 +197,36 @@ public class PetFragment extends Fragment {
                             holderTwo = testListTwo.get(i);
                         }
 
+                        //LACT1 = Harbor, LACT2 = West LA, LACT3 = South LA
                         if (holder.contains("A1")) {
                             idList.add(holder);
+                            String imgPost = null;
+                            if (testList.get(i + 5).contains("Harbor")) {
+                                imgPost = holder + "&LOCATION=LACT1";
+                            } else if (testList.get(i + 5).contains("West Los Angeles")) {
+                                imgPost = holder + "&LOCATION=LACT2";
+                            } else if (testList.get(i + 5).contains("South Los Angeles")) {
+                                imgPost = holder + "&LOCATION=LACT3";
+                            } else {
+                                imgPost = holder + "&LOCATION=LACT";
+                            }
                             String imgPre = "https://petharbor.com/get_image.asp?RES=Detail&ID=";
-                            String imgPost = holder + "&LOCATION=LACT";
                             String fullImg = imgPre + imgPost;
                             imageList.add(fullImg);
                         }
                         if (holderTwo.contains("A1")) {
                             idList.add(holderTwo);
+                            String imgPost = null;
+                            if (testList.get(i + 5).contains("Harbor")) {
+                                imgPost = holderTwo + "&LOCATION=LACT1";
+                            } else if (testList.get(i + 5).contains("West Los Angeles")) {
+                                imgPost = holderTwo + "&LOCATION=LACT2";
+                            } else if (testList.get(i + 5).contains("South Los Angeles")) {
+                                imgPost = holderTwo + "&LOCATION=LACT3";
+                            } else {
+                                imgPost = holderTwo + "&LOCATION=LACT";
+                            }
                             String imgPre = "https://petharbor.com/get_image.asp?RES=Detail&ID=";
-                            String imgPost = holderTwo + "&LOCATION=LACT";
                             String fullImg = imgPre + imgPost;
                             imageList.add(fullImg);
                         }
@@ -219,7 +238,7 @@ public class PetFragment extends Fragment {
                             nameList.add(cull);
                         }
                         if (holderTwo.contains("My name is")) {
-                            String[] split = holderTwo.split("and");
+                            String[] split = holder.split("and");
                             String shorten = split[0];
                             String cull = shorten.substring(11);
                             nameList.add(cull);
