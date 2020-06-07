@@ -360,11 +360,14 @@ public class PetFragment extends Fragment {
                                 String cull = shortenName.substring(11);
                                 nameList.add(cull);
 
-                                if (testList.get(i-4).contains("rescue")) {
-                                    rescueList.add(getString(R.string.rescue));
+                                if (testList.get(i-4).contains("minor")) {
+                                    rescueList.add(getString(R.string.minor_care));
+                                } else if (testList.get(i-4).contains("major")) {
+                                    rescueList.add(getString(R.string.major_care));
                                 } else {
                                     rescueList.add("");
                                 }
+
                                 idList.add(testList.get(i-5));
                                 String imgPre = "https://petharbor.com/get_image.asp?RES=Detail&ID=";
                                 String imgPost = testList.get(i-5) + "&LOCATION=LACT";
@@ -391,8 +394,10 @@ public class PetFragment extends Fragment {
                                 String cull = shortenName.substring(11);
                                 nameList.add(cull);
 
-                                if (testListTwo.get(i-4).contains("rescue")) {
-                                    rescueList.add(getString(R.string.rescue));
+                                if (testListTwo.get(i-4).contains("minor")) {
+                                    rescueList.add(getString(R.string.minor_care));
+                                } else if (testListTwo.get(i-4).contains("major")) {
+                                    rescueList.add(getString(R.string.major_care));
                                 } else {
                                     rescueList.add("");
                                 }
@@ -427,6 +432,14 @@ public class PetFragment extends Fragment {
                                 String cull = shortenName.substring(11);
                                 nameList.add(cull);
 
+                                if (testList.get(i-4).contains("minor")) {
+                                    rescueList.add(getString(R.string.minor_care));
+                                } else if (testList.get(i-4).contains("major")) {
+                                    rescueList.add(getString(R.string.major_care));
+                                } else {
+                                    rescueList.add("");
+                                }
+
                                 idList.add(testList.get(i-5));
                                 String imgPre = "https://petharbor.com/get_image.asp?RES=Detail&ID=";
                                 String imgPost = testList.get(i-5) + "&LOCATION=LACT2";
@@ -452,6 +465,14 @@ public class PetFragment extends Fragment {
                                 String shortenName = split[0];
                                 String cull = shortenName.substring(11);
                                 nameList.add(cull);
+
+                                if (testListTwo.get(i-4).contains("minor")) {
+                                    rescueList.add(getString(R.string.minor_care));
+                                } else if (testListTwo.get(i-4).contains("major")) {
+                                    rescueList.add(getString(R.string.major_care));
+                                } else {
+                                    rescueList.add("");
+                                }
 
                                 idList.add(testListTwo.get(i-5));
                                 String imgPre = "https://petharbor.com/get_image.asp?RES=Detail&ID=";
@@ -481,6 +502,14 @@ public class PetFragment extends Fragment {
                                 String cull = shortenName.substring(11);
                                 nameList.add(cull);
 
+                                if (testList.get(i-4).contains("minor")) {
+                                    rescueList.add(getString(R.string.minor_care));
+                                } else if (testList.get(i-4).contains("major")) {
+                                    rescueList.add(getString(R.string.major_care));
+                                } else {
+                                    rescueList.add("");
+                                }
+
                                 idList.add(testList.get(i-5));
                                 String imgPre = "https://petharbor.com/get_image.asp?RES=Detail&ID=";
                                 String imgPost = testList.get(i-5) + "&LOCATION=LACT3";
@@ -507,6 +536,14 @@ public class PetFragment extends Fragment {
                                 String cull = shortenName.substring(11);
                                 nameList.add(cull);
 
+                                if (testListTwo.get(i-4).contains("minor")) {
+                                    rescueList.add(getString(R.string.minor_care));
+                                } else if (testListTwo.get(i-4).contains("major")) {
+                                    rescueList.add(getString(R.string.major_care));
+                                } else {
+                                    rescueList.add("");
+                                }
+
                                 idList.add(testListTwo.get(i-5));
                                 String imgPre = "https://petharbor.com/get_image.asp?RES=Detail&ID=";
                                 String imgPost = testListTwo.get(i-5) + "&LOCATION=LACT3";
@@ -530,15 +567,18 @@ public class PetFragment extends Fragment {
 
                                 breedList.add(testList.get(i-3));
 
-                                String[] split = testList
-
-
-
-
-                                        .get(i-4).split("and");
+                                String[] split = testList.get(i-4).split("and");
                                 String shortenName = split[0];
                                 String cull = shortenName.substring(11);
                                 nameList.add(cull);
+
+                                if (testList.get(i-4).contains("minor")) {
+                                    rescueList.add(getString(R.string.minor_care));
+                                } else if (testList.get(i-4).contains("major")) {
+                                    rescueList.add(getString(R.string.major_care));
+                                } else {
+                                    rescueList.add("");
+                                }
 
                                 idList.add(testList.get(i-5));
                                 String imgPre = "https://petharbor.com/get_image.asp?RES=Detail&ID=";
@@ -565,6 +605,14 @@ public class PetFragment extends Fragment {
                                 String shortenName = split[0];
                                 String cull = shortenName.substring(11);
                                 nameList.add(cull);
+
+                                if (testListTwo.get(i-4).contains("minor")) {
+                                    rescueList.add(getString(R.string.minor_care));
+                                } else if (testListTwo.get(i-4).contains("major")) {
+                                    rescueList.add(getString(R.string.major_care));
+                                } else {
+                                    rescueList.add("");
+                                }
 
                                 idList.add(testListTwo.get(i-5));
                                 String imgPre = "https://petharbor.com/get_image.asp?RES=Detail&ID=";
