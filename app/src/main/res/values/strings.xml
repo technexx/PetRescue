@@ -24,4 +24,6 @@
     <string name="loc_text">Location:</string>
 
     <string name="rescue">*Available to rescue groups only</string>
+    <string name="minor_care">*Will require minor medical care</string>
+    <string name="major_care">*Will require major medical care</string>
 </resources>

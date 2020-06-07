@@ -237,6 +237,10 @@ public class PetFragment extends Fragment {
                             nameList.add(cull);
                             if (holder.contains("rescue")) {
                                 rescueList.add(getString(R.string.rescue));
+                            } else if (holder.contains("minor")) {
+                                rescueList.add(getString(R.string.minor_care));
+                            } else if (holder.contains("major")) {
+                                rescueList.add(getString(R.string.major_care));
                             } else {
                                 rescueList.add("");
                             }
@@ -248,6 +252,10 @@ public class PetFragment extends Fragment {
                             nameList.add(cull);
                             if (holderTwo.contains("rescue")) {
                                 rescueList.add(getString(R.string.rescue));
+                            } else if (holderTwo.contains("minor")) {
+                                rescueList.add(getString(R.string.minor_care));
+                            } else if (holderTwo.contains("major")) {
+                                rescueList.add(getString(R.string.major_care));
                             } else {
                                 rescueList.add("");
                             }
