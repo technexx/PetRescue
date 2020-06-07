@@ -347,13 +347,6 @@ public class PetFragment extends Fragment {
                                 cullLoc = shortenLoc.substring(30);
                                 locationList.add(cullLoc);
 
-                                if (holderTwo.contains("East Valley")) {
-                                    splitLoc = holderTwo.split("Shelter");
-                                    shortenLoc = splitLoc[0];
-                                    cullLoc = shortenLoc.substring(30);
-                                    locationList.add(cullLoc);
-                                }
-
                                 String shortenAge = testList.get(i-1).substring(5);
                                 ageList.add(shortenAge);
 
@@ -367,15 +360,46 @@ public class PetFragment extends Fragment {
                                 String cull = shortenName.substring(11);
                                 nameList.add(cull);
 
-                                if (testList.get(1-4).contains("rescue")) {
+                                if (testList.get(i-4).contains("rescue")) {
+                                    rescueList.add(getString(R.string.rescue));
+                                } else {
+                                    rescueList.add("");
+                                }
+                                idList.add(testList.get(i-5));
+                                String imgPre = "https://petharbor.com/get_image.asp?RES=Detail&ID=";
+                                String imgPost = testList.get(i-5) + "&LOCATION=LACT";
+                                String fullImg = imgPre + imgPost;
+                                imageList.add(fullImg);
+                            }
+
+                            if (holderTwo.contains("East Valley")) {
+                                splitLoc = holderTwo.split("Shelter");
+                                shortenLoc = splitLoc[0];
+                                cullLoc = shortenLoc.substring(30);
+                                locationList.add(cullLoc);
+
+                                String shortenAge = testListTwo.get(i-1).substring(5);
+                                ageList.add(shortenAge);
+
+                                String shortenWeight = testListTwo.get(i-2).substring(3);
+                                weightList.add(shortenWeight);
+
+                                breedList.add(testListTwo.get(i-3));
+
+                                String[] split = testListTwo.get(i-4).split("and");
+                                String shortenName = split[0];
+                                String cull = shortenName.substring(11);
+                                nameList.add(cull);
+
+                                if (testListTwo.get(i-4).contains("rescue")) {
                                     rescueList.add(getString(R.string.rescue));
                                 } else {
                                     rescueList.add("");
                                 }
 
-                                idList.add(testList.get(i-5));
+                                idList.add(testListTwo.get(i-5));
                                 String imgPre = "https://petharbor.com/get_image.asp?RES=Detail&ID=";
-                                String imgPost = testList.get(i-5) + "&LOCATION=LACT";
+                                String imgPost = testListTwo.get(i-5) + "&LOCATION=LACT";
                                 String fullImg = imgPre + imgPost;
                                 imageList.add(fullImg);
                             }
@@ -389,13 +413,6 @@ public class PetFragment extends Fragment {
                                 shortenLoc = splitLoc[0];
                                 cullLoc = shortenLoc.substring(30);
                                 locationList.add(cullLoc);
-
-                                if (holderTwo.contains("West Valley")) {
-                                    splitLoc = holderTwo.split("Shelter");
-                                    shortenLoc = splitLoc[0];
-                                    cullLoc = shortenLoc.substring(30);
-                                    locationList.add(cullLoc);
-                                }
 
                                 String shortenAge = testList.get(i-1).substring(5);
                                 ageList.add(shortenAge);
@@ -416,20 +433,40 @@ public class PetFragment extends Fragment {
                                 String fullImg = imgPre + imgPost;
                                 imageList.add(fullImg);
                             }
+
+                            if (holderTwo.contains("West Los Angeles")) {
+                                splitLoc = holderTwo.split("Shelter");
+                                shortenLoc = splitLoc[0];
+                                cullLoc = shortenLoc.substring(30);
+                                locationList.add(cullLoc);
+
+                                String shortenAge = testListTwo.get(i-1).substring(5);
+                                ageList.add(shortenAge);
+
+                                String shortenWeight = testListTwo.get(i-2).substring(3);
+                                weightList.add(shortenWeight);
+
+                                breedList.add(testListTwo.get(i-3));
+
+                                String[] split = testListTwo.get(i-4).split("and");
+                                String shortenName = split[0];
+                                String cull = shortenName.substring(11);
+                                nameList.add(cull);
+
+                                idList.add(testListTwo.get(i-5));
+                                String imgPre = "https://petharbor.com/get_image.asp?RES=Detail&ID=";
+                                String imgPost = testListTwo.get(i-5) + "&LOCATION=LACT2";
+                                String fullImg = imgPre + imgPost;
+                                imageList.add(fullImg);
+                            }
                         }
+
                         if (loc.equals("South LA")) {
                             if (holder.contains("South Los Angeles")) {
                                 splitLoc = holder.split("Shelter");
                                 shortenLoc = splitLoc[0];
                                 cullLoc = shortenLoc.substring(30);
                                 locationList.add(cullLoc);
-
-                                if (holderTwo.contains("South Los Angeles")) {
-                                    splitLoc = holderTwo.split("Shelter");
-                                    shortenLoc = splitLoc[0];
-                                    cullLoc = shortenLoc.substring(30);
-                                    locationList.add(cullLoc);
-                                }
 
                                 String shortenAge = testList.get(i-1).substring(5);
                                 ageList.add(shortenAge);
@@ -450,20 +487,40 @@ public class PetFragment extends Fragment {
                                 String fullImg = imgPre + imgPost;
                                 imageList.add(fullImg);
                             }
+
+                            if (holderTwo.contains("South Los Angeles")) {
+                                splitLoc = holderTwo.split("Shelter");
+                                shortenLoc = splitLoc[0];
+                                cullLoc = shortenLoc.substring(30);
+                                locationList.add(cullLoc);
+
+                                String shortenAge = testListTwo.get(i-1).substring(5);
+                                ageList.add(shortenAge);
+
+                                String shortenWeight = testListTwo.get(i-2).substring(3);
+                                weightList.add(shortenWeight);
+
+                                breedList.add(testListTwo.get(i-3));
+
+                                String[] split = testListTwo.get(i-4).split("and");
+                                String shortenName = split[0];
+                                String cull = shortenName.substring(11);
+                                nameList.add(cull);
+
+                                idList.add(testListTwo.get(i-5));
+                                String imgPre = "https://petharbor.com/get_image.asp?RES=Detail&ID=";
+                                String imgPost = testListTwo.get(i-5) + "&LOCATION=LACT3";
+                                String fullImg = imgPre + imgPost;
+                                imageList.add(fullImg);
+                            }
                         }
+
                         if (loc.equals("Harbor")) {
                             if (holder.contains("Harbor")) {
                                 splitLoc = holder.split("Shelter");
                                 shortenLoc = splitLoc[0];
                                 cullLoc = shortenLoc.substring(30);
                                 locationList.add(cullLoc);
-
-                                if (holderTwo.contains("Harbor")) {
-                                    splitLoc = holderTwo.split("Shelter");
-                                    shortenLoc = splitLoc[0];
-                                    cullLoc = shortenLoc.substring(30);
-                                    locationList.add(cullLoc);
-                                }
 
                                 String shortenAge = testList.get(i-1).substring(5);
                                 ageList.add(shortenAge);
@@ -473,7 +530,12 @@ public class PetFragment extends Fragment {
 
                                 breedList.add(testList.get(i-3));
 
-                                String[] split = testList.get(i-4).split("and");
+                                String[] split = testList
+
+
+
+
+                                        .get(i-4).split("and");
                                 String shortenName = split[0];
                                 String cull = shortenName.substring(11);
                                 nameList.add(cull);
@@ -481,6 +543,32 @@ public class PetFragment extends Fragment {
                                 idList.add(testList.get(i-5));
                                 String imgPre = "https://petharbor.com/get_image.asp?RES=Detail&ID=";
                                 String imgPost = testList.get(i-5) + "&LOCATION=LACT1";
+                                String fullImg = imgPre + imgPost;
+                                imageList.add(fullImg);
+                            }
+
+                            if (holderTwo.contains("Harbor")) {
+                                splitLoc = holderTwo.split("Shelter");
+                                shortenLoc = splitLoc[0];
+                                cullLoc = shortenLoc.substring(30);
+                                locationList.add(cullLoc);
+
+                                String shortenAge = testListTwo.get(i-1).substring(5);
+                                ageList.add(shortenAge);
+
+                                String shortenWeight = testListTwo.get(i-2).substring(3);
+                                weightList.add(shortenWeight);
+
+                                breedList.add(testListTwo.get(i-3));
+
+                                String[] split = testListTwo.get(i-4).split("and");
+                                String shortenName = split[0];
+                                String cull = shortenName.substring(11);
+                                nameList.add(cull);
+
+                                idList.add(testListTwo.get(i-5));
+                                String imgPre = "https://petharbor.com/get_image.asp?RES=Detail&ID=";
+                                String imgPost = testListTwo.get(i-5) + "&LOCATION=LACT1";
                                 String fullImg = imgPre + imgPost;
                                 imageList.add(fullImg);
                             }
@@ -496,6 +584,10 @@ public class PetFragment extends Fragment {
                     Log.i("age", ageList.toString());
                     Log.i("location", locationList.toString());
                     Log.i("image", imageList.toString());
+                    Log.i("rescue", rescueList.toString());
+                    Log.i("countRescue", String.valueOf(rescueList.size()));
+                    Log.i("countID", String.valueOf(idList.size()));
+                    Log.i("countName", String.valueOf(nameList.size()));
 
 //                    mListCallback.onDisplayList(imageList, idList, nameList, breedList, weightList, ageList, locationList);
 
