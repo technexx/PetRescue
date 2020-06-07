@@ -238,7 +238,7 @@ public class PetFragment extends Fragment {
                             nameList.add(cull);
                         }
                         if (holderTwo.contains("My name is")) {
-                            String[] split = holder.split("and");
+                            String[] split = holderTwo.split("and");
                             String shorten = split[0];
                             String cull = shorten.substring(11);
                             nameList.add(cull);
