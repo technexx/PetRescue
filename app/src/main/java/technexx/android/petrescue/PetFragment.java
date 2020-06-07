@@ -260,12 +260,16 @@ public class PetFragment extends Fragment {
                             ageList.add(shorten);
                         }
                         if (holder.contains("Los Angeles Animal")) {
-                            String shorten = holder.substring(30);
-                            locationList.add(shorten);
+                            String[] split = holder.split("Shelter");
+                            String shorten = split[0];
+                            String cull = shorten.substring(30);
+                            locationList.add(cull);
                         }
                         if (holderTwo.contains("Los Angeles Animal")) {
-                            String shorten = holderTwo.substring(30);
-                            locationList.add(shorten);
+                            String[] split = holderTwo.split("Shelter");
+                            String shorten = split[0];
+                            String cull = shorten.substring(30);
+                            locationList.add(cull);
                         }
                         if (!holder.contains("A1") && !holder.contains("My name is") && !holder.contains("Lbs") && !holder.contains("yr") && !holder.contains("Los Angeles")) {
                             breedList.add(holder);
@@ -315,14 +319,22 @@ public class PetFragment extends Fragment {
                             holderTwo = testListTwo.get(i);
                         }
 
+                        String[] splitLoc = null;
+                        String shortenLoc = null;
+                        String cullLoc = null;
+
                         if (loc.equals("East Valley")) {
                             if (holder.contains("East Valley")) {
-                                String shortenLoc = holder.substring(30);
-                                locationList.add(shortenLoc);
+                                splitLoc = holder.split("Shelter");
+                                shortenLoc = splitLoc[0];
+                                cullLoc = shortenLoc.substring(30);
+                                locationList.add(cullLoc);
 
                                 if (holderTwo.contains("East Valley")) {
-                                    String shortenLocTwo = holderTwo.substring(30);
-                                    locationList.add(shortenLocTwo);
+                                    splitLoc = holderTwo.split("Shelter");
+                                    shortenLoc = splitLoc[0];
+                                    cullLoc = shortenLoc.substring(30);
+                                    locationList.add(cullLoc);
                                 }
 
                                 String shortenAge = testList.get(i-1).substring(5);
@@ -350,12 +362,16 @@ public class PetFragment extends Fragment {
 
                         if (loc.equals("West LA")) {
                             if (holder.contains("West Los Angeles")) {
-                                String shortenLoc = holder.substring(30);
-                                locationList.add(shortenLoc);
+                                splitLoc = holder.split("Shelter");
+                                shortenLoc = splitLoc[0];
+                                cullLoc = shortenLoc.substring(30);
+                                locationList.add(cullLoc);
 
                                 if (holderTwo.contains("West Valley")) {
-                                    String shortenLocTwo = holderTwo.substring(30);
-                                    locationList.add(shortenLocTwo);
+                                    splitLoc = holderTwo.split("Shelter");
+                                    shortenLoc = splitLoc[0];
+                                    cullLoc = shortenLoc.substring(30);
+                                    locationList.add(cullLoc);
                                 }
 
                                 String shortenAge = testList.get(i-1).substring(5);
@@ -380,12 +396,16 @@ public class PetFragment extends Fragment {
                         }
                         if (loc.equals("South LA")) {
                             if (holder.contains("South Los Angeles")) {
-                                String shortenLoc = holder.substring(30);
-                                locationList.add(shortenLoc);
+                                splitLoc = holder.split("Shelter");
+                                shortenLoc = splitLoc[0];
+                                cullLoc = shortenLoc.substring(30);
+                                locationList.add(cullLoc);
 
                                 if (holderTwo.contains("South Los Angeles")) {
-                                    String shortenLocTwo = holderTwo.substring(30);
-                                    locationList.add(shortenLocTwo);
+                                    splitLoc = holderTwo.split("Shelter");
+                                    shortenLoc = splitLoc[0];
+                                    cullLoc = shortenLoc.substring(30);
+                                    locationList.add(cullLoc);
                                 }
 
                                 String shortenAge = testList.get(i-1).substring(5);
@@ -410,12 +430,16 @@ public class PetFragment extends Fragment {
                         }
                         if (loc.equals("Harbor")) {
                             if (holder.contains("Harbor")) {
-                                String shortenLoc = holder.substring(30);
-                                locationList.add(shortenLoc);
+                                splitLoc = holder.split("Shelter");
+                                shortenLoc = splitLoc[0];
+                                cullLoc = shortenLoc.substring(30);
+                                locationList.add(cullLoc);
 
                                 if (holderTwo.contains("Harbor")) {
-                                    String shortenLocTwo = holderTwo.substring(30);
-                                    locationList.add(shortenLocTwo);
+                                    splitLoc = holderTwo.split("Shelter");
+                                    shortenLoc = splitLoc[0];
+                                    cullLoc = shortenLoc.substring(30);
+                                    locationList.add(cullLoc);
                                 }
 
                                 String shortenAge = testList.get(i-1).substring(5);
