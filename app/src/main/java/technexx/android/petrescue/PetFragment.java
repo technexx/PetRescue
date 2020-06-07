@@ -198,7 +198,7 @@ public class PetFragment extends Fragment {
                         }
 
                         //LACT1 = Harbor, LACT2 = West LA, LACT3 = South LA
-                        if (holder.contains("A1")) {
+                        if (holder.contains("A1") || holder.contains("A0")) {
                             idList.add(holder);
                             String imgPost = null;
                             if (testList.get(i + 5).contains("Harbor")) {
@@ -214,7 +214,7 @@ public class PetFragment extends Fragment {
                             String fullImg = imgPre + imgPost;
                             imageList.add(fullImg);
                         }
-                        if (holderTwo.contains("A1")) {
+                        if (holderTwo.contains("A1") || holderTwo.contains("A0")) {
                             idList.add(holderTwo);
                             String imgPost = null;
                             if (testList.get(i + 5).contains("Harbor")) {
@@ -271,10 +271,10 @@ public class PetFragment extends Fragment {
                             String cull = shorten.substring(30);
                             locationList.add(cull);
                         }
-                        if (!holder.contains("A1") && !holder.contains("My name is") && !holder.contains("Lbs") && !holder.contains("yr") && !holder.contains("Los Angeles")) {
+                        if (!holder.contains("A1") && !holder.contains("A0") && !holder.contains("My name is") && !holder.contains("Lbs") && !holder.contains("yr") && !holder.contains("Los Angeles")) {
                             breedList.add(holder);
                         }
-                        if (!holderTwo.contains("A1") && !holderTwo.contains("My name is") && !holderTwo.contains("Lbs") && !holderTwo.contains("yr") && !holderTwo.contains("Los Angeles")) {
+                        if (!holderTwo.contains("A1") && !holderTwo.contains("A0") && !holderTwo.contains("My name is") && !holderTwo.contains("Lbs") && !holderTwo.contains("yr") && !holderTwo.contains("Los Angeles")) {
                             breedList.add(holderTwo);
                         }
                     }
