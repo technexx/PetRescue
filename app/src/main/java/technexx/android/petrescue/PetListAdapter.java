@@ -1,6 +1,7 @@
 package technexx.android.petrescue;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,10 +27,11 @@ public class PetListAdapter extends RecyclerView.Adapter<PetListAdapter.ViewHold
     private ArrayList<String> weightList;
     private ArrayList<String> ageList;
     private ArrayList<String> locationList;
+    private ArrayList<String> rescuelist;
     private Context context;
 
-    public PetListAdapter(ArrayList<String> image, ArrayList<String> id, ArrayList<String> name, ArrayList<String> breed, ArrayList<String> weight, ArrayList<String> age, ArrayList<String> location, Context context) {
-        this.imageList = image; this.idList = id; this.nameList = name; this.breedList = breed; this.weightList = weight; this.ageList = age; this.locationList = location;
+    public PetListAdapter(ArrayList<String> image, ArrayList<String> id, ArrayList<String> name, ArrayList<String> breed, ArrayList<String> weight, ArrayList<String> age, ArrayList<String> location, ArrayList<String> rescue, Context context) {
+        this.imageList = image; this.idList = id; this.nameList = name; this.breedList = breed; this.weightList = weight; this.ageList = age; this.locationList = location; this.rescuelist = rescue;
         this.context = context;
     }
 
@@ -53,6 +55,8 @@ public class PetListAdapter extends RecyclerView.Adapter<PetListAdapter.ViewHold
         holder.age.setText(ageList.get(position));
         holder.weight.setText(weightList.get(position));
         holder.location.setText(locationList.get(position));
+        holder.rescue.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
+        holder.rescue.setText(rescuelist.get(position));
     }
 
     @Override
@@ -68,7 +72,7 @@ public class PetListAdapter extends RecyclerView.Adapter<PetListAdapter.ViewHold
         TextView age;
         TextView weight;
         TextView location;
-        View divider;
+        TextView rescue;
 
         public ViewHolder(@NonNull View itemView) {
             super((itemView));
@@ -79,6 +83,7 @@ public class PetListAdapter extends RecyclerView.Adapter<PetListAdapter.ViewHold
             age = itemView.findViewById(R.id.pet_age);
             weight = itemView.findViewById(R.id.pet_weight);
             location = itemView.findViewById(R.id.pet_location);
+            rescue = itemView.findViewById(R.id.pet_rescue);
         }
     }
 }

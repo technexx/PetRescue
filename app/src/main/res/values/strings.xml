@@ -22,4 +22,6 @@
     <string name="weight_text">Weight:</string>
     <string name="age_text">Age:</string>
     <string name="loc_text">Location:</string>
+
+    <string name="rescue">*Available to rescue groups only</string>
 </resources>

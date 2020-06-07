@@ -35,8 +35,7 @@ public class PetFragment extends Fragment {
     private ArrayList<String> weightList;
     private ArrayList<String> ageList;
     private ArrayList<String> locationList;
-
-    private ArrayList<String> animalList;
+    private ArrayList<String> rescueList;
 
     private String holder;
     private String holderTwo;
@@ -50,7 +49,7 @@ public class PetFragment extends Fragment {
     private String url;
 
     public interface listCallback {
-        void onDisplayList(ArrayList<String> image, ArrayList<String> id, ArrayList<String> name, ArrayList<String> breed, ArrayList<String> weight, ArrayList<String> age, ArrayList<String> location);
+        void onDisplayList(ArrayList<String> image, ArrayList<String> id, ArrayList<String> name, ArrayList<String> breed, ArrayList<String> weight, ArrayList<String> age, ArrayList<String> location, ArrayList<String> rescue);
     }
 
     @Override
@@ -185,7 +184,7 @@ public class PetFragment extends Fragment {
                     weightList = new ArrayList<>();
                     ageList = new ArrayList<>();
                     locationList = new ArrayList<>();
-                    animalList = new ArrayList<>();
+                    rescueList = new ArrayList<>();
 
                     testList = content.eachText();
                     testListTwo = contentTwo.eachText();
@@ -236,12 +235,22 @@ public class PetFragment extends Fragment {
                             String shorten = split[0];
                             String cull = shorten.substring(11);
                             nameList.add(cull);
+                            if (holder.contains("rescue")) {
+                                rescueList.add(getString(R.string.rescue));
+                            } else {
+                                rescueList.add("");
+                            }
                         }
                         if (holderTwo.contains("My name is")) {
                             String[] split = holderTwo.split("and");
                             String shorten = split[0];
                             String cull = shorten.substring(11);
                             nameList.add(cull);
+                            if (holderTwo.contains("rescue")) {
+                                rescueList.add(getString(R.string.rescue));
+                            } else {
+                                rescueList.add("");
+                            }
                         }
                         if (holder.contains("Lbs")) {
                             String shorten = holder.substring(3);
@@ -279,7 +288,7 @@ public class PetFragment extends Fragment {
                         }
                     }
 
-                    mListCallback.onDisplayList(imageList, idList, nameList, breedList, weightList, ageList, locationList);
+                    mListCallback.onDisplayList(imageList, idList, nameList, breedList, weightList, ageList, locationList, rescueList);
 
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -307,7 +316,7 @@ public class PetFragment extends Fragment {
                     weightList = new ArrayList<>();
                     ageList = new ArrayList<>();
                     locationList = new ArrayList<>();
-                    animalList = new ArrayList<>();
+                    rescueList = new ArrayList<>();
 
                     testList = content.eachText();
                     testListTwo = contentTwo.eachText();
@@ -349,6 +358,12 @@ public class PetFragment extends Fragment {
                                 String shortenName = split[0];
                                 String cull = shortenName.substring(11);
                                 nameList.add(cull);
+
+                                if (testList.get(1-4).contains("rescue")) {
+                                    rescueList.add(getString(R.string.rescue));
+                                } else {
+                                    rescueList.add("");
+                                }
 
                                 idList.add(testList.get(i-5));
                                 String imgPre = "https://petharbor.com/get_image.asp?RES=Detail&ID=";
@@ -464,7 +479,7 @@ public class PetFragment extends Fragment {
                         }
                     }
 
-                    mListCallback.onDisplayList(imageList, idList, nameList, breedList, weightList, ageList, locationList);
+                    mListCallback.onDisplayList(imageList, idList, nameList, breedList, weightList, ageList, locationList, rescueList);
 
                     Log.i("id", idList.toString());
                     Log.i("name", nameList.toString());

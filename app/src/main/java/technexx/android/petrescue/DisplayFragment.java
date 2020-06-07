@@ -24,6 +24,7 @@ public class DisplayFragment extends Fragment {
     private ArrayList<String> weightList;
     private ArrayList<String> ageList;
     private ArrayList<String> locationList;
+    private ArrayList<String> rescueList;
 
     public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.display_fragment, container, false);
@@ -38,10 +39,11 @@ public class DisplayFragment extends Fragment {
             weightList = args.getStringArrayList("weightList");
             ageList = args.getStringArrayList("ageList");
             locationList = args.getStringArrayList("locationList");
+            rescueList = args.getStringArrayList("rescue");
         }
 
         RecyclerView animalRecycler = root.findViewById(R.id.pet_recycler);
-        PetListAdapter petListAdapter = new PetListAdapter(imageList, idList, nameList, breedList, weightList, ageList, locationList, getContext());
+        PetListAdapter petListAdapter = new PetListAdapter(imageList, idList, nameList, breedList, weightList, ageList, locationList, rescueList, getContext());
 
         animalRecycler.setAdapter(petListAdapter);
         animalRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
