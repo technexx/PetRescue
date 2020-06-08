@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
@@ -48,6 +49,8 @@ public class PetFragment extends Fragment {
     private String urlPre;
     private String url;
 
+    private DisplayFragment.onMainMenuCallback mOnMainMenuCallback;
+
     public interface listCallback {
         void onDisplayList(ArrayList<String> image, ArrayList<String> id, ArrayList<String> name, ArrayList<String> breed, ArrayList<String> weight, ArrayList<String> age, ArrayList<String> location, ArrayList<String> rescue);
     }
@@ -60,10 +63,23 @@ public class PetFragment extends Fragment {
         } catch (ClassCastException e) {
             throw new ClassCastException(context.toString() + "Must implement listCallback");
         }
+        try {
+            mOnMainMenuCallback = (DisplayFragment.onMainMenuCallback) context;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(context.toString() + "Must implement onMainMenuCallback");
+        }
     }
 
     public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.pet_fragment, container, false);
+
+        OnBackPressedCallback callback = new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                mOnMainMenuCallback.onMainMenu();
+            }
+        };
+        requireActivity().getOnBackPressedDispatcher().addCallback(this, callback);
 
         Button westValley = root.findViewById(R.id.westValley);
         Button eastValley = root.findViewById(R.id.eastValley);

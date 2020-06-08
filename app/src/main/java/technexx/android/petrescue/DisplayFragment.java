@@ -1,11 +1,15 @@
 package technexx.android.petrescue;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.activity.OnBackPressedCallback;
+import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DividerItemDecoration;
@@ -26,11 +30,34 @@ public class DisplayFragment extends Fragment {
     private ArrayList<String> locationList;
     private ArrayList<String> rescueList;
 
+    private onMainMenuCallback mOnMainMenuCallback;
+
+    public interface onMainMenuCallback {
+            void onMainMenu();
+    }
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        try {
+            mOnMainMenuCallback = (onMainMenuCallback) context;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(context.toString() + "Must implement mainMenuCallback");
+        }
+    }
+
     public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.display_fragment, container, false);
 
-        Bundle args = getArguments();
+        OnBackPressedCallback callback = new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                mOnMainMenuCallback.onMainMenu();
+            }
+        };
+        requireActivity().getOnBackPressedDispatcher().addCallback(this, callback);
 
+        Bundle args = getArguments();
         if (args != null) {
             imageList = args.getStringArrayList("imageList");
             idList = args.getStringArrayList("idList");

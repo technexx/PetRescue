@@ -7,7 +7,7 @@ import android.os.Bundle;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity implements MenuFragment.dogCallback, MenuFragment.catCallback, MenuFragment.othersCallback, PetFragment.listCallback {
+public class MainActivity extends AppCompatActivity implements MenuFragment.dogCallback, MenuFragment.catCallback, MenuFragment.othersCallback, PetFragment.listCallback, DisplayFragment.onMainMenuCallback {
 
 
     //Todo Add "rescue groups only".
@@ -88,6 +88,16 @@ public class MainActivity extends AppCompatActivity implements MenuFragment.dogC
 
         fm.beginTransaction()
                 .replace(R.id.animals, displayFragment)
+                .commit();
+    }
+
+    @Override
+    public void onMainMenu() {
+        FragmentManager fm = getSupportFragmentManager();
+        MenuFragment menuFragment = new MenuFragment();
+
+        fm.beginTransaction()
+                .replace(R.id.animals, menuFragment)
                 .commit();
     }
 }

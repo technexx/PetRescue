@@ -129,7 +129,6 @@
         android:layout_marginStart="2dp">
     </TextView>
 
-
     <View
         android:id="@+id/divider"
         android:layout_width="2dp"

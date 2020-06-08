@@ -7,15 +7,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 public class MenuFragment extends Fragment {
 
-    dogCallback mDogCallback;
-    catCallback mCatCallback;
-    othersCallback mOthersCallback;
+    private dogCallback mDogCallback;
+    private catCallback mCatCallback;
+    private othersCallback mOthersCallback;
 
     public interface dogCallback {
         void onDogCalled();
@@ -47,7 +48,6 @@ public class MenuFragment extends Fragment {
         } catch (ClassCastException e) {
             throw new ClassCastException(context.toString() + "Must implement othersCallback");
         }
-
     }
 
     public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState) {
@@ -56,6 +56,10 @@ public class MenuFragment extends Fragment {
         Button dogs = root.findViewById(R.id.dogs);
         Button cats = root.findViewById(R.id.cats);
         Button others = root.findViewById(R.id.others);
+
+        dogs.setBackgroundResource(R.drawable.dogmod);
+        cats.setBackgroundResource(R.drawable.catmod);
+        others.setBackgroundResource(R.drawable.hamster);
 
         dogs.setOnClickListener(new View.OnClickListener() {
             @Override
