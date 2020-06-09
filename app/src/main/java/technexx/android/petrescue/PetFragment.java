@@ -24,8 +24,6 @@ import java.util.List;
 
 public class PetFragment extends Fragment {
 
-    listCallback mListCallback;
-
     private List<String> testList = null;
     private List<String> testListTwo = null;
 
@@ -49,12 +47,16 @@ public class PetFragment extends Fragment {
     private String urlPre;
     private String url;
 
-    private DisplayFragment.onMainMenuCallback mOnMainMenuCallback;
+    private onMainMenuCallback mOnMainMenuCallback;
+    private listCallback mListCallback;
+
+    public interface onMainMenuCallback {
+        void onMainMenu();
+    }
 
     public interface listCallback {
         void onDisplayList(ArrayList<String> image, ArrayList<String> id, ArrayList<String> name, ArrayList<String> breed, ArrayList<String> weight, ArrayList<String> age, ArrayList<String> location, ArrayList<String> rescue);
     }
-
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
@@ -64,7 +66,7 @@ public class PetFragment extends Fragment {
             throw new ClassCastException(context.toString() + "Must implement listCallback");
         }
         try {
-            mOnMainMenuCallback = (DisplayFragment.onMainMenuCallback) context;
+            mOnMainMenuCallback = (onMainMenuCallback) context;
         } catch (ClassCastException e) {
             throw new ClassCastException(context.toString() + "Must implement onMainMenuCallback");
         }

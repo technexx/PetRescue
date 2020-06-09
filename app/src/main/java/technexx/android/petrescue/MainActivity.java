@@ -7,12 +7,12 @@ import android.os.Bundle;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity implements MenuFragment.dogCallback, MenuFragment.catCallback, MenuFragment.othersCallback, PetFragment.listCallback, DisplayFragment.onMainMenuCallback {
+public class MainActivity extends AppCompatActivity implements MenuFragment.dogCallback, MenuFragment.catCallback, MenuFragment.othersCallback, PetFragment.listCallback, DisplayFragment.onShelterMenuCallback, PetFragment.onMainMenuCallback {
 
 
-    //Todo Add "rescue groups only".
+    //Todo: Lots of "bs" weights in Other.
+    //Todo: Add contact info of shelter/warning that all info is pulled from website.
     //Todo: Longer breeds, e.g. "American Staffordshire" run off screen.
-    //Todo: Add scroll bar to side.
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,6 +88,16 @@ public class MainActivity extends AppCompatActivity implements MenuFragment.dogC
 
         fm.beginTransaction()
                 .replace(R.id.animals, displayFragment)
+                .commit();
+    }
+
+    @Override
+    public void onShelterMenu() {
+        FragmentManager fm = getSupportFragmentManager();
+        MenuFragment menuFragment = new MenuFragment();
+
+        fm.beginTransaction()
+                .replace(R.id.animals, menuFragment)
                 .commit();
     }
 

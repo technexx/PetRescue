@@ -30,19 +30,19 @@ public class DisplayFragment extends Fragment {
     private ArrayList<String> locationList;
     private ArrayList<String> rescueList;
 
-    private onMainMenuCallback mOnMainMenuCallback;
+    private onShelterMenuCallback mOnShelterMenuCallback;
 
-    public interface onMainMenuCallback {
-            void onMainMenu();
+    public interface onShelterMenuCallback {
+            void onShelterMenu();
     }
 
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         try {
-            mOnMainMenuCallback = (onMainMenuCallback) context;
+            mOnShelterMenuCallback = (onShelterMenuCallback) context;
         } catch (ClassCastException e) {
-            throw new ClassCastException(context.toString() + "Must implement mainMenuCallback");
+            throw new ClassCastException(context.toString() + "Must implement shelterMenuCallback");
         }
     }
 
@@ -52,7 +52,7 @@ public class DisplayFragment extends Fragment {
         OnBackPressedCallback callback = new OnBackPressedCallback(true) {
             @Override
             public void handleOnBackPressed() {
-                mOnMainMenuCallback.onMainMenu();
+                mOnShelterMenuCallback.onShelterMenu();
             }
         };
         requireActivity().getOnBackPressedDispatcher().addCallback(this, callback);
