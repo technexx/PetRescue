@@ -72,7 +72,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintStart_toEndOf="@id/pet_picture"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginStart="100dp">
+        android:layout_marginStart="80dp">
     </TextView>
 
     <TextView
@@ -81,7 +81,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintStart_toEndOf="@id/pet_picture"
         app:layout_constraintTop_toBottomOf="@id/pet_id"
-        android:layout_marginStart="100dp">
+        android:layout_marginStart="80dp">
     </TextView>
 
     <TextView
@@ -90,7 +90,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintStart_toEndOf="@id/pet_picture"
         app:layout_constraintTop_toBottomOf="@id/pet_name"
-        android:layout_marginStart="100dp">
+        android:layout_marginStart="80dp">
     </TextView>
 
     <TextView
@@ -99,7 +99,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintStart_toEndOf="@id/pet_picture"
         app:layout_constraintTop_toBottomOf="@id/pet_breed"
-        android:layout_marginStart="100dp">
+        android:layout_marginStart="80dp">
     </TextView>
 
     <TextView
@@ -108,7 +108,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintStart_toEndOf="@id/pet_picture"
         app:layout_constraintTop_toBottomOf="@id/pet_weight"
-        android:layout_marginStart="100dp">
+        android:layout_marginStart="80dp">
     </TextView>
 
     <TextView
@@ -117,7 +117,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintStart_toEndOf="@id/pet_picture"
         app:layout_constraintTop_toBottomOf="@id/pet_age"
-        android:layout_marginStart="100dp">
+        android:layout_marginStart="80dp">
     </TextView>
 
     <TextView

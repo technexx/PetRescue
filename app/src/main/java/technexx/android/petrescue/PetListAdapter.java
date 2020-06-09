@@ -48,7 +48,7 @@ public class PetListAdapter extends RecyclerView.Adapter<PetListAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        Picasso.get().load(imageList.get(position)).resize(400, 400).into(holder.image);
+        Picasso.get().load(imageList.get(position)).resize(450, 400).into(holder.image);
         holder.animalID.setText(idList.get(position));
         holder.name.setText(nameList.get(position));
         holder.breed.setText(breedList.get(position));
