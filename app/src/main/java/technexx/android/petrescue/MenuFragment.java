@@ -10,6 +10,7 @@ import android.widget.ImageButton;
 
 import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
@@ -54,13 +55,13 @@ public class MenuFragment extends Fragment {
     public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.menu_fragment, container, false);
 
-        ImageButton dogs = root.findViewById(R.id.dogs);
-        ImageButton cats = root.findViewById(R.id.cats);
-        ImageButton others = root.findViewById(R.id.others);
+        Button dogs = root.findViewById(R.id.dogs);
+        Button cats = root.findViewById(R.id.cats);
+        Button others = root.findViewById(R.id.others);
 
-//        dogs.setBackgroundResource(R.drawable.dogmod);
-//        cats.setBackgroundResource(R.drawable.catmod);
-//        others.setBackgroundResource(R.drawable.hamster);
+        dogs.setBackgroundResource(R.drawable.dogmod2);
+        cats.setBackgroundResource(R.drawable.catmod2);
+        others.setBackgroundResource(R.drawable.hamster2);
 
         dogs.setOnClickListener(new View.OnClickListener() {
             @Override

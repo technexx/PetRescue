@@ -1,76 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <androidx.cardview.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:card_view="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     card_view:cardCornerRadius="8dp"
-    card_view:cardElevation="8dp"
+    card_view:cardElevation="0dp"
     android:clickable="true"
     android:foreground="?android:attr/selectableItemBackground"
     android:focusable="true"
-    app:cardUseCompatPadding="true">
+    app:cardPreventCornerOverlap="false">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <ImageButton
+        <Button
             android:id="@+id/dogs"
-            android:text="@string/dogs"
-            android:layout_width="match_parent"
-            android:layout_height="188dp"
+            android:layout_width="340dp"
+            android:layout_height="180dp"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:textColor="@color/black"
-            android:gravity="center|bottom"
-            android:textSize="20sp"
-            android:background="@drawable/dogmod2">
-        </ImageButton>
+            android:layout_marginTop="4dp"
+            android:textColor="@color/black">
+        </Button>
 
-        <ImageButton
+        <Button
             android:id="@+id/cats"
-            android:text="@string/Cats"
-            android:layout_width="match_parent"
-            android:layout_height="188dp"
+            android:layout_width="340dp"
+            android:layout_height="180dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/div1"
-            android:gravity="center|bottom"
-            android:background="@drawable/catmod2">
-        </ImageButton>
-
-        <ImageButton
-            android:id="@+id/others"
-            android:text="@string/others"
-            android:layout_width="match_parent"
-            android:layout_height="188dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/div2"
-            android:gravity="center|bottom"
-            android:background="@drawable/hamster2"/>
-
-        <View
-            android:id="@+id/div1"
-            android:layout_width="wrap_content"
-            android:layout_height="2dp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/dogs"
-            app:layout_constraintStart_toStartOf="parent"
-            android:background="@color/black">
-        </View>
+            android:layout_marginTop="8dp">
+        </Button>
 
-        <View
-            android:id="@+id/div2"
-            android:layout_width="wrap_content"
-            android:layout_height="2dp"
+        <Button
+            android:id="@+id/others"
+            android:layout_width="340dp"
+            android:layout_height="180dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/cats"
-            app:layout_constraintStart_toStartOf="parent"
-            android:background="@color/black">
-        </View>
-
+            android:layout_marginTop="8dp"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-
 </androidx.cardview.widget.CardView>
-

@@ -98,6 +98,7 @@ public class MainActivity extends AppCompatActivity implements MenuFragment.dogC
 
         fm.beginTransaction()
                 .replace(R.id.animals, menuFragment)
+                .addToBackStack(null)
                 .commit();
     }
 
@@ -107,7 +108,8 @@ public class MainActivity extends AppCompatActivity implements MenuFragment.dogC
         MenuFragment menuFragment = new MenuFragment();
 
         fm.beginTransaction()
-                .replace(R.id.animals, menuFragment)
+//                .replace(R.id.animals, menuFragment)
+                .addToBackStack(null)
                 .commit();
     }
 }
