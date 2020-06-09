@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements MenuFragment.dogCallback, MenuFragment.catCallback, MenuFragment.othersCallback, PetFragment.listCallback, DisplayFragment.onShelterMenuCallback, PetFragment.onMainMenuCallback {
 
-
+    //Todo: Calls to holderTwo still iterate through holderOne's array size, meaning that even if we don't try to populate holderTwo w/ non-existent data (i.e. holderOne's extra pet rows), we are still trying to call those extra rows in each shelter.
     //Todo: Lots of "bs" weights in Other.
     //Todo: Add contact info of shelter/warning that all info is pulled from website.
     //Todo: Longer breeds, e.g. "American Staffordshire" run off screen.
