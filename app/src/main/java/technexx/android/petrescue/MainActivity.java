@@ -9,10 +9,10 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements MenuFragment.dogCallback, MenuFragment.catCallback, MenuFragment.othersCallback, PetFragment.listCallback, DisplayFragment.onShelterMenuCallback, PetFragment.onMainMenuCallback {
 
-    //Todo: Disable fetch buttons after first press, otherwise fragments get detached.
-    //Todo: Lots of "bs" weights in Other, also errors w/ unknown ages.
     //Todo: Add contact info of shelter/warning that all info is pulled from website.
     //Todo: Longer breeds, e.g. "American Staffordshire" run off screen.
+    //Todo: Shelter info after clicking pet.
+    //Todo: Fix frag detach. Easiest way is probably just disabling back button.
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

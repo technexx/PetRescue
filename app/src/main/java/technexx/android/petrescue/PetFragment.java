@@ -251,12 +251,21 @@ public class PetFragment extends Fragment {
                             }
                         }
                         if (holder.contains("Lbs")) {
-                            String shorten = holder.substring(3);
-                            weightList.add(shorten);
+                            if (holder.contains("0 Lbs")) {
+                                weightList.add("N/A");
+                            } else {
+                                String shorten = holder.substring(3);
+                                weightList.add(shorten);
+                            }
                         }
-                        if (holder.contains("yr") || holder.contains("Age Unknown") || holder.contains("mos") || holder.contains("wks")) {
-                            String shorten = holder.substring(5);
-                            ageList.add(shorten);
+
+                        if  (holder.contains("Age Unknown")) {
+                            ageList.add("Unknown");
+                        } else {
+                            if (holder.contains("yr") || holder.contains("mos") || holder.contains("wks")) {
+                                String shorten = holder.substring(5);
+                                ageList.add(shorten);
+                            }
                         }
 
                         if (holder.contains("Los Angeles Animal")) {
@@ -265,7 +274,7 @@ public class PetFragment extends Fragment {
                             String cull = shorten.substring(30);
                             locationList.add(cull);
                         }
-                        if (!holder.contains("A1") && !holder.contains("A0") && !holder.contains("My name is") && !holder.contains("Lbs") && !holder.contains("yr") && !holder.contains("Los Angeles")) {
+                        if (!holder.contains("A1") && !holder.contains("A0") && !holder.contains("I am a") && !holder.contains("Lbs") && !holder.contains("yr") && !holder.contains("Los Angeles") && !holder.contains("Unknown") && !holder.contains("wks") && !holder.contains("mos")) {
                             breedList.add(holder);
                         }
                     }
@@ -308,17 +317,23 @@ public class PetFragment extends Fragment {
                             String shorten = holderTwo.substring(3);
                             weightList.add(shorten);
                         }
-                        if (holderTwo.contains("yr") || holderTwo.contains("Age Unknown") || holderTwo.contains("mos") || holderTwo.contains("wks")) {
-                            String shorten = holderTwo.substring(5);
-                            ageList.add(shorten);
+
+                        if (holderTwo.contains("Age Unknown")) {
+                            ageList.add("Unknown");
+                        } else {
+                            if (holderTwo.contains("yr") ||  holderTwo.contains("mos") || holderTwo.contains("wks")) {
+                                String shorten = holderTwo.substring(5);
+                                ageList.add(shorten);
+                            }
                         }
+
                         if (holderTwo.contains("Los Angeles Animal")) {
                             String[] split = holderTwo.split("Shelter");
                             String shorten = split[0];
                             String cull = shorten.substring(30);
                             locationList.add(cull);
                         }
-                        if (!holderTwo.contains("A1") && !holderTwo.contains("A0") && !holderTwo.contains("My name is") && !holderTwo.contains("Lbs") && !holderTwo.contains("yr") && !holderTwo.contains("Los Angeles")) {
+                        if (!holderTwo.contains("A1") && !holderTwo.contains("A0") && !holderTwo.contains("I am a") && !holderTwo.contains("Lbs") && !holderTwo.contains("yr") && !holderTwo.contains("Los Angeles") && !holderTwo.contains("Unknown") && !holderTwo.contains("wks") && !holderTwo.contains("mos")) {
                             breedList.add(holderTwo);
                         }
                     }
@@ -370,11 +385,19 @@ public class PetFragment extends Fragment {
                                 cullLoc = shortenLoc.substring(30);
                                 locationList.add(cullLoc);
 
-                                String shortenAge = testList.get(i-1).substring(5);
-                                ageList.add(shortenAge);
+                                if (testList.get(i-1).contains("Unknown")) {
+                                    ageList.add("Unknown");
+                                } else {
+                                    String shortenAge = testList.get(i-1).substring(5);
+                                    ageList.add(shortenAge);
+                                }
 
-                                String shortenWeight = testList.get(i-2).substring(3);
-                                weightList.add(shortenWeight);
+                                if (testList.get(i-2).contains("0 Lbs")) {
+                                    weightList.add("N/A");
+                                } else {
+                                    String shortenWeight = testList.get(i-2).substring(3);
+                                    weightList.add(shortenWeight);
+                                }
 
                                 breedList.add(testList.get(i-3));
 
@@ -408,11 +431,19 @@ public class PetFragment extends Fragment {
                                 cullLoc = shortenLoc.substring(30);
                                 locationList.add(cullLoc);
 
-                                String shortenAge = testList.get(i-1).substring(5);
-                                ageList.add(shortenAge);
+                                if (testList.get(i-1).contains("Unknown")) {
+                                    ageList.add("Age Unknown");
+                                } else {
+                                    String shortenAge = testList.get(i-1).substring(5);
+                                    ageList.add(shortenAge);
+                                }
 
-                                String shortenWeight = testList.get(i-2).substring(3);
-                                weightList.add(shortenWeight);
+                                if (testList.get(i-2).contains("0 Lbs")) {
+                                    weightList.add("N/A");
+                                } else {
+                                    String shortenWeight = testList.get(i-2).substring(3);
+                                    weightList.add(shortenWeight);
+                                }
 
                                 breedList.add(testList.get(i-3));
 
@@ -444,11 +475,19 @@ public class PetFragment extends Fragment {
                                 cullLoc = shortenLoc.substring(30);
                                 locationList.add(cullLoc);
 
-                                String shortenAge = testList.get(i-1).substring(5);
-                                ageList.add(shortenAge);
+                                if (testList.get(i-1).contains("Unknown")) {
+                                    ageList.add("Age Unknown");
+                                } else {
+                                    String shortenAge = testList.get(i-1).substring(5);
+                                    ageList.add(shortenAge);
+                                }
 
-                                String shortenWeight = testList.get(i-2).substring(3);
-                                weightList.add(shortenWeight);
+                                if (testList.get(i-2).contains("0 Lbs")) {
+                                    weightList.add("N/A");
+                                } else {
+                                    String shortenWeight = testList.get(i-2).substring(3);
+                                    weightList.add(shortenWeight);
+                                }
 
                                 breedList.add(testList.get(i-3));
 
@@ -480,11 +519,19 @@ public class PetFragment extends Fragment {
                                 cullLoc = shortenLoc.substring(30);
                                 locationList.add(cullLoc);
 
-                                String shortenAge = testList.get(i-1).substring(5);
-                                ageList.add(shortenAge);
+                                if (testList.get(i-1).contains("Unknown")) {
+                                    ageList.add("Age Unknown");
+                                } else {
+                                    String shortenAge = testList.get(i-1).substring(5);
+                                    ageList.add(shortenAge);
+                                }
 
-                                String shortenWeight = testList.get(i-2).substring(3);
-                                weightList.add(shortenWeight);
+                                if (testList.get(i-2).contains("0 Lbs")) {
+                                    weightList.add("N/A");
+                                } else {
+                                    String shortenWeight = testList.get(i-2).substring(3);
+                                    weightList.add(shortenWeight);
+                                }
 
                                 breedList.add(testList.get(i-3));
 
@@ -524,11 +571,19 @@ public class PetFragment extends Fragment {
                                 cullLoc = shortenLoc.substring(30);
                                 locationList.add(cullLoc);
 
-                                String shortenAge = testListTwo.get(i-1).substring(5);
-                                ageList.add(shortenAge);
+                                if (testListTwo.get(i - 1).contains("Unknown")) {
+                                    ageList.add("Unknown");
+                                } else {
+                                    String shortenAge = testListTwo.get(i-1).substring(5);
+                                    ageList.add(shortenAge);
+                                }
 
-                                String shortenWeight = testListTwo.get(i-2).substring(3);
-                                weightList.add(shortenWeight);
+                                if (testListTwo.get(i-2).contains("0 Lbs")) {
+                                    weightList.add("N/A");
+                                } else {
+                                    String shortenWeight = testListTwo.get(i-2).substring(3);
+                                    weightList.add(shortenWeight);
+                                }
 
                                 breedList.add(testListTwo.get(i-3));
 
@@ -560,11 +615,19 @@ public class PetFragment extends Fragment {
                                 cullLoc = shortenLoc.substring(30);
                                 locationList.add(cullLoc);
 
-                                String shortenAge = testListTwo.get(i-1).substring(5);
-                                ageList.add(shortenAge);
+                                if (testListTwo.get(i - 1).contains("Unknown")) {
+                                    ageList.add("Unknown");
+                                } else {
+                                    String shortenAge = testListTwo.get(i-1).substring(5);
+                                    ageList.add(shortenAge);
+                                }
 
-                                String shortenWeight = testListTwo.get(i-2).substring(3);
-                                weightList.add(shortenWeight);
+                                if (testListTwo.get(i-2).contains("0 Lbs")) {
+                                    weightList.add("N/A");
+                                } else {
+                                    String shortenWeight = testListTwo.get(i-2).substring(3);
+                                    weightList.add(shortenWeight);
+                                }
 
                                 breedList.add(testListTwo.get(i-3));
 
@@ -596,12 +659,19 @@ public class PetFragment extends Fragment {
                                 cullLoc = shortenLoc.substring(30);
                                 locationList.add(cullLoc);
 
-                                String shortenAge = testListTwo.get(i-1).substring(5);
-                                ageList.add(shortenAge);
+                                if (testListTwo.get(i - 1).contains("Unknown")) {
+                                    ageList.add("Unknown");
+                                } else {
+                                    String shortenAge = testListTwo.get(i-1).substring(5);
+                                    ageList.add(shortenAge);
+                                }
 
-                                String shortenWeight = testListTwo.get(i-2).substring(3);
-                                weightList.add(shortenWeight);
-
+                                if (testListTwo.get(i-2).contains("0 Lbs")) {
+                                    weightList.add("N/A");
+                                } else {
+                                    String shortenWeight = testListTwo.get(i-2).substring(3);
+                                    weightList.add(shortenWeight);
+                                }
                                 breedList.add(testListTwo.get(i-3));
 
                                 String[] split = testListTwo.get(i-4).split("and");
@@ -632,11 +702,19 @@ public class PetFragment extends Fragment {
                                 cullLoc = shortenLoc.substring(30);
                                 locationList.add(cullLoc);
 
-                                String shortenAge = testListTwo.get(i-1).substring(5);
-                                ageList.add(shortenAge);
+                                if (testListTwo.get(i - 1).contains("Unknown")) {
+                                    ageList.add("Unknown");
+                                } else {
+                                    String shortenAge = testListTwo.get(i-1).substring(5);
+                                    ageList.add(shortenAge);
+                                }
 
-                                String shortenWeight = testListTwo.get(i-2).substring(3);
-                                weightList.add(shortenWeight);
+                                if (testListTwo.get(i-2).contains("0 Lbs")) {
+                                    weightList.add("N/A");
+                                } else {
+                                    String shortenWeight = testListTwo.get(i-2).substring(3);
+                                    weightList.add(shortenWeight);
+                                }
 
                                 breedList.add(testListTwo.get(i-3));
 
