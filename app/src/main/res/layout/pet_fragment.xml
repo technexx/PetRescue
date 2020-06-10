@@ -10,7 +10,9 @@
     card_view:cardElevation="8dp"
     android:clickable="true"
     android:foreground="?android:attr/selectableItemBackground"
-    android:focusable="true">
+    android:focusable="true"
+    app:cardElevation="8dp"
+    app:cardCornerRadius="10dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -26,73 +28,120 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             android:textColor="@color/black"
-            android:background="@drawable/button_one"
-            android:textSize="30sp">
+            android:textSize="30sp"
+            app:backgroundTint="@color/off_white"
+            app:cornerRadius="10dp"
+            app:rippleColor="#33AAAAAA"
+            app:strokeColor="@color/black"
+            app:strokeWidth="2dp">
         </Button>
 
         <Button
             android:id="@+id/westValley"
             android:text="@string/loc_westValley"
-            android:layout_width="180dp"
+            android:layout_width="168dp"
             android:layout_height="135dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/all_animals"
-            app:backgroundTint="@color/transparent"
-            android:layout_marginTop="8dp">
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:layout_marginTop="8dp"
+            app:backgroundTint="@color/test2"
+            app:cornerRadius="10dp"
+            app:rippleColor="#33AAAAAA"
+            app:strokeColor="@color/black"
+            app:strokeWidth="2dp"
+            android:layout_marginStart="8dp">
         </Button>
 
         <Button
             android:id="@+id/eastValley"
             android:text="@string/loc_eastValley"
-            android:layout_width="180dp"
+            android:layout_width="168dp"
             android:layout_height="135dp"
             app:layout_constraintStart_toEndOf="@id/westValley"
             app:layout_constraintTop_toBottomOf="@id/all_animals"
-            app:backgroundTint="@color/transparent"
-            android:layout_marginTop="8dp"/>
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:layout_marginTop="8dp"
+            app:backgroundTint="@color/test2"
+            app:cornerRadius="10dp"
+            app:rippleColor="#33AAAAAA"
+            app:strokeColor="@color/black"
+            app:strokeWidth="2dp"
+            android:layout_marginStart="8dp"/>
 
         <Button
             android:id="@+id/westLA"
             android:text="@string/loc_westLA"
-            android:layout_width="180dp"
+            android:layout_width="168dp"
             android:layout_height="135dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/westValley"
-            app:backgroundTint="@color/transparent"
-            android:layout_marginTop="8dp">
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:layout_marginTop="8dp"
+            app:backgroundTint="@color/test3"
+            app:cornerRadius="10dp"
+            app:rippleColor="#33AAAAAA"
+            app:strokeColor="@color/black"
+            app:strokeWidth="2dp"
+            android:layout_marginStart="8dp">
         </Button>
 
         <Button
             android:id="@+id/southLA"
             android:text="@string/loc_southLA"
-            android:layout_width="180dp"
+            android:layout_width="168dp"
             android:layout_height="135dp"
             app:layout_constraintStart_toEndOf="@id/westLA"
             app:layout_constraintTop_toBottomOf="@id/westValley"
-            app:backgroundTint="@color/transparent"
-            android:layout_marginTop="8dp">
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:layout_marginTop="8dp"
+            app:backgroundTint="@color/test3"
+            app:cornerRadius="10dp"
+            app:rippleColor="#33AAAAAA"
+            app:strokeColor="@color/black"
+            app:strokeWidth="2dp"
+            android:layout_marginStart="8dp">
         </Button>
 
         <Button
             android:id="@+id/northCentral"
             android:text="@string/loc_northCentral"
-            android:layout_width="180dp"
+            android:layout_width="168dp"
             android:layout_height="135dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/westLA"
-            app:backgroundTint="@color/transparent"
-            android:layout_marginTop="8dp">
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:layout_marginTop="8dp"
+            app:backgroundTint="@color/test5"
+            app:cornerRadius="10dp"
+            app:rippleColor="#33AAAAAA"
+            app:strokeColor="@color/black"
+            app:strokeWidth="2dp"
+            android:layout_marginStart="8dp"
+            >
         </Button>
 
         <Button
             android:id="@+id/harbor"
             android:text="@string/loc_harbor"
-            android:layout_width="180dp"
+            android:layout_width="168dp"
             android:layout_height="135dp"
             app:layout_constraintTop_toBottomOf="@id/westLA"
             app:layout_constraintStart_toEndOf="@id/northCentral"
-            app:backgroundTint="@color/transparent"
-            android:layout_marginTop="8dp"/>
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:layout_marginTop="8dp"
+            app:backgroundTint="@color/test6"
+            app:cornerRadius="10dp"
+            app:rippleColor="#33AAAAAA"
+            app:strokeColor="@color/black"
+            app:strokeWidth="2dp"
+            android:layout_marginStart="8dp"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -1,6 +1,7 @@
 package technexx.android.petrescue;
 
 import android.content.Context;
+import android.graphics.PorterDuff;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -8,6 +9,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
@@ -122,7 +125,9 @@ public class PetFragment extends Fragment {
         westValley.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Toast toast = Toast.makeText(getContext(), R.string.closed, Toast.LENGTH_SHORT);
+                toast.getView().setBackgroundColor(getResources().getColor(R.color.off_white));
+                toast.show();
             }
         });
 
@@ -153,7 +158,9 @@ public class PetFragment extends Fragment {
         northCentral.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Toast toast = Toast.makeText(getContext(), R.string.closed, Toast.LENGTH_SHORT);
+                toast.getView().setBackgroundColor(getResources().getColor(R.color.off_white));
+                toast.show();
             }
         });
 

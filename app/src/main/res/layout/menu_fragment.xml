@@ -17,7 +17,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <Button
+        <ImageButton
             android:id="@+id/dogs"
             android:layout_width="340dp"
             android:layout_height="180dp"
@@ -26,9 +26,9 @@
             app:layout_constraintTop_toTopOf="parent"
             android:layout_marginTop="4dp"
             android:textColor="@color/black">
-        </Button>
+        </ImageButton>
 
-        <Button
+        <ImageButton
             android:id="@+id/cats"
             android:layout_width="340dp"
             android:layout_height="180dp"
@@ -36,9 +36,9 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/dogs"
             android:layout_marginTop="8dp">
-        </Button>
+        </ImageButton>
 
-        <Button
+        <ImageButton
             android:id="@+id/others"
             android:layout_width="340dp"
             android:layout_height="180dp"
