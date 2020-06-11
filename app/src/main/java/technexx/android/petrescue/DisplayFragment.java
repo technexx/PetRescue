@@ -19,7 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DisplayFragment extends Fragment {
+public class DisplayFragment extends Fragment implements PetListAdapter.clickListener {
 
     private ArrayList<String> imageList;
     private ArrayList<String> idList;
@@ -31,9 +31,14 @@ public class DisplayFragment extends Fragment {
     private ArrayList<String> rescueList;
 
     private onShelterMenuCallback mOnShelterMenuCallback;
+    private onContactCallback mOnContactCallback;
 
     public interface onShelterMenuCallback {
             void onShelterMenu();
+    }
+
+    public interface onContactCallback {
+        void onContact(String shelter);
     }
 
     @Override
@@ -43,6 +48,11 @@ public class DisplayFragment extends Fragment {
             mOnShelterMenuCallback = (onShelterMenuCallback) context;
         } catch (ClassCastException e) {
             throw new ClassCastException(context.toString() + "Must implement shelterMenuCallback");
+        }
+        try {
+            mOnContactCallback = (onContactCallback) context;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(context.toString() + "Must implement onContactCallback");
         }
     }
 
@@ -71,6 +81,7 @@ public class DisplayFragment extends Fragment {
 
         RecyclerView animalRecycler = root.findViewById(R.id.pet_recycler);
         PetListAdapter petListAdapter = new PetListAdapter(imageList, idList, nameList, breedList, weightList, ageList, locationList, rescueList, getContext());
+        petListAdapter.setClick(this);
 
         animalRecycler.setAdapter(petListAdapter);
         animalRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -82,4 +93,11 @@ public class DisplayFragment extends Fragment {
 
         return root;
     }
+
+    //Calling the onClick interface in adapter.
+    @Override
+    public void onClick() {
+        mOnContactCallback.onContact(locationList.toString());
+    }
+
 }

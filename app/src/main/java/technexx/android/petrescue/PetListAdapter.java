@@ -18,7 +18,7 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PetListAdapter extends RecyclerView.Adapter<PetListAdapter.ViewHolder> {
+public class PetListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private ArrayList<String> imageList;
     private ArrayList<String> idList;
@@ -29,34 +29,53 @@ public class PetListAdapter extends RecyclerView.Adapter<PetListAdapter.ViewHold
     private ArrayList<String> locationList;
     private ArrayList<String> rescuelist;
     private Context context;
+    private clickListener mOnClickListener;
 
-    public PetListAdapter(ArrayList<String> image, ArrayList<String> id, ArrayList<String> name, ArrayList<String> breed, ArrayList<String> weight, ArrayList<String> age, ArrayList<String> location, ArrayList<String> rescue, Context context) {
+    public interface clickListener {
+        void onClick();
+    }
+
+    public void setClick(clickListener mOnClickListener) {
+        this.mOnClickListener = mOnClickListener;
+    }
+
+    PetListAdapter(ArrayList<String> image, ArrayList<String> id, ArrayList<String> name, ArrayList<String> breed, ArrayList<String> weight, ArrayList<String> age, ArrayList<String> location, ArrayList<String> rescue, Context context) {
         this.imageList = image; this.idList = id; this.nameList = name; this.breedList = breed; this.weightList = weight; this.ageList = age; this.locationList = location; this.rescuelist = rescue;
         this.context = context;
     }
 
     @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.pet_info, parent, false);
 
         ViewHolder holder = new ViewHolder(view);
+
+        holder.image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mOnClickListener.onClick();
+            }
+        });
 
         return holder;
     }
 
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
-        Picasso.get().load(imageList.get(position)).resize(450, 400).into(holder.image);
-        holder.animalID.setText(idList.get(position));
-        holder.name.setText(nameList.get(position));
-        holder.breed.setText(breedList.get(position));
-        holder.age.setText(ageList.get(position));
-        holder.weight.setText(weightList.get(position));
-        holder.location.setText(locationList.get(position));
-        holder.rescue.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
-        holder.rescue.setText(rescuelist.get(position));
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+
+        ViewHolder viewHolder = (ViewHolder) holder;
+
+        Picasso.get().load(imageList.get(position)).resize(450, 400).into(viewHolder.image);
+        viewHolder.animalID.setText(idList.get(position));
+        viewHolder.name.setText(nameList.get(position));
+        viewHolder.breed.setText(breedList.get(position));
+        viewHolder.age.setText(ageList.get(position));
+        viewHolder.weight.setText(weightList.get(position));
+        viewHolder.location.setText(locationList.get(position));
+        viewHolder.rescue.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
+        viewHolder.rescue.setText(rescuelist.get(position));
     }
 
     @Override

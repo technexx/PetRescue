@@ -7,7 +7,7 @@ import android.os.Bundle;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity implements MenuFragment.dogCallback, MenuFragment.catCallback, MenuFragment.othersCallback, PetFragment.listCallback, DisplayFragment.onShelterMenuCallback, PetFragment.onMainMenuCallback {
+public class MainActivity extends AppCompatActivity implements MenuFragment.dogCallback, MenuFragment.catCallback, MenuFragment.othersCallback, PetFragment.listCallback, DisplayFragment.onShelterMenuCallback, PetFragment.onMainMenuCallback, DisplayFragment.onContactCallback {
 
     //Todo: Add contact info of shelter/warning that all info is pulled from website.
     //Todo: Longer breeds, e.g. "American Staffordshire" run off screen.
@@ -110,6 +110,16 @@ public class MainActivity extends AppCompatActivity implements MenuFragment.dogC
         fm.beginTransaction()
                 .addToBackStack(null)
                 .replace(R.id.animals, menuFragment)
+                .commit();
+    }
+
+    @Override
+    public void onContact(String shelter) {
+        FragmentManager fm = getSupportFragmentManager();
+        ContactFragment contactFragment = new ContactFragment();
+
+        fm.beginTransaction()
+                .replace(R.id.animals, contactFragment)
                 .commit();
     }
 }
