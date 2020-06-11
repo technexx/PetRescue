@@ -29,8 +29,8 @@
     <string name="minor_care">*Will require minor medical care</string>
     <string name="major_care">*Will require major medical care</string>
 
-    <string name="eastValley_contact">14409 Vanowen St., Van Nuys, CA 91405\n\nHours: Currently open by appointment only\n\n Contact: 888–452–7381</string>
-    <string name="westLA_contact">11361 West Pico Blvd., Los Angeles, CA 90064\n\nHours: Currently open by appointment only\n\n Contact: 888–452–7381</string>
-    <string name="southLA_contact"> 1850 W. 60th St. Los Angeles, CA 90047\n\nHours: Currently open by appointment only\n\n Contact: 888–452–7381</string>
-    <string name="harbor_contact">957 N. Gaffey Street, San Pedro, CA 90731\n\nHours: Currently open by appointment only\n\n Contact: 888–452–7381</string>
+    <string name="eastValley_contact">East Valley Shelter\n\n14409 Vanowen St., Van Nuys, CA 91405\n\nHours: Currently open by appointment only.\n\nContact: (888) 452–7381</string>
+    <string name="westLA_contact">West Los Angeles Shelter\n\n11361 West Pico Blvd., Los Angeles, CA 90064\n\nHours: Currently open by appointment only.\n\nContact: (888) 452–7381</string>
+    <string name="southLA_contact">South Los Angeles Shelter\n\n1850 W. 60th St. Los Angeles, CA 90047\n\nHours: Currently open by appointment only.\n\nContact: (888) 452–7381</string>
+    <string name="harbor_contact">Harbor Shelter\n\n957 N. Gaffey Street, San Pedro, CA 90731\n\nHours: Currently open by appointment only.\n\nContact: (888) 452–7381</string>
 </resources>

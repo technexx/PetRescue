@@ -119,7 +119,24 @@ public class MainActivity extends AppCompatActivity implements MenuFragment.dogC
         FragmentManager fm = getSupportFragmentManager();
         ContactFragment contactFragment = new ContactFragment();
 
+        Bundle b = new Bundle();
+        if (shelter.contains("East Valley")) {
+            b.putString("shelter", "ev");
+        }
+        if (shelter.contains("West Los Angeles ")) {
+            b.putString("shelter", "wLA");
+        }
+        if (shelter.contains("South Los Angeles")) {
+            b.putString("shelter", "sLA");
+        }
+        if (shelter.contains("Harbor")) {
+            b.putString("shelter", "har");
+        }
+
+        contactFragment.setArguments(b);
+
         fm.beginTransaction()
+                .addToBackStack(null)
                 .replace(R.id.animals, contactFragment)
                 .commit();
     }
