@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
@@ -34,7 +35,7 @@ public class DisplayFragment extends Fragment implements PetListAdapter.clickLis
     private onContactCallback mOnContactCallback;
 
     public interface onShelterMenuCallback {
-            void onShelterMenu();
+        void onShelterMenu(boolean enabled);
     }
 
     public interface onContactCallback {
@@ -59,10 +60,11 @@ public class DisplayFragment extends Fragment implements PetListAdapter.clickLis
     public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.display_fragment, container, false);
 
+        //Disabling back button until data is displayed (in onStart()).
         OnBackPressedCallback callback = new OnBackPressedCallback(true) {
             @Override
             public void handleOnBackPressed() {
-                mOnShelterMenuCallback.onShelterMenu();
+                mOnShelterMenuCallback.onShelterMenu(false);
             }
         };
         requireActivity().getOnBackPressedDispatcher().addCallback(this, callback);
@@ -92,6 +94,20 @@ public class DisplayFragment extends Fragment implements PetListAdapter.clickLis
         animalRecycler.addItemDecoration(decoration);
 
         return root;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        //Enabling back button once all data is loaded from previous Fragment.
+        OnBackPressedCallback callback = new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                mOnShelterMenuCallback.onShelterMenu(true);
+            }
+        };
+        requireActivity().getOnBackPressedDispatcher().addCallback(this, callback);
     }
 
     //Calling the onClick interface in adapter.
