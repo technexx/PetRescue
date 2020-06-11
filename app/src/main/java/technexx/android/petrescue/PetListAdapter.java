@@ -31,9 +31,19 @@ public class PetListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     private Context context;
     private clickListener mOnClickListener;
 
+    RecyclerView mRecyclerView;
+
+    @Override
+    public void onAttachedToRecyclerView(RecyclerView recyclerView) {
+        super.onAttachedToRecyclerView(recyclerView);
+
+        mRecyclerView = recyclerView;
+    }
+
     public interface clickListener {
         void onClick();
     }
+
 
     public void setClick(clickListener mOnClickListener) {
         this.mOnClickListener = mOnClickListener;
@@ -49,9 +59,10 @@ public class PetListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.pet_info, parent, false);
 
+        //Setting click on entirety of inflated view.
         ViewHolder holder = new ViewHolder(view);
 
-        holder.image.setOnClickListener(new View.OnClickListener() {
+        view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mOnClickListener.onClick();
