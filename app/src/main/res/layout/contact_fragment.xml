@@ -16,6 +16,9 @@
     </TextView>
 
     <TextView
+        android:clickable="true"
+        android:focusable="true"
+        android:textStyle=""
         android:id="@+id/contact_two"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
