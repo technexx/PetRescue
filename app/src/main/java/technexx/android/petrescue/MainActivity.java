@@ -9,9 +9,7 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements MenuFragment.dogCallback, MenuFragment.catCallback, MenuFragment.othersCallback, PetFragment.listCallback, DisplayFragment.onShelterMenuCallback, PetFragment.onMainMenuCallback, DisplayFragment.onContactCallback {
 
-    //Todo: Add contact info of shelter/warning that all info is pulled from website.
-    //Todo: Longer breeds, e.g. "American Staffordshire" run off screen.
-    //Todo: Shelter info after clicking pet.
+    //Todo: Remove breed from pet listing.
     //Todo: Fix frag detach. Easiest way is probably just disabling back button.
 
     @Override
