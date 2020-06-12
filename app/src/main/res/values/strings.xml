@@ -23,6 +23,8 @@
     <string name="age_text">Age:</string>
     <string name="loc_text">Location:</string>
 
+    <string name="id_pref">ID:</string>
+
     <string name="closed">This shelter is temporarily closed.</string>
 
     <string name="rescue">*Available to rescue groups only</string>

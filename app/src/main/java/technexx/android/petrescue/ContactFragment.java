@@ -30,6 +30,7 @@ public class ContactFragment extends Fragment {
         TextView contact_two = root.findViewById(R.id.contact_two);
         TextView contact_three = root.findViewById(R.id.contact_three);
         TextView contact_four = root.findViewById(R.id.contact_four);
+        TextView contact_id = root.findViewById(R.id.contact_id);
         ImageView contact_image = root.findViewById(R.id.contact_image);
         TextView contact_description = root.findViewById(R.id.contact_description);
 
@@ -40,11 +41,13 @@ public class ContactFragment extends Fragment {
         String shelter = null;
         String description = null;
         String image = null;
+        String id = null;
 
         if (args != null) {
             shelter = args.getString("shelter");
             description = args.getString("description");
-            image = args.getString("image", image);
+            image = args.getString("image");
+            id = args.getString("id");
         }
 
         if (shelter.equals("ev")) {
@@ -70,8 +73,8 @@ public class ContactFragment extends Fragment {
 
         contact_three.setText(getString(R.string.shelter_hours));
         contact_four.setText(getString(R.string.shelter_phone));
+        contact_id.setText(id);
         contact_description.setText(description);
-
         Picasso.get().load(image).resize(1100, 800).centerInside().into(contact_image);
 
         //Linkify makes the Uri coordinates unnecessary, but we're keeping them as a backup.

@@ -113,7 +113,7 @@ public class MainActivity extends AppCompatActivity implements MenuFragment.dogC
     }
 
     @Override
-    public void onContact(String shelter, String description, String image) {
+    public void onContact(String shelter, String description, String image, String id) {
         FragmentManager fm = getSupportFragmentManager();
         ContactFragment contactFragment = new ContactFragment();
 
@@ -133,6 +133,7 @@ public class MainActivity extends AppCompatActivity implements MenuFragment.dogC
 
         b.putString("description", description);
         b.putString("image", image);
+        b.putString("id", "ID:" + " "  + id);
 
         contactFragment.setArguments(b);
 

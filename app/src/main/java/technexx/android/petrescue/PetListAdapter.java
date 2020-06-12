@@ -37,7 +37,7 @@ public class PetListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     private View newView;
 
     public interface clickListener {
-        void onClick(String description, String image);
+        void onClick(String description, String image, String id);
     }
 
     public void setClick(clickListener mOnClickListener) {
@@ -78,7 +78,7 @@ public class PetListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         viewHolder.myView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mOnClickListener.onClick(descriptionList.get(position), imageList.get(position));
+                mOnClickListener.onClick(descriptionList.get(position), imageList.get(position), idList.get(position));
             }
         });
     }
