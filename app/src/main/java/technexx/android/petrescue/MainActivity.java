@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity implements MenuFragment.dogC
     }
 
     @Override
-    public void onDisplayList(ArrayList<String> image, ArrayList<String> id, ArrayList<String> name, ArrayList<String> breed, ArrayList<String> weight, ArrayList<String> age, ArrayList<String> location, ArrayList<String> rescue) {
+    public void onDisplayList(ArrayList<String> image, ArrayList<String> id, ArrayList<String> name, ArrayList<String> breed, ArrayList<String> weight, ArrayList<String> age, ArrayList<String> location, ArrayList<String> rescue, ArrayList<String> description) {
         FragmentManager fm = getSupportFragmentManager();
         DisplayFragment displayFragment = new DisplayFragment();
 
@@ -83,6 +83,7 @@ public class MainActivity extends AppCompatActivity implements MenuFragment.dogC
         b.putStringArrayList("ageList", age);
         b.putStringArrayList("locationList", location);
         b.putStringArrayList("rescue", rescue);
+        b.putStringArrayList("description", description);
 
         displayFragment.setArguments(b);
 
@@ -115,7 +116,7 @@ public class MainActivity extends AppCompatActivity implements MenuFragment.dogC
     }
 
     @Override
-    public void onContact(String shelter) {
+    public void onContact(String shelter, String description) {
         FragmentManager fm = getSupportFragmentManager();
         ContactFragment contactFragment = new ContactFragment();
 
@@ -132,6 +133,8 @@ public class MainActivity extends AppCompatActivity implements MenuFragment.dogC
         if (shelter.contains("Harbor")) {
             b.putString("shelter", "har");
         }
+
+        b.putString("description", description);
 
         contactFragment.setArguments(b);
 

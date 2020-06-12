@@ -3,6 +3,8 @@ package technexx.android.petrescue;
 import android.content.Context;
 import android.graphics.Typeface;
 import android.media.Image;
+import android.os.Handler;
+import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,53 +30,46 @@ public class PetListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     private ArrayList<String> ageList;
     private ArrayList<String> locationList;
     private ArrayList<String> rescuelist;
+    private ArrayList<String> descriptionList;
     private Context context;
     private clickListener mOnClickListener;
-
-    RecyclerView mRecyclerView;
+    //Creates a global instance of the View class which is inflated in onCreateViewHolder. We can then also reference it in the ViewHolder class that is called by onBindViewHolder, and thus pass in the appropriate positions to its onClick method.
+    private View newView;
 
     @Override
     public void onAttachedToRecyclerView(RecyclerView recyclerView) {
         super.onAttachedToRecyclerView(recyclerView);
 
-        mRecyclerView = recyclerView;
     }
 
     public interface clickListener {
-        void onClick();
+        void onClick(String description);
     }
-
 
     public void setClick(clickListener mOnClickListener) {
         this.mOnClickListener = mOnClickListener;
     }
 
-    PetListAdapter(ArrayList<String> image, ArrayList<String> id, ArrayList<String> name, ArrayList<String> breed, ArrayList<String> weight, ArrayList<String> age, ArrayList<String> location, ArrayList<String> rescue, Context context) {
-        this.imageList = image; this.idList = id; this.nameList = name; this.breedList = breed; this.weightList = weight; this.ageList = age; this.locationList = location; this.rescuelist = rescue;
+    PetListAdapter(ArrayList<String> image, ArrayList<String> id, ArrayList<String> name, ArrayList<String> breed, ArrayList<String> weight, ArrayList<String> age, ArrayList<String> location, ArrayList<String> rescue, ArrayList<String> description, Context context) {
+        this.imageList = image; this.idList = id; this.nameList = name; this.breedList = breed; this.weightList = weight; this.ageList = age; this.locationList = location; this.rescuelist = rescue; this.descriptionList = description;
         this.context = context;
     }
 
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.pet_info, parent, false);
+
+        //Global View variable that can be accessed in onBindViewHolder, so we can set an onClick for the entire View and also pass in the positions we need.
+        newView = LayoutInflater.from(context).inflate(R.layout.pet_info, parent, false);
 
         //Setting click on entirety of inflated view.
-        ViewHolder holder = new ViewHolder(view);
+        ViewHolder viewHolder = new ViewHolder(newView);
 
-        view.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mOnClickListener.onClick();
-            }
-        });
-
-        return holder;
+        return viewHolder;
     }
 
-
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
 
         ViewHolder viewHolder = (ViewHolder) holder;
 
@@ -87,6 +82,13 @@ public class PetListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         viewHolder.location.setText(locationList.get(position));
         viewHolder.rescue.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
         viewHolder.rescue.setText(rescuelist.get(position));
+
+        viewHolder.myView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mOnClickListener.onClick(descriptionList.get(position));
+            }
+        });
     }
 
     @Override
@@ -103,6 +105,7 @@ public class PetListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         TextView weight;
         TextView location;
         TextView rescue;
+        View myView;
 
         public ViewHolder(@NonNull View itemView) {
             super((itemView));
@@ -114,6 +117,9 @@ public class PetListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             weight = itemView.findViewById(R.id.pet_weight);
             location = itemView.findViewById(R.id.pet_location);
             rescue = itemView.findViewById(R.id.pet_rescue);
+
+            myView = newView;
+
         }
     }
 }

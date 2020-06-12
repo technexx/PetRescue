@@ -38,6 +38,7 @@ public class PetFragment extends Fragment {
     private ArrayList<String> ageList;
     private ArrayList<String> locationList;
     private ArrayList<String> rescueList;
+    private  ArrayList<String> descriptionList;
 
     private String holder;
     private String holderTwo;
@@ -58,7 +59,7 @@ public class PetFragment extends Fragment {
     }
 
     public interface listCallback {
-        void onDisplayList(ArrayList<String> image, ArrayList<String> id, ArrayList<String> name, ArrayList<String> breed, ArrayList<String> weight, ArrayList<String> age, ArrayList<String> location, ArrayList<String> rescue);
+        void onDisplayList(ArrayList<String> image, ArrayList<String> id, ArrayList<String> name, ArrayList<String> breed, ArrayList<String> weight, ArrayList<String> age, ArrayList<String> location, ArrayList<String> rescue, ArrayList<String> description);
     }
     @Override
     public void onAttach(@NonNull Context context) {
@@ -211,6 +212,7 @@ public class PetFragment extends Fragment {
                     ageList = new ArrayList<>();
                     locationList = new ArrayList<>();
                     rescueList = new ArrayList<>();
+                    descriptionList = new ArrayList<>();
 
                     testList = content.eachText();
                     testListTwo = contentTwo.eachText();
@@ -237,6 +239,7 @@ public class PetFragment extends Fragment {
                         }
 
                         if (holder.contains("I am a")) {
+                            descriptionList.add(holder);
                             if (!holder.contains("My name is")) {
                                 nameList.add("N/A");
                             } else {
@@ -306,6 +309,7 @@ public class PetFragment extends Fragment {
                         }
 
                         if (holderTwo.contains("I am a")) {
+                            descriptionList.add(holderTwo);
                             if (!holderTwo.contains("My name is")) {
                                 nameList.add("N/A");
                             } else {
@@ -350,7 +354,7 @@ public class PetFragment extends Fragment {
                         }
                     }
 
-                    mListCallback.onDisplayList(imageList, idList, nameList, breedList, weightList, ageList, locationList, rescueList);
+                    mListCallback.onDisplayList(imageList, idList, nameList, breedList, weightList, ageList, locationList, rescueList, descriptionList);
 
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -784,7 +788,7 @@ public class PetFragment extends Fragment {
                         }
                     }
 
-                    mListCallback.onDisplayList(imageList, idList, nameList, breedList, weightList, ageList, locationList, rescueList);
+                    mListCallback.onDisplayList(imageList, idList, nameList, breedList, weightList, ageList, locationList, rescueList, descriptionList);
 
                     Log.i("id", idList.toString());
                     Log.i("name", nameList.toString());
@@ -797,8 +801,6 @@ public class PetFragment extends Fragment {
                     Log.i("countRescue", String.valueOf(rescueList.size()));
                     Log.i("countID", String.valueOf(idList.size()));
                     Log.i("countName", String.valueOf(nameList.size()));
-
-//                    mListCallback.onDisplayList(imageList, idList, nameList, breedList, weightList, ageList, locationList);
 
                 } catch (IOException e) {
                     e.printStackTrace();

@@ -13,6 +13,8 @@ import android.widget.TextView;
 import androidx.activity.OnBackPressedCallback;
 import androidx.fragment.app.Fragment;
 
+import java.util.ArrayList;
+
 public class ContactFragment extends Fragment {
 
     Uri address;
@@ -30,9 +32,12 @@ public class ContactFragment extends Fragment {
 
         Bundle args = getArguments();
         String shelter = null;
+        String description = null;
 
         if (args != null) {
             shelter = args.getString("shelter");
+            description = args.getString("description");
+
         }
 
         if (shelter.equals("ev")) {
@@ -57,22 +62,14 @@ public class ContactFragment extends Fragment {
         }
 
         contact_three.setText(getString(R.string.shelter_hours));
-        contact_four.setText(getString(R.string.shelter_phone));
+//        contact_four.setText(getString(R.string.shelter_phone));
+        contact_four.setText(description);
 
         //Linkify makes the Uri coordinates unnecessary, but we're keeping them as a backup.
         Linkify.addLinks(contact_two, Linkify.ALL);
         Linkify.addLinks(contact_four, Linkify.ALL);
         contact_two.setLinkTextColor(getResources().getColor(R.color.darkGreen));
         contact_four.setLinkTextColor(getResources().getColor(R.color.darkGreen));
-
-//        contact_two.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(Intent.ACTION_VIEW, address);
-//                intent.setPackage("com.google.android.apps.maps");
-//                startActivity(intent);
-//            }
-//        });
 
         return root;
     }

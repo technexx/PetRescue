@@ -30,6 +30,7 @@ public class DisplayFragment extends Fragment implements PetListAdapter.clickLis
     private ArrayList<String> ageList;
     private ArrayList<String> locationList;
     private ArrayList<String> rescueList;
+    private ArrayList<String> descriptionList;
 
     private onShelterMenuCallback mOnShelterMenuCallback;
     private onContactCallback mOnContactCallback;
@@ -39,7 +40,7 @@ public class DisplayFragment extends Fragment implements PetListAdapter.clickLis
     }
 
     public interface onContactCallback {
-        void onContact(String shelter);
+        void onContact(String shelter, String description);
     }
 
     @Override
@@ -79,10 +80,11 @@ public class DisplayFragment extends Fragment implements PetListAdapter.clickLis
             ageList = args.getStringArrayList("ageList");
             locationList = args.getStringArrayList("locationList");
             rescueList = args.getStringArrayList("rescue");
+            descriptionList = args.getStringArrayList("description");
         }
 
         RecyclerView animalRecycler = root.findViewById(R.id.pet_recycler);
-        PetListAdapter petListAdapter = new PetListAdapter(imageList, idList, nameList, breedList, weightList, ageList, locationList, rescueList, getContext());
+        PetListAdapter petListAdapter = new PetListAdapter(imageList, idList, nameList, breedList, weightList, ageList, locationList, rescueList, descriptionList, getContext());
         petListAdapter.setClick(this);
 
         animalRecycler.setAdapter(petListAdapter);
@@ -112,8 +114,7 @@ public class DisplayFragment extends Fragment implements PetListAdapter.clickLis
 
     //Calling the onClick interface in adapter.
     @Override
-    public void onClick() {
-        mOnContactCallback.onContact(locationList.toString());
+    public void onClick(String description) {
+        mOnContactCallback.onContact(locationList.toString(), description);
     }
-
 }
