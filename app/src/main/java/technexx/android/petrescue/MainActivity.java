@@ -9,7 +9,6 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements MenuFragment.dogCallback, MenuFragment.catCallback, MenuFragment.othersCallback, PetFragment.listCallback, DisplayFragment.onShelterMenuCallback, PetFragment.onMainMenuCallback, DisplayFragment.onContactCallback {
 
-    //Todo: Remove breed from pet listing.
     //Todo: Fix frag detach. Easiest way is probably just disabling back button.
 
     @Override
