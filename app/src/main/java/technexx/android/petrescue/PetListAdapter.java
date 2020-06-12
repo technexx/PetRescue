@@ -36,14 +36,8 @@ public class PetListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     //Creates a global instance of the View class which is inflated in onCreateViewHolder. We can then also reference it in the ViewHolder class that is called by onBindViewHolder, and thus pass in the appropriate positions to its onClick method.
     private View newView;
 
-    @Override
-    public void onAttachedToRecyclerView(RecyclerView recyclerView) {
-        super.onAttachedToRecyclerView(recyclerView);
-
-    }
-
     public interface clickListener {
-        void onClick(String description);
+        void onClick(String description, String image);
     }
 
     public void setClick(clickListener mOnClickListener) {
@@ -58,8 +52,6 @@ public class PetListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-
-        //Global View variable that can be accessed in onBindViewHolder, so we can set an onClick for the entire View and also pass in the positions we need.
         newView = LayoutInflater.from(context).inflate(R.layout.pet_info, parent, false);
 
         //Setting click on entirety of inflated view.
@@ -86,7 +78,7 @@ public class PetListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         viewHolder.myView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mOnClickListener.onClick(descriptionList.get(position));
+                mOnClickListener.onClick(descriptionList.get(position), imageList.get(position));
             }
         });
     }

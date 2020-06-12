@@ -8,10 +8,14 @@ import android.text.util.Linkify;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.activity.OnBackPressedCallback;
 import androidx.fragment.app.Fragment;
+
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -26,6 +30,8 @@ public class ContactFragment extends Fragment {
         TextView contact_two = root.findViewById(R.id.contact_two);
         TextView contact_three = root.findViewById(R.id.contact_three);
         TextView contact_four = root.findViewById(R.id.contact_four);
+        ImageView contact_image = root.findViewById(R.id.contact_image);
+        TextView contact_description = root.findViewById(R.id.contact_description);
 
         //Setting underline on address.
         contact_two.setPaintFlags(contact_two.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
@@ -33,11 +39,12 @@ public class ContactFragment extends Fragment {
         Bundle args = getArguments();
         String shelter = null;
         String description = null;
+        String image = null;
 
         if (args != null) {
             shelter = args.getString("shelter");
             description = args.getString("description");
-
+            image = args.getString("image", image);
         }
 
         if (shelter.equals("ev")) {
@@ -62,8 +69,10 @@ public class ContactFragment extends Fragment {
         }
 
         contact_three.setText(getString(R.string.shelter_hours));
-//        contact_four.setText(getString(R.string.shelter_phone));
-        contact_four.setText(description);
+        contact_four.setText(getString(R.string.shelter_phone));
+        contact_description.setText(description);
+
+        Picasso.get().load(image).resize(800, 800).centerCrop().into(contact_image);
 
         //Linkify makes the Uri coordinates unnecessary, but we're keeping them as a backup.
         Linkify.addLinks(contact_two, Linkify.ALL);

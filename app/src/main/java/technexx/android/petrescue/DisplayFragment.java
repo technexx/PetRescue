@@ -40,7 +40,7 @@ public class DisplayFragment extends Fragment implements PetListAdapter.clickLis
     }
 
     public interface onContactCallback {
-        void onContact(String shelter, String description);
+        void onContact(String shelter, String description, String image);
     }
 
     @Override
@@ -114,7 +114,7 @@ public class DisplayFragment extends Fragment implements PetListAdapter.clickLis
 
     //Calling the onClick interface in adapter.
     @Override
-    public void onClick(String description) {
-        mOnContactCallback.onContact(locationList.toString(), description);
+    public void onClick(String description, String image) {
+        mOnContactCallback.onContact(locationList.toString(), description, image);
     }
 }
