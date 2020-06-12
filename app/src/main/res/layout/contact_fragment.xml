@@ -2,7 +2,8 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:fontFamily="@font/lato">
 
     <TextView
         android:id="@+id/contact_one"
@@ -46,12 +47,12 @@
         android:id="@+id/contact_four"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/contact_three"
-        android:textSize="18sp"
+        android:layout_marginTop="12dp"
         android:gravity="center_horizontal"
-        android:layout_marginTop="12dp">
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/contact_three">
     </TextView>
 
     <ImageView
@@ -83,10 +84,10 @@
         android:id="@+id/contact_description"
         android:layout_width="355dp"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/contact_id"
-        android:textSize="16sp"
+        android:layout_marginStart="2dp"
         android:layout_marginTop="2dp"
-        android:layout_marginStart="2dp">
+        android:textSize="17sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/contact_id">
     </TextView>
 </androidx.constraintlayout.widget.ConstraintLayout>

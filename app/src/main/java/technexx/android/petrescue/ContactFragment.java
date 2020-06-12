@@ -75,7 +75,7 @@ public class ContactFragment extends Fragment {
         contact_four.setText(getString(R.string.shelter_phone));
         contact_id.setText(id);
         contact_description.setText(description);
-        Picasso.get().load(image).resize(1100, 800).centerInside().into(contact_image);
+        Picasso.get().load(image).resize(1100, 750).centerInside().into(contact_image);
 
         //Linkify makes the Uri coordinates unnecessary, but we're keeping them as a backup.
         Linkify.addLinks(contact_two, Linkify.ALL);
