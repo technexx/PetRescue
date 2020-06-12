@@ -669,7 +669,7 @@ public class PetFragment extends Fragment {
                             }
                         }
 
-                        if (loc.equals("West Los Angeles")) {
+                        if (loc.equals("West LA")) {
                             if (holderTwo.contains("West Los Angeles")) {
                                 splitLoc = holderTwo.split("Shelter");
                                 shortenLoc = splitLoc[0];
@@ -719,7 +719,7 @@ public class PetFragment extends Fragment {
                             }
                         }
 
-                        if (loc.equals("South Los Angeles")) {
+                        if (loc.equals("South LA")) {
                             if (holderTwo.contains("South Los Angeles")) {
                                 splitLoc = holderTwo.split("Shelter");
                                 shortenLoc = splitLoc[0];
