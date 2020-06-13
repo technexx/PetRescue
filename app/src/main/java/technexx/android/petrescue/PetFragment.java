@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -62,6 +63,8 @@ public class PetFragment extends Fragment {
     private Button harbor;
     private Button allAnimals;
 
+    private ProgressBar progressBar;
+
     public interface onMainMenuCallback {
         void onMainMenu();
     }
@@ -114,6 +117,8 @@ public class PetFragment extends Fragment {
         harbor = root.findViewById(R.id.harbor);
         allAnimals = root.findViewById(R.id.all_animals);
 
+        progressBar = root.findViewById(R.id.progressBar);
+
         Bundle args = getArguments();
         if (args != null) {
             dogs = args.getString("dogs");
@@ -141,12 +146,15 @@ public class PetFragment extends Fragment {
         northCentral.setEnabled(true);
         harbor.setEnabled(true);
 
+        progressBar.setVisibility(View.GONE);
+
         allAnimals.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 aSyncUriFetch();
                 aSyncRetrieveAll();
                 disableButtons();
+                progressBar.setVisibility(View.VISIBLE);
             }
         });
 
@@ -165,6 +173,7 @@ public class PetFragment extends Fragment {
                 aSyncUriFetch();
                 aSyncRetrieveShelter("East Valley");
                 disableButtons();
+                progressBar.setVisibility(View.VISIBLE);
             }
         });
 
@@ -174,6 +183,7 @@ public class PetFragment extends Fragment {
                 aSyncUriFetch();
                 aSyncRetrieveShelter("West LA");
                 disableButtons();
+                progressBar.setVisibility(View.VISIBLE);
             }
         });
 
@@ -183,6 +193,7 @@ public class PetFragment extends Fragment {
                 aSyncUriFetch();
                 aSyncRetrieveShelter("South LA");
                 disableButtons();
+                progressBar.setVisibility(View.VISIBLE);
             }
         });
 
@@ -201,6 +212,7 @@ public class PetFragment extends Fragment {
                 aSyncUriFetch();
                 aSyncRetrieveShelter("Harbor");
                 disableButtons();
+                progressBar.setVisibility(View.VISIBLE);
             }
         });
         return root;
