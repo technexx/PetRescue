@@ -487,14 +487,7 @@ public class PetFragment extends Fragment {
                                     weightList.add(shortenWeight);
                                 }
 
-                                if (testList.get(i-3).length() > 11) {
-                                    String[] split = testList.get(i-3).split(" ");
-                                    String part = split[1];
-                                    String shorten = part.substring(0, 4);
-                                    breedList.add(split[0] + " " + shorten + ".");
-                                } else {
-                                    breedList.add(testList.get(i-3));
-                                }
+                                breedList.add(testList.get(i-3));
 
                                 if (!testList.get(i-4).contains("My name is")) {
                                     descriptionList.add(testList.get(i-4));
@@ -546,14 +539,7 @@ public class PetFragment extends Fragment {
                                     weightList.add(shortenWeight);
                                 }
 
-                                if (testList.get(i-3).length() > 11) {
-                                    String[] split = testList.get(i-3).split(" ");
-                                    String part = split[1];
-                                    String shorten = part.substring(0, 4);
-                                    breedList.add(split[0] + " " + shorten + ".");
-                                } else {
-                                    breedList.add(testList.get(i-3));
-                                }
+                                breedList.add(testList.get(i-3));
 
                                 if (!testList.get(i-4).contains("My name is")) {
                                     nameList.add("N/A");
@@ -603,14 +589,7 @@ public class PetFragment extends Fragment {
                                     weightList.add(shortenWeight);
                                 }
 
-                                if (testList.get(i-3).length() > 11) {
-                                    String[] split = testList.get(i-3).split(" ");
-                                    String part = split[1];
-                                    String shorten = part.substring(0, 4);
-                                    breedList.add(split[0] + " " + shorten + ".");
-                                } else {
-                                    breedList.add(testList.get(i-3));
-                                }
+                                breedList.add(testList.get(i-3));
 
                                 if (!testList.get(i-4).contains("My name is")) {
                                     descriptionList.add(testList.get(i-4));
@@ -660,14 +639,7 @@ public class PetFragment extends Fragment {
                                     weightList.add(shortenWeight);
                                 }
 
-                                if (testList.get(i-3).length() > 11) {
-                                    String[] split = testList.get(i-3).split(" ");
-                                    String part = split[1];
-                                    String shorten = part.substring(0, 4);
-                                    breedList.add(split[0] + " " + shorten + ".");
-                                } else {
-                                    breedList.add(testList.get(i-3));
-                                }
+                                breedList.add(testList.get(i-3));
 
                                 if (!testList.get(i-4).contains("My name is")) {
                                     descriptionList.add(testList.get(i-4));
@@ -725,14 +697,7 @@ public class PetFragment extends Fragment {
                                     weightList.add(shortenWeight);
                                 }
 
-                                if (testListTwo.get(i-3).length() > 11) {
-                                    String[] split = testListTwo.get(i-3).split(" ");
-                                    String part = split[1];
-                                    String shorten = part.substring(0, 4);
-                                    breedList.add(split[0] + " " + shorten + ".");
-                                } else {
-                                    breedList.add(testListTwo.get(i-3));
-                                }
+                                breedList.add(testListTwo.get(i-3));
 
                                 if (!testListTwo.get(i-4).contains("My name is")) {
                                     nameList.add("N/A");
@@ -782,14 +747,7 @@ public class PetFragment extends Fragment {
                                     weightList.add(shortenWeight);
                                 }
 
-                                if (testListTwo.get(i-3).length() > 11) {
-                                    String[] split = testListTwo.get(i-3).split(" ");
-                                    String part = split[1];
-                                    String shorten = part.substring(0, 4);
-                                    breedList.add(split[0] + " " + shorten + ".");
-                                } else {
-                                    breedList.add(testListTwo.get(i-3));
-                                };
+                                breedList.add(testListTwo.get(i-3));
 
                                 if (!testListTwo.get(i-4).contains("My name is")) {
                                     nameList.add("N/A");
@@ -839,14 +797,7 @@ public class PetFragment extends Fragment {
                                     weightList.add(shortenWeight);
                                 }
 
-                                if (testListTwo.get(i-3).length() > 11) {
-                                    String[] split = testListTwo.get(i-3).split(" ");
-                                    String part = split[1];
-                                    String shorten = part.substring(0, 4);
-                                    breedList.add(split[0] + " " + shorten + ".");
-                                } else {
-                                    breedList.add(testListTwo.get(i-3));
-                                }
+                                breedList.add(testListTwo.get(i-3));
 
                                 if (!testListTwo.get(i-4).contains("My name is")) {
                                     nameList.add("N/A");
@@ -896,14 +847,7 @@ public class PetFragment extends Fragment {
                                     weightList.add(shortenWeight);
                                 }
 
-                                if (testListTwo.get(i-3).length() > 11) {
-                                    String[] split = testListTwo.get(i-3).split(" ");
-                                    String part = split[1];
-                                    String shorten = part.substring(0, 4);
-                                    breedList.add(split[0] + " " + shorten + ".");
-                                } else {
-                                    breedList.add(testListTwo.get(i-3));
-                                }
+                                breedList.add(testListTwo.get(i-3));
 
                                 if (!testListTwo.get(i-4).contains("My name is")) {
                                     nameList.add("N/A");

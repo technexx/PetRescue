@@ -72,6 +72,10 @@ public class PetListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         viewHolder.age.setText(ageList.get(position));
         viewHolder.weight.setText(weightList.get(position));
         viewHolder.location.setText(locationList.get(position));
+
+        if (rescuelist.get(position).equals("")){
+            viewHolder.rescue.setVisibility(View.GONE);
+        }
         viewHolder.rescue.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
         viewHolder.rescue.setText(rescuelist.get(position));
 
