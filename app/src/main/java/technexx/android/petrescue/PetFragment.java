@@ -1,6 +1,7 @@
 package technexx.android.petrescue;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.PorterDuff;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -64,6 +65,7 @@ public class PetFragment extends Fragment {
     private Button allAnimals;
 
     private ProgressBar progressBar;
+    String animal;
 
     public interface onMainMenuCallback {
         void onMainMenu();
@@ -109,6 +111,11 @@ public class PetFragment extends Fragment {
         };
         requireActivity().getOnBackPressedDispatcher().addCallback(this, callback);
 
+        SharedPreferences pref = getContext().getSharedPreferences("SharedPref", 0);
+        SharedPreferences.Editor editor = pref.edit();
+
+        animal = pref.getString("animal", "");
+
         westValley = root.findViewById(R.id.westValley);
         eastValley = root.findViewById(R.id.eastValley);
         westLA = root.findViewById(R.id.westLA);
@@ -128,15 +135,19 @@ public class PetFragment extends Fragment {
             other = args.getString("other");
         }
 
-        if (dogs != null) {
+        if (dogs != null || animal.equals("dog")) {
             allAnimals.setText(R.string.all_dogs);
+            editor.putString("animal", "dog");
         }
-        if (cats != null) {
+        if (cats != null || animal.equals("cat")) {
             allAnimals.setText(R.string.all_cats);
+            editor.putString("animal", "cat");
         }
-        if (other != null) {
+        if (other != null || animal.equals("other")) {
             allAnimals.setText(R.string.all_other);
+            editor.putString("animal", "other");
         }
+        editor.apply();
 
         urlPre = "https://petharbor.com/results.asp?searchtype=ADOPT&stylesheet=https://www.laanimalservices.com/wp-content/themes/laas/laasph.css&friends=1&samaritans=1&nosuccess=1&orderby=located%20at&rows=500&imght=120&imgres=detail&tWidth=200&view=sysadm.v_lact&nomax=1&fontface=arial&fontsize=10&miles=100&shelterlist=%27LACT%27,%27LACT1%27,%27LACT4%27,%27LACT3%27,%27LACT2%27,%27LACT5%27,%27LACT6%27&atype=&where=type_";
 
@@ -225,13 +236,14 @@ public class PetFragment extends Fragment {
         AsyncTask.execute(new Runnable() {
             @Override
             public void run() {
-                if (dogs != null) {
+
+                if (dogs != null || animal.equals("dog")) {
                     url = urlPre + "dog";
                 }
-                if (cats != null) {
+                if (cats != null || animal.equals("cat")) {
                     url = urlPre + "cat";
                 }
-                if (other != null) {
+                if (other != null || animal.equals("other")) {
                     url = urlPre + "other";
                 }
             }

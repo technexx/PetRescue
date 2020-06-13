@@ -1,6 +1,7 @@
 package technexx.android.petrescue;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -54,6 +55,12 @@ public class MenuFragment extends Fragment {
 
     public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.menu_fragment, container, false);
+
+        SharedPreferences pref = getContext().getSharedPreferences("SharedPref", 0);
+        SharedPreferences.Editor editor = pref.edit();
+
+        editor.putString("animal", "");
+        editor.apply();
 
         ImageButton dogs = root.findViewById(R.id.dogs);
         ImageButton cats = root.findViewById(R.id.cats);

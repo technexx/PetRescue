@@ -2,6 +2,7 @@ package technexx.android.petrescue;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -69,6 +70,10 @@ public class DisplayFragment extends Fragment implements PetListAdapter.clickLis
             }
         };
         requireActivity().getOnBackPressedDispatcher().addCallback(this, callback);
+
+//        SharedPreferences pref = getContext().getSharedPreferences("SharedPref", 0);
+//
+//        String animal = pref.getString("animal", null);
 
         Bundle args = getArguments();
         if (args != null) {

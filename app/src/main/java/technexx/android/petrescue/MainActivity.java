@@ -92,12 +92,12 @@ public class MainActivity extends AppCompatActivity implements MenuFragment.dogC
     @Override
     public void onShelterMenu(boolean enable) {
         FragmentManager fm = getSupportFragmentManager();
-        MenuFragment menuFragment = new MenuFragment();
+        PetFragment petFragment = new PetFragment();
 
         //Receiving boolean to determine whether data is loaded or not in DisplayFragment, in order to toggle enabling of Back button.
         if (enable) {
             fm.beginTransaction()
-                    .replace(R.id.animals, menuFragment)
+                    .replace(R.id.animals, petFragment)
                     .commit();
         }
     }
