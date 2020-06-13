@@ -118,6 +118,8 @@ public class PetFragment extends Fragment {
         allAnimals = root.findViewById(R.id.all_animals);
 
         progressBar = root.findViewById(R.id.progressBar);
+        progressBar.setScaleX(1.5F);
+        progressBar.setScaleY(1.5F);
 
         Bundle args = getArguments();
         if (args != null) {

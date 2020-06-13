@@ -9,8 +9,7 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements MenuFragment.dogCallback, MenuFragment.catCallback, MenuFragment.othersCallback, PetFragment.listCallback, DisplayFragment.onShelterMenuCallback, PetFragment.onMainMenuCallback, DisplayFragment.onContactCallback {
 
-    //Todo: West/South LA only showing half.
-    //Todo: Fix frag detach. Easiest way is probably just disabling back button.
+    //Todo: South LA breed is overrunning.
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
