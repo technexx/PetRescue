@@ -54,6 +54,14 @@ public class PetFragment extends Fragment {
     private onMainMenuCallback mOnMainMenuCallback;
     private listCallback mListCallback;
 
+    private Button westValley;
+    private Button eastValley ;
+    private Button westLA;
+    private Button southLA;
+    private Button northCentral;
+    private Button harbor;
+    private Button allAnimals;
+
     public interface onMainMenuCallback {
         void onMainMenu();
     }
@@ -61,6 +69,17 @@ public class PetFragment extends Fragment {
     public interface listCallback {
         void onDisplayList(ArrayList<String> image, ArrayList<String> id, ArrayList<String> name, ArrayList<String> breed, ArrayList<String> weight, ArrayList<String> age, ArrayList<String> location, ArrayList<String> rescue, ArrayList<String> description);
     }
+
+    public void disableButtons() {
+        allAnimals.setEnabled(false);
+        westValley.setEnabled(false);
+        eastValley.setEnabled(false);
+        westLA.setEnabled(false);
+        southLA.setEnabled(false);
+        northCentral.setEnabled(false);
+        harbor.setEnabled(false);
+    }
+
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
@@ -77,7 +96,7 @@ public class PetFragment extends Fragment {
     }
 
     public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.pet_fragment, container, false);
+        final View root = inflater.inflate(R.layout.pet_fragment, container, false);
 
         OnBackPressedCallback callback = new OnBackPressedCallback(true) {
             @Override
@@ -87,14 +106,13 @@ public class PetFragment extends Fragment {
         };
         requireActivity().getOnBackPressedDispatcher().addCallback(this, callback);
 
-
-        Button westValley = root.findViewById(R.id.westValley);
-        Button eastValley = root.findViewById(R.id.eastValley);
-        Button westLA = root.findViewById(R.id.westLA);
-        Button southLA = root.findViewById(R.id.southLA);
-        Button northCentral = root.findViewById(R.id.northCentral);
-        Button harbor = root.findViewById(R.id.harbor);
-        Button allAnimals = root.findViewById(R.id.all_animals);
+        westValley = root.findViewById(R.id.westValley);
+        eastValley = root.findViewById(R.id.eastValley);
+        westLA = root.findViewById(R.id.westLA);
+        southLA = root.findViewById(R.id.southLA);
+        northCentral = root.findViewById(R.id.northCentral);
+        harbor = root.findViewById(R.id.harbor);
+        allAnimals = root.findViewById(R.id.all_animals);
 
         Bundle args = getArguments();
         if (args != null) {
@@ -115,11 +133,20 @@ public class PetFragment extends Fragment {
 
         urlPre = "https://petharbor.com/results.asp?searchtype=ADOPT&stylesheet=https://www.laanimalservices.com/wp-content/themes/laas/laasph.css&friends=1&samaritans=1&nosuccess=1&orderby=located%20at&rows=500&imght=120&imgres=detail&tWidth=200&view=sysadm.v_lact&nomax=1&fontface=arial&fontsize=10&miles=100&shelterlist=%27LACT%27,%27LACT1%27,%27LACT4%27,%27LACT3%27,%27LACT2%27,%27LACT5%27,%27LACT6%27&atype=&where=type_";
 
+        allAnimals.setEnabled(true);
+        westValley.setEnabled(true);
+        eastValley.setEnabled(true);
+        westLA.setEnabled(true);
+        southLA.setEnabled(true);
+        northCentral.setEnabled(true);
+        harbor.setEnabled(true);
+
         allAnimals.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 aSyncUriFetch();
                 aSyncRetrieveAll();
+                disableButtons();
             }
         });
 
@@ -137,6 +164,7 @@ public class PetFragment extends Fragment {
             public void onClick(View v) {
                 aSyncUriFetch();
                 aSyncRetrieveShelter("East Valley");
+                disableButtons();
             }
         });
 
@@ -145,6 +173,7 @@ public class PetFragment extends Fragment {
             public void onClick(View v) {
                 aSyncUriFetch();
                 aSyncRetrieveShelter("West LA");
+                disableButtons();
             }
         });
 
@@ -153,6 +182,7 @@ public class PetFragment extends Fragment {
             public void onClick(View v) {
                 aSyncUriFetch();
                 aSyncRetrieveShelter("South LA");
+                disableButtons();
             }
         });
 
@@ -170,6 +200,7 @@ public class PetFragment extends Fragment {
             public void onClick(View v) {
                 aSyncUriFetch();
                 aSyncRetrieveShelter("Harbor");
+                disableButtons();
             }
         });
         return root;
