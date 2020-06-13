@@ -11,11 +11,13 @@
     android:clickable="true"
     android:foreground="?android:attr/selectableItemBackground"
     android:focusable="true"
-    app:cardPreventCornerOverlap="false">
+    app:cardPreventCornerOverlap="false"
+    android:id="@+id/cardView_main">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:id="@+id/menu_constrained">
 
         <ImageButton
             android:id="@+id/dogs"
