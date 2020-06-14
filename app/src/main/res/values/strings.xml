@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Los Angeles Shelter Searcher</string>
+    <string name="app_name">Los Angeles Pet Shelter Searcher</string>
 
     <string name="dogs">Dogs</string>
     <string name="Cats">Cats</string>
