@@ -107,6 +107,11 @@ public class MainActivity extends AppCompatActivity implements MenuFragment.dogC
         FragmentManager fm = getSupportFragmentManager();
         MenuFragment menuFragment = new MenuFragment();
 
+        Bundle b = new Bundle();
+        b.putBoolean("disclaimer", true);
+
+        menuFragment.setArguments(b);
+
         fm.beginTransaction()
                 .replace(R.id.animals, menuFragment)
                 .commit();

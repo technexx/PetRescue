@@ -31,6 +31,8 @@ public class MenuFragment extends Fragment {
     private catCallback mCatCallback;
     private othersCallback mOthersCallback;
 
+    boolean disclaimerShown;
+
     public interface dogCallback {
         void onDogCalled();
     }
@@ -77,50 +79,58 @@ public class MenuFragment extends Fragment {
         final ImageButton others = root.findViewById(R.id.others);
 
         dogs.setBackgroundResource(R.drawable.dogmod2);
+        dogs.setBackgroundResource(R.drawable.dogmod2);
         cats.setBackgroundResource(R.drawable.catmod2);
         others.setBackgroundResource(R.drawable.hamster2);
 
-        dogs.setEnabled(false);
-        cats.setEnabled(false);
-        others.setEnabled(false);
+        Bundle args = getArguments();
+
+        if (args != null) {
+            disclaimerShown = args.getBoolean("disclaimer");
+        }
 
         final ConstraintLayout menuFragment = root.findViewById(R.id.menu_constrained);
-
         LayoutInflater layoutInflater = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-
         final View myView = layoutInflater.inflate(R.layout.disclaimer, null);
-
 
         final PopupWindow popupWindow = new PopupWindow(myView, LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
 
         //This runnable is necessary to prevent the popup from inflating too early and crashing the app.
-        menuFragment.post(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    popupWindow.setWidth(800);
-                    popupWindow.setHeight(1000);
-                    popupWindow.setElevation(5);
-                    popupWindow.showAtLocation(menuFragment, Gravity.CENTER, 0, 0);
 
-                    Button okay = myView.findViewById(R.id.exit_disclaimer);
+        if (!disclaimerShown) {
+            menuFragment.post(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        popupWindow.setWidth(800);
+                        popupWindow.setHeight(1000);
+                        popupWindow.setElevation(5);
+                        popupWindow.showAtLocation(menuFragment, Gravity.CENTER, 0, 0);
 
-                    okay.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            popupWindow.dismiss();
-                            dogs.setEnabled(true);
-                            cats.setEnabled(true);
-                            others.setEnabled(true);
-                        }
-                    });
+                        Button okay = myView.findViewById(R.id.exit_disclaimer);
+
+                        dogs.setEnabled(false);
+                        cats.setEnabled(false);
+                        others.setEnabled(false);
+
+                        okay.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                popupWindow.dismiss();
+                                dogs.setEnabled(true);
+                                cats.setEnabled(true);
+                                others.setEnabled(true);
+                            }
+                        });
 
 
-                } catch (Exception e) {
-                    Log.e("Error", "Popup trying to attach too early");
+                    } catch (Exception e) {
+                        Log.e("Error", "Popup trying to attach too early");
+                    }
                 }
-            }
-        });
+            });
+        }
+
 
         dogs.setOnClickListener(new View.OnClickListener() {
             @Override
