@@ -39,5 +39,7 @@
     <string name="shelter_hours">Currently open by appointment only.</string>
     <string name="shelter_phone">Contact: (888) 452–7381</string>
 
-    <string name="disclaimer">Disclaimer:\n\nAll information displayed is taken directly from the public website of Los Angeles Animal Services. No guarantee can be made as to its accuracy, and any inquiries should be directed to the shelters themselves.</string>
+    <string name="disclaimer_header">Disclaimer:</string>
+    <string name="disclaimer">All information displayed is taken directly from the public website of Los Angeles Animal Services. No guarantee can be made as to its accuracy, and any inquiries should be directed to the shelters themselves.</string>
+    <string name="okay">Okay</string>
 </resources>

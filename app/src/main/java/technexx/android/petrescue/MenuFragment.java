@@ -72,13 +72,24 @@ public class MenuFragment extends Fragment {
         editor.putString("animal", "");
         editor.apply();
 
+        final ImageButton dogs = root.findViewById(R.id.dogs);
+        final ImageButton cats = root.findViewById(R.id.cats);
+        final ImageButton others = root.findViewById(R.id.others);
+
+        dogs.setBackgroundResource(R.drawable.dogmod2);
+        cats.setBackgroundResource(R.drawable.catmod2);
+        others.setBackgroundResource(R.drawable.hamster2);
+
+        dogs.setEnabled(false);
+        cats.setEnabled(false);
+        others.setEnabled(false);
+
         final ConstraintLayout menuFragment = root.findViewById(R.id.menu_constrained);
 
         LayoutInflater layoutInflater = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-        View myView = layoutInflater.inflate(R.layout.disclaimer, null);
+        final View myView = layoutInflater.inflate(R.layout.disclaimer, null);
 
-//       final PopupWindow popupWindow = new PopupWindow(myView, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
 
         final PopupWindow popupWindow = new PopupWindow(myView, LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
 
@@ -88,23 +99,28 @@ public class MenuFragment extends Fragment {
             public void run() {
                 try {
                     popupWindow.setWidth(800);
-                    popupWindow.setHeight(800);
-                    popupWindow.setFocusable(true);
+                    popupWindow.setHeight(1000);
                     popupWindow.setElevation(5);
                     popupWindow.showAtLocation(menuFragment, Gravity.CENTER, 0, 0);
+
+                    Button okay = myView.findViewById(R.id.exit_disclaimer);
+
+                    okay.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            popupWindow.dismiss();
+                            dogs.setEnabled(true);
+                            cats.setEnabled(true);
+                            others.setEnabled(true);
+                        }
+                    });
+
+
                 } catch (Exception e) {
                     Log.e("Error", "Popup trying to attach too early");
                 }
             }
         });
-
-        ImageButton dogs = root.findViewById(R.id.dogs);
-        ImageButton cats = root.findViewById(R.id.cats);
-        ImageButton others = root.findViewById(R.id.others);
-
-        dogs.setBackgroundResource(R.drawable.dogmod2);
-        cats.setBackgroundResource(R.drawable.catmod2);
-        others.setBackgroundResource(R.drawable.hamster2);
 
         dogs.setOnClickListener(new View.OnClickListener() {
             @Override
