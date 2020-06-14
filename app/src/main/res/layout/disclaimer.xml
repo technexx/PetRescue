@@ -46,11 +46,11 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:backgroundTint="@color/Light_Grey"
-            app:cornerRadius="10dp"
-            app:rippleColor="#33AAAAAA"
+            app:cornerRadius="2dp"
             app:strokeColor="@color/black"
-            app:strokeWidth="2dp"
-            android:textColor="@color/black">
+            app:strokeWidth="1dp"
+            android:textColor="@color/black"
+            android:elevation="0dp">
         </Button>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
