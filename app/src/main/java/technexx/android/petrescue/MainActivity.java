@@ -9,7 +9,8 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements MenuFragment.dogCallback, MenuFragment.catCallback, MenuFragment.othersCallback, PetFragment.listCallback, DisplayFragment.onShelterMenuCallback, PetFragment.onMainMenuCallback, DisplayFragment.onContactCallback {
 
-    //Todo: Some "other" animals e.g. guinea pigs bork the split because their second index has <4 letters. May have to either expand or remove breed view since there are a lot of inaccurate breed descriptions.
+    //Todo: Final testing/debug.
+    //Todo: Add a sort feature, if you fancy.
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

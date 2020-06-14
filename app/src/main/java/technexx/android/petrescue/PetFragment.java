@@ -341,14 +341,7 @@ public class PetFragment extends Fragment {
                             locationList.add(cull);
                         }
                         if (!holder.contains("A1") && !holder.contains("A0") && !holder.contains("I am a") && !holder.contains("Lbs") && !holder.contains("yr") && !holder.contains("Los Angeles") && !holder.contains("Unknown") && !holder.contains("wks") && !holder.contains("mos")) {
-                            if (holder.length() > 11) {
-                                String[] split = holder.split(" ");
-                                String part = split[1];
-                                String shorten = part.substring(0, 4);
-                                breedList.add(split[0] + " " + shorten + ".");
-                            } else {
-                                breedList.add(holder);
-                            }
+                            breedList.add(holder);
                         }
                     }
 
@@ -414,14 +407,7 @@ public class PetFragment extends Fragment {
                             locationList.add(cull);
                         }
                         if (!holderTwo.contains("A1") && !holderTwo.contains("A0") && !holderTwo.contains("I am a") && !holderTwo.contains("Lbs") && !holderTwo.contains("yr") && !holderTwo.contains("Los Angeles") && !holderTwo.contains("Unknown") && !holderTwo.contains("wks") && !holderTwo.contains("mos")) {
-                            if (holderTwo.length() > 11) {
-                                String[] split = holderTwo.split(" ");
-                                String part = split[1];
-                                String shorten = part.substring(0, 4);
-                                breedList.add(split[0] + " " + shorten + ".");
-                            } else {
-                                breedList.add(holderTwo);
-                            }
+                            breedList.add(holderTwo);
                         }
                     }
 
