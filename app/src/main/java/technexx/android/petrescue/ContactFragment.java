@@ -34,9 +34,6 @@ public class ContactFragment extends Fragment {
         ImageView contact_image = root.findViewById(R.id.contact_image);
         TextView contact_description = root.findViewById(R.id.contact_description);
 
-        //Setting underline on address.
-        contact_two.setPaintFlags(contact_two.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
-
         Bundle args = getArguments();
         String shelter = null;
         String description = null;
