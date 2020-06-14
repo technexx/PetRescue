@@ -65,6 +65,12 @@ public class PetListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
         ViewHolder viewHolder = (ViewHolder) holder;
 
+        if (rescuelist.get(position).equals("")){
+            viewHolder.rescue.setVisibility(View.GONE);
+        } else {
+            viewHolder.rescue.setVisibility(View.VISIBLE);
+        }
+
         Picasso.get().load(imageList.get(position)).resize(450, 400).into(viewHolder.image);
         viewHolder.animalID.setText(idList.get(position));
         viewHolder.name.setText(nameList.get(position));
@@ -73,9 +79,6 @@ public class PetListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         viewHolder.weight.setText(weightList.get(position));
         viewHolder.location.setText(locationList.get(position));
 
-//        if (rescuelist.get(position).equals("")){
-//            viewHolder.rescue.setVisibility(View.GONE);
-//        }
         viewHolder.rescue.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
         viewHolder.rescue.setText(rescuelist.get(position));
 

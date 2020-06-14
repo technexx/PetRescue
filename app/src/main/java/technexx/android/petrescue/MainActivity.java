@@ -9,8 +9,7 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements MenuFragment.dogCallback, MenuFragment.catCallback, MenuFragment.othersCallback, PetFragment.listCallback, DisplayFragment.onShelterMenuCallback, PetFragment.onMainMenuCallback, DisplayFragment.onContactCallback {
 
-    //Todo: Final testing/debug.
-    //Todo: Add a sort feature, if you fancy.
+    //Todo: Sort feature.
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
