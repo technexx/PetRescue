@@ -255,7 +255,7 @@ public class PetFragment extends Fragment {
                 }
                 if (filterAge) {
                     url = url + "&NewOrderBy=Age&PAGE=1";
-            }
+                }
                 if (filterWeight) {
                     url = url + "&NewOrderBy=Weight&PAGE=1";
                 }
@@ -287,6 +287,7 @@ public class PetFragment extends Fragment {
                     testListTwo = contentTwo.eachText();
 
                     for (int i=0; i < testList.size(); i++) {
+
                         holder = testList.get(i);
 
                         //LACT1 = Harbor, LACT2 = West LA, LACT3 = South LA
@@ -305,125 +306,108 @@ public class PetFragment extends Fragment {
                             String imgPre = "https://petharbor.com/get_image.asp?RES=Detail&ID=";
                             String fullImg = imgPre + imgPost;
                             imageList.add(fullImg);
-                        }
 
-                        if (holder.contains("I am a")) {
-                            descriptionList.add(holder);
-                            if (!holder.contains("My name is")) {
+                            descriptionList.add(testList.get(i+1));
+                            if (!testList.get(i+1).contains("My name is")) {
                                 nameList.add("N/A");
                             } else {
-                                String[] split = holder.split("and");
+                                String[] split = testList.get(i+1).split("and");
                                 String shorten = split[0];
                                 String cull = shorten.substring(11);
                                 nameList.add(cull);
                             }
-                            if (holder.contains("rescue")) {
+                            if (testList.get(i+1).contains("rescue")) {
                                 rescueList.add(getString(R.string.rescue));
-                            } else if (holder.contains("minor")) {
+                            } else if (testList.get(i+1).contains("minor")) {
                                 rescueList.add(getString(R.string.minor_care));
-                            } else if (holder.contains("major")) {
+                            } else if (testList.get(i+1).contains("major")) {
                                 rescueList.add(getString(R.string.major_care));
                             } else {
                                 rescueList.add("");
                             }
-                        }
 
-                        if (holder.contains("Lbs")) {
-                            if (holder.equals("0 Lbs")) {
+                            breedList.add(testList.get(i+2));
+
+                            if (testList.get(i+3).equals("0 Lbs")) {
                                 weightList.add("N/A");
                             } else {
-                                String shorten = holder.substring(3);
+                                String shorten = testList.get(i+3).substring(3);
                                 weightList.add(shorten);
                             }
-                        }
 
-                        if  (holder.contains("Age Unknown")) {
-                            ageList.add("Unknown");
-                        } else {
-                            if (holder.contains("yr") || holder.contains("mo") || holder.contains("wk")) {
-                                String shorten = holder.substring(5);
+                            if  (testList.get(i+4).contains("Age Unknown")) {
+                                ageList.add("Unknown");
+                            } else {
+                                String shorten = testList.get(i+4).substring(5);
                                 ageList.add(shorten);
                             }
+
+                            String[] splitTwo = testList.get(i+5).split("Shelter");
+                            String shortenTwo = splitTwo[0];
+                            String cullTwo = shortenTwo.substring(30);
+                            locationList.add(cullTwo);
                         }
 
-                        if (holder.contains("Los Angeles Animal")) {
-                            String[] split = holder.split("Shelter");
-                            String shorten = split[0];
-                            String cull = shorten.substring(30);
-                            locationList.add(cull);
-                        }
-                        if (!holder.contains("A1") && !holder.contains("A0") && !holder.contains("I am a") && !holder.contains("Lbs") && !holder.contains("yr") && !holder.contains("Los Angeles") && !holder.contains("Unknown") && !holder.contains("wks") && !holder.contains("mos")) {
-                            breedList.add(holder);
-                        }
-                    }
+                        if (i<testListTwo.size()) {
+                            holderTwo = testListTwo.get(i);
 
-                    for (int i=0; i < testListTwo.size(); i++) {
-                        holderTwo = testListTwo.get(i);
+                            if (holderTwo.contains("A1") || holderTwo.contains("A0")) {
+                                idList.add(holderTwo);
+                                String imgPost = null;
+                                if (testListTwo.get(i + 5).contains("Harbor")) {
+                                    imgPost = holderTwo + "&LOCATION=LACT1";
+                                } else if (testListTwo.get(i + 5).contains("West Los Angeles")) {
+                                    imgPost = holderTwo + "&LOCATION=LACT2";
+                                } else if (testListTwo.get(i + 5).contains("South Los Angeles")) {
+                                    imgPost = holderTwo + "&LOCATION=LACT3";
+                                } else {
+                                    imgPost = holderTwo + "&LOCATION=LACT";
+                                }
+                                String imgPre = "https://petharbor.com/get_image.asp?RES=Detail&ID=";
+                                String fullImg = imgPre + imgPost;
+                                imageList.add(fullImg);
 
-                        if (holderTwo.contains("A1") || holderTwo.contains("A0")) {
-                            idList.add(holderTwo);
-                            String imgPost = null;
-                            if (testList.get(i + 5).contains("Harbor")) {
-                                imgPost = holderTwo + "&LOCATION=LACT1";
-                            } else if (testList.get(i + 5).contains("West Los Angeles")) {
-                                imgPost = holderTwo + "&LOCATION=LACT2";
-                            } else if (testList.get(i + 5).contains("South Los Angeles")) {
-                                imgPost = holderTwo + "&LOCATION=LACT3";
-                            } else {
-                                imgPost = holderTwo + "&LOCATION=LACT";
-                            }
-                            String imgPre = "https://petharbor.com/get_image.asp?RES=Detail&ID=";
-                            String fullImg = imgPre + imgPost;
-                            imageList.add(fullImg);
-                        }
+                                descriptionList.add(testListTwo.get(i+1));
+                                if (!testListTwo.get(i+1).contains("My name is")) {
+                                    nameList.add("N/A");
+                                } else {
+                                    String[] split = testListTwo.get(i+1).split("and");
+                                    String shorten = split[0];
+                                    String cull = shorten.substring(11);
+                                    nameList.add(cull);
+                                }
+                                if (testListTwo.get(i+1).contains("rescue")) {
+                                    rescueList.add(getString(R.string.rescue));
+                                } else if (testListTwo.get(i+1).contains("minor")) {
+                                    rescueList.add(getString(R.string.minor_care));
+                                } else if (testListTwo.get(i+1).contains("major")) {
+                                    rescueList.add(getString(R.string.major_care));
+                                } else {
+                                    rescueList.add("");
+                                }
 
-                        if (holderTwo.contains("I am a")) {
-                            descriptionList.add(holderTwo);
-                            if (!holderTwo.contains("My name is")) {
-                                nameList.add("N/A");
-                            } else {
-                                String[] split = holderTwo.split("and");
+                                breedList.add(testListTwo.get(i+2));
+
+                                if (testListTwo.get(i+3).equals("0 Lbs")) {
+                                    weightList.add("N/A");
+                                } else {
+                                    String shorten = testListTwo.get(i+3).substring(3);
+                                    weightList.add(shorten);
+                                }
+
+                                if  (testListTwo.get(i+4).contains("Age Unknown")) {
+                                    ageList.add("Unknown");
+                                } else {
+                                    String shorten = testListTwo.get(i+4).substring(5);
+                                    ageList.add(shorten);
+                                }
+
+                                String[] split = testListTwo.get(i+5).split("Shelter");
                                 String shorten = split[0];
-                                String cull = shorten.substring(11);
-                                nameList.add(cull);
-                            }
-                            if (holderTwo.contains("rescue")) {
-                                rescueList.add(getString(R.string.rescue));
-                            } else if (holderTwo.contains("minor")) {
-                                rescueList.add(getString(R.string.minor_care));
-                            } else if (holderTwo.contains("major")) {
-                                rescueList.add(getString(R.string.major_care));
-                            } else {
-                                rescueList.add("");
-                            }
-                        }
+                                String cull = shorten.substring(30);
+                                locationList.add(cull);
 
-                        if (holderTwo.contains("Lbs")) {
-                            if (holderTwo.equals("0 Lbs")) {
-                                weightList.add("N/A");
-                            } else {
-                                String shorten = holderTwo.substring(3);
-                                weightList.add(shorten);
                             }
-                        }
-
-                        if (holderTwo.contains("Age Unknown")) {
-                            ageList.add("Unknown");
-                        } else {
-                            if (holderTwo.contains("yr") ||  holderTwo.contains("mo") || holderTwo.contains("wk")) {
-                                String shorten = holderTwo.substring(5);
-                                ageList.add(shorten);
-                            }
-                        }
-
-                        if (holderTwo.contains("Los Angeles Animal")) {
-                            String[] split = holderTwo.split("Shelter");
-                            String shorten = split[0];
-                            String cull = shorten.substring(30);
-                            locationList.add(cull);
-                        }
-                        if (!holderTwo.contains("A1") && !holderTwo.contains("A0") && !holderTwo.contains("I am a") && !holderTwo.contains("Lbs") && !holderTwo.contains("yr") && !holderTwo.contains("Los Angeles") && !holderTwo.contains("Unknown") && !holderTwo.contains("wks") && !holderTwo.contains("mos")) {
-                            breedList.add(holderTwo);
                         }
                     }
 
@@ -517,6 +501,55 @@ public class PetFragment extends Fragment {
                                 String imgPost = testList.get(i-5) + "&LOCATION=LACT";
                                 String fullImg = imgPre + imgPost;
                                 imageList.add(fullImg);
+
+                                if (i<testListTwo.size()) {
+                                    holderTwo = testListTwo.get(i);
+                                    splitLoc = holderTwo.split("Shelter");
+                                    shortenLoc = splitLoc[0];
+                                    cullLoc = shortenLoc.substring(30);
+                                    locationList.add(cullLoc);
+
+                                    if (testListTwo.get(i - 1).contains("Unknown")) {
+                                        ageList.add("Unknown");
+                                    } else {
+                                        String shortenAge = testListTwo.get(i-1).substring(5);
+                                        ageList.add(shortenAge);
+                                    }
+
+                                    if (testListTwo.get(i-2).equals("0 Lbs")) {
+                                        weightList.add("N/A");
+                                    } else {
+                                        String shortenWeight = testListTwo.get(i-2).substring(3);
+                                        weightList.add(shortenWeight);
+                                    }
+
+                                    breedList.add(testListTwo.get(i-3));
+
+                                    if (!testListTwo.get(i-4).contains("My name is")) {
+                                        nameList.add("N/A");
+                                        descriptionList.add(testListTwo.get(i-4));
+                                    } else {
+                                        descriptionList.add(testListTwo.get(i-4));
+                                        String[] split = testListTwo.get(i-4).split("and");
+                                        String shortenName = split[0];
+                                        String cull = shortenName.substring(11);
+                                        nameList.add(cull);
+                                    }
+
+                                    if (testListTwo.get(i-4).contains("minor")) {
+                                        rescueList.add(getString(R.string.minor_care));
+                                    } else if (testListTwo.get(i-4).contains("major")) {
+                                        rescueList.add(getString(R.string.major_care));
+                                    } else {
+                                        rescueList.add("");
+                                    }
+
+                                    idList.add(testListTwo.get(i-5));
+                                    imgPre = "https://petharbor.com/get_image.asp?RES=Detail&ID=";
+                                    imgPost = testListTwo.get(i-5) + "&LOCATION=LACT";
+                                    fullImg = imgPre + imgPost;
+                                    imageList.add(fullImg);
+                                }
                             }
                         }
 
@@ -569,6 +602,55 @@ public class PetFragment extends Fragment {
                                 String imgPost = testList.get(i-5) + "&LOCATION=LACT2";
                                 String fullImg = imgPre + imgPost;
                                 imageList.add(fullImg);
+
+                                if (i<testListTwo.size()) {
+                                    holderTwo = testListTwo.get(i);
+                                    splitLoc = holderTwo.split("Shelter");
+                                    shortenLoc = splitLoc[0];
+                                    cullLoc = shortenLoc.substring(30);
+                                    locationList.add(cullLoc);
+
+                                    if (testListTwo.get(i - 1).contains("Unknown")) {
+                                        ageList.add("Unknown");
+                                    } else {
+                                        String shortenAge = testListTwo.get(i-1).substring(5);
+                                        ageList.add(shortenAge);
+                                    }
+
+                                    if (testListTwo.get(i-2).equals("0 Lbs")) {
+                                        weightList.add("N/A");
+                                    } else {
+                                        String shortenWeight = testListTwo.get(i-2).substring(3);
+                                        weightList.add(shortenWeight);
+                                    }
+
+                                    breedList.add(testListTwo.get(i-3));
+
+                                    if (!testListTwo.get(i-4).contains("My name is")) {
+                                        nameList.add("N/A");
+                                        descriptionList.add(testListTwo.get(i-4));
+                                    } else {
+                                        descriptionList.add(testListTwo.get(i-4));
+                                        String[] split = testListTwo.get(i-4).split("and");
+                                        String shortenName = split[0];
+                                        String cull = shortenName.substring(11);
+                                        nameList.add(cull);
+                                    }
+
+                                    if (testListTwo.get(i-4).contains("minor")) {
+                                        rescueList.add(getString(R.string.minor_care));
+                                    } else if (testListTwo.get(i-4).contains("major")) {
+                                        rescueList.add(getString(R.string.major_care));
+                                    } else {
+                                        rescueList.add("");
+                                    }
+
+                                    idList.add(testListTwo.get(i-5));
+                                    imgPre = "https://petharbor.com/get_image.asp?RES=Detail&ID=";
+                                    imgPost = testListTwo.get(i-5) + "&LOCATION=LACT2";
+                                    fullImg = imgPre + imgPost;
+                                    imageList.add(fullImg);
+                                }
                             }
                         }
 
@@ -619,6 +701,55 @@ public class PetFragment extends Fragment {
                                 String imgPost = testList.get(i-5) + "&LOCATION=LACT3";
                                 String fullImg = imgPre + imgPost;
                                 imageList.add(fullImg);
+
+                                if (i<testListTwo.size()) {
+                                    holderTwo = testListTwo.get(i);
+                                    splitLoc = holderTwo.split("Shelter");
+                                    shortenLoc = splitLoc[0];
+                                    cullLoc = shortenLoc.substring(30);
+                                    locationList.add(cullLoc);
+
+                                    if (testListTwo.get(i - 1).contains("Unknown")) {
+                                        ageList.add("Unknown");
+                                    } else {
+                                        String shortenAge = testListTwo.get(i-1).substring(5);
+                                        ageList.add(shortenAge);
+                                    }
+
+                                    if (testListTwo.get(i-2).equals("0 Lbs")) {
+                                        weightList.add("N/A");
+                                    } else {
+                                        String shortenWeight = testListTwo.get(i-2).substring(3);
+                                        weightList.add(shortenWeight);
+                                    }
+
+                                    breedList.add(testListTwo.get(i-3));
+
+                                    if (!testListTwo.get(i-4).contains("My name is")) {
+                                        nameList.add("N/A");
+                                        descriptionList.add(testListTwo.get(i-4));
+                                    } else {
+                                        descriptionList.add(testListTwo.get(i-4));
+                                        String[] split = testListTwo.get(i-4).split("and");
+                                        String shortenName = split[0];
+                                        String cull = shortenName.substring(11);
+                                        nameList.add(cull);
+                                    }
+
+                                    if (testListTwo.get(i-4).contains("minor")) {
+                                        rescueList.add(getString(R.string.minor_care));
+                                    } else if (testListTwo.get(i-4).contains("major")) {
+                                        rescueList.add(getString(R.string.major_care));
+                                    } else {
+                                        rescueList.add("");
+                                    }
+
+                                    idList.add(testListTwo.get(i-5));
+                                    imgPre = "https://petharbor.com/get_image.asp?RES=Detail&ID=";
+                                    imgPost = testListTwo.get(i-5) + "&LOCATION=LACT3";
+                                    fullImg = imgPre + imgPost;
+                                    imageList.add(fullImg);
+                                }
                             }
                         }
 
@@ -669,214 +800,56 @@ public class PetFragment extends Fragment {
                                 String imgPost = testList.get(i-5) + "&LOCATION=LACT1";
                                 String fullImg = imgPre + imgPost;
                                 imageList.add(fullImg);
-                            }
-                        }
-                    }
 
-                    for (int i = 0; i < testListTwo.size(); i++) {
-                        holderTwo = testListTwo.get(i);
+                                if (i<testListTwo.size()) {
+                                    holderTwo = testListTwo.get(i);
 
-                        String[] splitLoc = null;
-                        String shortenLoc = null;
-                        String cullLoc = null;
+                                    splitLoc = holderTwo.split("Shelter");
+                                    shortenLoc = splitLoc[0];
+                                    cullLoc = shortenLoc.substring(30);
+                                    locationList.add(cullLoc);
 
-                        if (loc.equals("East Valley")) {
-                            if (holderTwo.contains("East Valley")) {
-                                splitLoc = holderTwo.split("Shelter");
-                                shortenLoc = splitLoc[0];
-                                cullLoc = shortenLoc.substring(30);
-                                locationList.add(cullLoc);
+                                    if (testListTwo.get(i - 1).contains("Unknown")) {
+                                        ageList.add("Unknown");
+                                    } else {
+                                        String shortenAge = testListTwo.get(i-1).substring(5);
+                                        ageList.add(shortenAge);
+                                    }
 
-                                if (testListTwo.get(i - 1).contains("Unknown")) {
-                                    ageList.add("Unknown");
-                                } else {
-                                    String shortenAge = testListTwo.get(i-1).substring(5);
-                                    ageList.add(shortenAge);
+                                    if (testListTwo.get(i-2).equals("0 Lbs")) {
+                                        weightList.add("N/A");
+                                    } else {
+                                        String shortenWeight = testListTwo.get(i-2).substring(3);
+                                        weightList.add(shortenWeight);
+                                    }
+
+                                    breedList.add(testListTwo.get(i-3));
+
+                                    if (!testListTwo.get(i-4).contains("My name is")) {
+                                        nameList.add("N/A");
+                                        descriptionList.add(testListTwo.get(i-4));
+                                    } else {
+                                        descriptionList.add(testListTwo.get(i-4));
+                                        String[] split = testListTwo.get(i-4).split("and");
+                                        String shortenName = split[0];
+                                        String cull = shortenName.substring(11);
+                                        nameList.add(cull);
+                                    }
+
+                                    if (testListTwo.get(i-4).contains("minor")) {
+                                        rescueList.add(getString(R.string.minor_care));
+                                    } else if (testListTwo.get(i-4).contains("major")) {
+                                        rescueList.add(getString(R.string.major_care));
+                                    } else {
+                                        rescueList.add("");
+                                    }
+
+                                    idList.add(testListTwo.get(i-5));
+                                    imgPre = "https://petharbor.com/get_image.asp?RES=Detail&ID=";
+                                    imgPost = testListTwo.get(i-5) + "&LOCATION=LACT1";
+                                    fullImg = imgPre + imgPost;
+                                    imageList.add(fullImg);
                                 }
-
-                                if (testListTwo.get(i-2).equals("0 Lbs")) {
-                                    weightList.add("N/A");
-                                } else {
-                                    String shortenWeight = testListTwo.get(i-2).substring(3);
-                                    weightList.add(shortenWeight);
-                                }
-
-                                breedList.add(testListTwo.get(i-3));
-
-                                if (!testListTwo.get(i-4).contains("My name is")) {
-                                    nameList.add("N/A");
-                                    descriptionList.add(testListTwo.get(i-4));
-                                } else {
-                                    descriptionList.add(testListTwo.get(i-4));
-                                    String[] split = testListTwo.get(i-4).split("and");
-                                    String shortenName = split[0];
-                                    String cull = shortenName.substring(11);
-                                    nameList.add(cull);
-                                }
-
-                                if (testListTwo.get(i-4).contains("minor")) {
-                                    rescueList.add(getString(R.string.minor_care));
-                                } else if (testListTwo.get(i-4).contains("major")) {
-                                    rescueList.add(getString(R.string.major_care));
-                                } else {
-                                    rescueList.add("");
-                                }
-
-                                idList.add(testListTwo.get(i-5));
-                                String imgPre = "https://petharbor.com/get_image.asp?RES=Detail&ID=";
-                                String imgPost = testListTwo.get(i-5) + "&LOCATION=LACT";
-                                String fullImg = imgPre + imgPost;
-                                imageList.add(fullImg);
-                            }
-                        }
-
-                        if (loc.equals("West LA")) {
-                            if (holderTwo.contains("West Los Angeles")) {
-                                splitLoc = holderTwo.split("Shelter");
-                                shortenLoc = splitLoc[0];
-                                cullLoc = shortenLoc.substring(30);
-                                locationList.add(cullLoc);
-
-                                if (testListTwo.get(i - 1).contains("Unknown")) {
-                                    ageList.add("Unknown");
-                                } else {
-                                    String shortenAge = testListTwo.get(i-1).substring(5);
-                                    ageList.add(shortenAge);
-                                }
-
-                                if (testListTwo.get(i-2).equals("0 Lbs")) {
-                                    weightList.add("N/A");
-                                } else {
-                                    String shortenWeight = testListTwo.get(i-2).substring(3);
-                                    weightList.add(shortenWeight);
-                                }
-
-                                breedList.add(testListTwo.get(i-3));
-
-                                if (!testListTwo.get(i-4).contains("My name is")) {
-                                    nameList.add("N/A");
-                                    descriptionList.add(testListTwo.get(i-4));
-                                } else {
-                                    descriptionList.add(testListTwo.get(i-4));
-                                    String[] split = testListTwo.get(i-4).split("and");
-                                    String shortenName = split[0];
-                                    String cull = shortenName.substring(11);
-                                    nameList.add(cull);
-                                }
-
-                                if (testListTwo.get(i-4).contains("minor")) {
-                                    rescueList.add(getString(R.string.minor_care));
-                                } else if (testListTwo.get(i-4).contains("major")) {
-                                    rescueList.add(getString(R.string.major_care));
-                                } else {
-                                    rescueList.add("");
-                                }
-
-                                idList.add(testListTwo.get(i-5));
-                                String imgPre = "https://petharbor.com/get_image.asp?RES=Detail&ID=";
-                                String imgPost = testListTwo.get(i-5) + "&LOCATION=LACT2";
-                                String fullImg = imgPre + imgPost;
-                                imageList.add(fullImg);
-                            }
-                        }
-
-                        if (loc.equals("South LA")) {
-                            if (holderTwo.contains("South Los Angeles")) {
-                                splitLoc = holderTwo.split("Shelter");
-                                shortenLoc = splitLoc[0];
-                                cullLoc = shortenLoc.substring(30);
-                                locationList.add(cullLoc);
-
-                                if (testListTwo.get(i - 1).contains("Unknown")) {
-                                    ageList.add("Unknown");
-                                } else {
-                                    String shortenAge = testListTwo.get(i-1).substring(5);
-                                    ageList.add(shortenAge);
-                                }
-
-                                if (testListTwo.get(i-2).equals("0 Lbs")) {
-                                    weightList.add("N/A");
-                                } else {
-                                    String shortenWeight = testListTwo.get(i-2).substring(3);
-                                    weightList.add(shortenWeight);
-                                }
-
-                                breedList.add(testListTwo.get(i-3));
-
-                                if (!testListTwo.get(i-4).contains("My name is")) {
-                                    nameList.add("N/A");
-                                    descriptionList.add(testListTwo.get(i-4));
-                                } else {
-                                    descriptionList.add(testListTwo.get(i-4));
-                                    String[] split = testListTwo.get(i-4).split("and");
-                                    String shortenName = split[0];
-                                    String cull = shortenName.substring(11);
-                                    nameList.add(cull);
-                                }
-
-                                if (testListTwo.get(i-4).contains("minor")) {
-                                    rescueList.add(getString(R.string.minor_care));
-                                } else if (testListTwo.get(i-4).contains("major")) {
-                                    rescueList.add(getString(R.string.major_care));
-                                } else {
-                                    rescueList.add("");
-                                }
-
-                                idList.add(testListTwo.get(i-5));
-                                String imgPre = "https://petharbor.com/get_image.asp?RES=Detail&ID=";
-                                String imgPost = testListTwo.get(i-5) + "&LOCATION=LACT3";
-                                String fullImg = imgPre + imgPost;
-                                imageList.add(fullImg);
-                            }
-                        }
-
-                        if (loc.equals("Harbor")) {
-                            if (holderTwo.contains("Harbor")) {
-                                splitLoc = holderTwo.split("Shelter");
-                                shortenLoc = splitLoc[0];
-                                cullLoc = shortenLoc.substring(30);
-                                locationList.add(cullLoc);
-
-                                if (testListTwo.get(i - 1).contains("Unknown")) {
-                                    ageList.add("Unknown");
-                                } else {
-                                    String shortenAge = testListTwo.get(i-1).substring(5);
-                                    ageList.add(shortenAge);
-                                }
-
-                                if (testListTwo.get(i-2).equals("0 Lbs")) {
-                                    weightList.add("N/A");
-                                } else {
-                                    String shortenWeight = testListTwo.get(i-2).substring(3);
-                                    weightList.add(shortenWeight);
-                                }
-
-                                breedList.add(testListTwo.get(i-3));
-
-                                if (!testListTwo.get(i-4).contains("My name is")) {
-                                    nameList.add("N/A");
-                                    descriptionList.add(testListTwo.get(i-4));
-                                } else {
-                                    descriptionList.add(testListTwo.get(i-4));
-                                    String[] split = testListTwo.get(i-4).split("and");
-                                    String shortenName = split[0];
-                                    String cull = shortenName.substring(11);
-                                    nameList.add(cull);
-                                }
-
-                                if (testListTwo.get(i-4).contains("minor")) {
-                                    rescueList.add(getString(R.string.minor_care));
-                                } else if (testListTwo.get(i-4).contains("major")) {
-                                    rescueList.add(getString(R.string.major_care));
-                                } else {
-                                    rescueList.add("");
-                                }
-
-                                idList.add(testListTwo.get(i-5));
-                                String imgPre = "https://petharbor.com/get_image.asp?RES=Detail&ID=";
-                                String imgPost = testListTwo.get(i-5) + "&LOCATION=LACT1";
-                                String fullImg = imgPre + imgPost;
-                                imageList.add(fullImg);
                             }
                         }
                     }
