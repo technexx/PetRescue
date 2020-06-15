@@ -71,10 +71,6 @@ public class DisplayFragment extends Fragment implements PetListAdapter.clickLis
         };
         requireActivity().getOnBackPressedDispatcher().addCallback(this, callback);
 
-//        SharedPreferences pref = getContext().getSharedPreferences("SharedPref", 0);
-//
-//        String animal = pref.getString("animal", null);
-
         Bundle args = getArguments();
         if (args != null) {
             imageList = args.getStringArrayList("imageList");

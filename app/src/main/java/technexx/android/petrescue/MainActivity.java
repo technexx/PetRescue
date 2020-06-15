@@ -9,7 +9,8 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements MenuFragment.dogCallback, MenuFragment.catCallback, MenuFragment.othersCallback, PetFragment.listCallback, DisplayFragment.onShelterMenuCallback, PetFragment.onMainMenuCallback, DisplayFragment.onContactCallback {
 
-    //Todo: Sort feature.
+    //Todo: Sort feature - URI sort works, but we are getting two sets of ordered lists due to TableContents1 and 2.
+    //Todo: Show numerical value of pets in list.
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -41,11 +41,10 @@ public class PetFragment extends Fragment {
     private ArrayList<String> ageList;
     private ArrayList<String> locationList;
     private ArrayList<String> rescueList;
-    private  ArrayList<String> descriptionList;
+    private ArrayList<String> descriptionList;
 
     private String holder;
     private String holderTwo;
-    private int totalSize;
 
     private String dogs;
     private String cats;
@@ -53,6 +52,10 @@ public class PetFragment extends Fragment {
 
     private String urlPre;
     private String url;
+    private String urlFilter;
+    boolean filterBreed;
+    boolean filterAge;
+    boolean filterWeight;
 
     private onMainMenuCallback mOnMainMenuCallback;
     private listCallback mListCallback;
@@ -66,7 +69,7 @@ public class PetFragment extends Fragment {
     private Button allAnimals;
 
     private ProgressBar progressBar;
-    String animal;
+    private String animal;
 
     public interface onMainMenuCallback {
         void onMainMenu();
@@ -247,6 +250,15 @@ public class PetFragment extends Fragment {
                 if (other != null || animal.equals("other")) {
                     url = urlPre + "other";
                 }
+                if (filterBreed) {
+                    url = url + "&NewOrderBy=Breed&PAGE=1";
+                }
+                if (filterAge) {
+                    url = url + "&NewOrderBy=Age&PAGE=1";
+            }
+                if (filterWeight) {
+                    url = url + "&NewOrderBy=Weight&PAGE=1";
+                }
             }
         });
     }
@@ -260,7 +272,6 @@ public class PetFragment extends Fragment {
 
                     Elements content = doc.getElementsByClass("TableContent1");
                     Elements contentTwo = doc.getElementsByClass("TableContent2");
-                    Elements testImage = content.select("img");
 
                     imageList = new ArrayList<>();
                     idList = new ArrayList<>();
@@ -329,7 +340,7 @@ public class PetFragment extends Fragment {
                         if  (holder.contains("Age Unknown")) {
                             ageList.add("Unknown");
                         } else {
-                            if (holder.contains("yr") || holder.contains("mos") || holder.contains("wks")) {
+                            if (holder.contains("yr") || holder.contains("mo") || holder.contains("wk")) {
                                 String shorten = holder.substring(5);
                                 ageList.add(shorten);
                             }
@@ -399,7 +410,7 @@ public class PetFragment extends Fragment {
                         if (holderTwo.contains("Age Unknown")) {
                             ageList.add("Unknown");
                         } else {
-                            if (holderTwo.contains("yr") ||  holderTwo.contains("mos") || holderTwo.contains("wks")) {
+                            if (holderTwo.contains("yr") ||  holderTwo.contains("mo") || holderTwo.contains("wk")) {
                                 String shorten = holderTwo.substring(5);
                                 ageList.add(shorten);
                             }
@@ -417,6 +428,8 @@ public class PetFragment extends Fragment {
                     }
 
                     mListCallback.onDisplayList(imageList, idList, nameList, breedList, weightList, ageList, locationList, rescueList, descriptionList);
+
+                    Log.i("ageSort", ageList.toString());
 
                 } catch (IOException e) {
                     e.printStackTrace();
