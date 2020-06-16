@@ -406,7 +406,6 @@ public class PetFragment extends Fragment {
                                 String shorten = split[0];
                                 String cull = shorten.substring(30);
                                 locationList.add(cull);
-
                             }
                         }
                     }

@@ -101,16 +101,26 @@ public class DisplayFragment extends Fragment implements PetListAdapter.clickLis
             filter = args.getString("filter");
         }
 
-        Set<String> imageSet = new HashSet<>();
-        Set<String> idSet = new HashSet<>();
-        Set<String> nameSet = new HashSet<>();
-        Set<String> breedSet = new HashSet<>();
-        Set<String> weightSet = new HashSet<>();
-        Set<String> ageSet = new HashSet<>();
-        Set<String> locationSet = new HashSet<>();
-        Set<String> rescueSet = new HashSet<>();
-        Set<String> descriptionSet = new HashSet<>();
+        Set<String> imageSet = new HashSet<>(imageList);
+        Set<String> idSet = new HashSet<>(idList);
+        Set<String> nameSet = new HashSet<>(nameList);
+        Set<String> breedSet = new HashSet<>(breedList);
+        Set<String> weightSet = new HashSet<>(weightList);
+        Set<String> ageSet = new HashSet<>(ageList);
+        Set<String> locationSet = new HashSet<>(locationList);
+        Set<String> rescueSet = new HashSet<>(rescueList);
+        Set<String> descriptionSet = new HashSet<>(descriptionList);
 
+        editor.putStringSet("imageSet", imageSet);
+        editor.putStringSet("idSet", idSet);
+        editor.putStringSet("nameSet", nameSet);
+        editor.putStringSet("breedSet", breedSet);
+        editor.putStringSet("weightSet", weightSet);
+        editor.putStringSet("ageSet", ageSet);
+        editor.putStringSet("locationSet", locationSet);
+        editor.putStringSet("rescueSet", rescueSet);
+        editor.putStringSet("descriptionSet", descriptionSet);
+        editor.apply();
 
         RecyclerView animalRecycler = root.findViewById(R.id.pet_recycler);
         PetListAdapter petListAdapter = new PetListAdapter(imageList, idList, nameList, breedList, weightList, ageList, locationList, rescueList, descriptionList, getContext());
