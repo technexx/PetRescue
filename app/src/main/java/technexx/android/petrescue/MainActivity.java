@@ -150,7 +150,18 @@ public class MainActivity extends AppCompatActivity implements MenuFragment.dogC
     }
 
     @Override
-    public void onFilter() {
+    public void onFilter(String filter) {
+        FragmentManager fm = getSupportFragmentManager();
+        PetFragment petFragment = new PetFragment();
 
+        Bundle b = new Bundle();
+        b.putString("filter", filter);
+
+        petFragment.setArguments(b);
+
+        //Todo: Refresh DisplayFragment instead.
+        fm.beginTransaction()
+                .replace(R.id.animals, petFragment)
+                .commit();
     }
 }

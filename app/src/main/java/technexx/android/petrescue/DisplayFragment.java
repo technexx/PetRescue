@@ -19,7 +19,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class DisplayFragment extends Fragment implements PetListAdapter.clickListener, PetListAdapter.spinnerClickListener {
 
@@ -32,6 +34,7 @@ public class DisplayFragment extends Fragment implements PetListAdapter.clickLis
     private ArrayList<String> locationList;
     private ArrayList<String> rescueList;
     private ArrayList<String> descriptionList;
+    private String filter;
 
     private onShelterMenuCallback mOnShelterMenuCallback;
     private onContactCallback mOnContactCallback;
@@ -46,7 +49,7 @@ public class DisplayFragment extends Fragment implements PetListAdapter.clickLis
     }
 
     public interface onFilterCallback {
-        void onFilter();
+        void onFilter(String filter);
     }
 
     @Override
@@ -81,6 +84,9 @@ public class DisplayFragment extends Fragment implements PetListAdapter.clickLis
         };
         requireActivity().getOnBackPressedDispatcher().addCallback(this, callback);
 
+        SharedPreferences pref = getContext().getSharedPreferences("SharedPref", 0);
+        SharedPreferences.Editor editor = pref.edit();
+
         Bundle args = getArguments();
         if (args != null) {
             imageList = args.getStringArrayList("imageList");
@@ -92,7 +98,19 @@ public class DisplayFragment extends Fragment implements PetListAdapter.clickLis
             locationList = args.getStringArrayList("locationList");
             rescueList = args.getStringArrayList("rescue");
             descriptionList = args.getStringArrayList("description");
+            filter = args.getString("filter");
         }
+
+        Set<String> imageSet = new HashSet<>();
+        Set<String> idSet = new HashSet<>();
+        Set<String> nameSet = new HashSet<>();
+        Set<String> breedSet = new HashSet<>();
+        Set<String> weightSet = new HashSet<>();
+        Set<String> ageSet = new HashSet<>();
+        Set<String> locationSet = new HashSet<>();
+        Set<String> rescueSet = new HashSet<>();
+        Set<String> descriptionSet = new HashSet<>();
+
 
         RecyclerView animalRecycler = root.findViewById(R.id.pet_recycler);
         PetListAdapter petListAdapter = new PetListAdapter(imageList, idList, nameList, breedList, weightList, ageList, locationList, rescueList, descriptionList, getContext());
@@ -132,7 +150,7 @@ public class DisplayFragment extends Fragment implements PetListAdapter.clickLis
 
     @Override
     public void onSpinnerClick(String filter) {
-        //Todo: Call back to PetFragment, pass in args, refresh fragment.
+        mOnFilterCallback.onFilter(filter);
     }
 }
 
