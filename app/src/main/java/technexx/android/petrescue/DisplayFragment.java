@@ -21,7 +21,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DisplayFragment extends Fragment implements PetListAdapter.clickListener {
+public class DisplayFragment extends Fragment implements PetListAdapter.clickListener, PetListAdapter.spinnerClickListener {
 
     private ArrayList<String> imageList;
     private ArrayList<String> idList;
@@ -35,6 +35,7 @@ public class DisplayFragment extends Fragment implements PetListAdapter.clickLis
 
     private onShelterMenuCallback mOnShelterMenuCallback;
     private onContactCallback mOnContactCallback;
+    private onFilterCallback mOnFilterCallback;
 
     public interface onShelterMenuCallback {
         void onShelterMenu(boolean enabled);
@@ -42,6 +43,10 @@ public class DisplayFragment extends Fragment implements PetListAdapter.clickLis
 
     public interface onContactCallback {
         void onContact(String shelter, String description, String image, String id);
+    }
+
+    public interface onFilterCallback {
+        void onFilter();
     }
 
     @Override
@@ -56,6 +61,11 @@ public class DisplayFragment extends Fragment implements PetListAdapter.clickLis
             mOnContactCallback = (onContactCallback) context;
         } catch (ClassCastException e) {
             throw new ClassCastException(context.toString() + "Must implement onContactCallback");
+        }
+        try {
+            mOnFilterCallback = (onFilterCallback) context;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(context.toString() + "Must implement onFilterCallback");
         }
     }
 
@@ -87,6 +97,7 @@ public class DisplayFragment extends Fragment implements PetListAdapter.clickLis
         RecyclerView animalRecycler = root.findViewById(R.id.pet_recycler);
         PetListAdapter petListAdapter = new PetListAdapter(imageList, idList, nameList, breedList, weightList, ageList, locationList, rescueList, descriptionList, getContext());
         petListAdapter.setClick(this);
+        petListAdapter.setSpinnerClick(this);
 
         animalRecycler.setAdapter(petListAdapter);
         animalRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -115,7 +126,13 @@ public class DisplayFragment extends Fragment implements PetListAdapter.clickLis
 
     //Calling the onClick interface in adapter.
     @Override
-    public void onClick(String description, String image, String id) {
+    public void onViewClick(String description, String image, String id) {
         mOnContactCallback.onContact(locationList.toString(), description, image, id);
     }
+
+    @Override
+    public void onSpinnerClick(String filter) {
+        //Todo: Call back to PetFragment, pass in args, refresh fragment.
+    }
 }
+

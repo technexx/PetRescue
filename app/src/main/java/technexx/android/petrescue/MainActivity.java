@@ -7,7 +7,7 @@ import android.os.Bundle;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity implements MenuFragment.dogCallback, MenuFragment.catCallback, MenuFragment.othersCallback, PetFragment.listCallback, DisplayFragment.onShelterMenuCallback, PetFragment.onMainMenuCallback, DisplayFragment.onContactCallback {
+public class MainActivity extends AppCompatActivity implements MenuFragment.dogCallback, MenuFragment.catCallback, MenuFragment.othersCallback, PetFragment.listCallback, DisplayFragment.onShelterMenuCallback, PetFragment.onMainMenuCallback, DisplayFragment.onContactCallback, DisplayFragment.onFilterCallback {
 
     //Todo: Sort feature - URI sort works, but we are getting two sets of ordered lists due to TableContents1 and 2.
     //Todo: Show numerical value of pets in list.
@@ -147,5 +147,10 @@ public class MainActivity extends AppCompatActivity implements MenuFragment.dogC
                 .addToBackStack(null)
                 .replace(R.id.animals, contactFragment)
                 .commit();
+    }
+
+    @Override
+    public void onFilter() {
+
     }
 }

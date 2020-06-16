@@ -8,11 +8,13 @@ import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -35,18 +37,29 @@ public class PetListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     private ArrayList<String> descriptionList;
     private Context context;
     private clickListener mOnClickListener;
+    private spinnerClickListener mOnSpinnerClick;
     //Creates a global instance of the View class which is inflated in onCreateViewHolder. We can then also reference it in the ViewHolder class that is called by onBindViewHolder, and thus pass in the appropriate positions to its onClick method.
     private View newView;
 
     private static final int TYPE_FILTER = 0;
     private static final int TYPE_PET = 1;
 
+    //This is so the interface can be implemented in the appropriate Fragment.
     public interface clickListener {
-        void onClick(String description, String image, String id);
+        void onViewClick(String description, String image, String id);
     }
 
+    //This is so a method tied to its (above) interface can be called and set on the adapter within the Fragment.
     public void setClick(clickListener mOnClickListener) {
         this.mOnClickListener = mOnClickListener;
+    }
+
+    public interface spinnerClickListener {
+        void onSpinnerClick (String filter);
+    }
+
+    public void setSpinnerClick(spinnerClickListener mOnSpinnerClick) {
+        this.mOnSpinnerClick = mOnSpinnerClick;
     }
 
     PetListAdapter(ArrayList<String> image, ArrayList<String> id, ArrayList<String> name, ArrayList<String> breed, ArrayList<String> weight, ArrayList<String> age, ArrayList<String> location, ArrayList<String> rescue, ArrayList<String> description, Context context) {
@@ -93,12 +106,12 @@ public class PetListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             petHolder.myView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    mOnClickListener.onClick(descriptionList.get(position -1), imageList.get(position -1), idList.get(position -1));
+                    mOnClickListener.onViewClick(descriptionList.get(position -1), imageList.get(position -1), idList.get(position -1));
                 }
             });
         } else {
             if (holder instanceof FilterHolder) {
-                List<String> filters = new ArrayList<String>();
+                final List<String> filters = new ArrayList<String>();
                 filters.add("Sort by");
                 filters.add("Breed");
                 filters.add("Age");
@@ -109,9 +122,24 @@ public class PetListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
                 FilterHolder filterHolder = (FilterHolder) holder;
                 filterHolder.filter.setAdapter(filterAdapter);
+
+                filterHolder.filter.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                        Toast.makeText(context, filters.get(position), Toast.LENGTH_SHORT).show();
+                        mOnSpinnerClick.onSpinnerClick(filters.get(position));
+                    }
+
+                    @Override
+                    public void onNothingSelected(AdapterView<?> parent) {
+
+                    }
+                });
+
             }
         }
     }
+
 
     @Override
     public int getItemCount() {
