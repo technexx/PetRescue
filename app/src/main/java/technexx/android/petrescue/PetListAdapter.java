@@ -8,8 +8,10 @@ import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -36,6 +38,9 @@ public class PetListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     //Creates a global instance of the View class which is inflated in onCreateViewHolder. We can then also reference it in the ViewHolder class that is called by onBindViewHolder, and thus pass in the appropriate positions to its onClick method.
     private View newView;
 
+    private static final int TYPE_FILTER = 0;
+    private static final int TYPE_PET = 1;
+
     public interface clickListener {
         void onClick(String description, String image, String id);
     }
@@ -52,50 +57,75 @@ public class PetListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        newView = LayoutInflater.from(context).inflate(R.layout.pet_info, parent, false);
 
-        //Setting click on entirety of inflated view.
-        ViewHolder viewHolder = new ViewHolder(newView);
-
-        return viewHolder;
+        if (viewType == TYPE_PET) {
+            newView = LayoutInflater.from(context).inflate(R.layout.pet_info, parent, false);
+            return new PetHolder((newView));
+        } else {
+            newView = LayoutInflater.from(context).inflate(R.layout.spinner_layout, parent, false);
+            return new FilterHolder(newView);
+        }
     }
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
 
-        ViewHolder viewHolder = (ViewHolder) holder;
+        if (holder instanceof PetHolder) {
+            PetHolder petHolder = (PetHolder)holder;
 
-        if (rescuelist.get(position).equals("")){
-            viewHolder.rescue.setVisibility(View.GONE);
-        } else {
-            viewHolder.rescue.setVisibility(View.VISIBLE);
-        }
+            Picasso.get().load(imageList.get(position -1)).resize(450, 400).into(petHolder.image);
+            petHolder.animalID.setText(idList.get(position -1));
+            petHolder.name.setText(nameList.get(position -1));
+            petHolder.breed.setText(breedList.get(position -1));
+            petHolder.age.setText(ageList.get(position -1));
+            petHolder.weight.setText(weightList.get(position -1));
+            petHolder.location.setText(locationList.get(position -1));
 
-        Picasso.get().load(imageList.get(position)).resize(450, 400).into(viewHolder.image);
-        viewHolder.animalID.setText(idList.get(position));
-        viewHolder.name.setText(nameList.get(position));
-        viewHolder.breed.setText(breedList.get(position));
-        viewHolder.age.setText(ageList.get(position));
-        viewHolder.weight.setText(weightList.get(position));
-        viewHolder.location.setText(locationList.get(position));
+            petHolder.rescue.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
+            petHolder.rescue.setText(rescuelist.get(position -1));
 
-        viewHolder.rescue.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
-        viewHolder.rescue.setText(rescuelist.get(position));
-
-        viewHolder.myView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mOnClickListener.onClick(descriptionList.get(position), imageList.get(position), idList.get(position));
+            if (rescuelist.get(position -1).equals("")){
+                petHolder.rescue.setVisibility(View.GONE);
+            } else {
+                petHolder.rescue.setVisibility(View.VISIBLE);
             }
-        });
+
+            petHolder.myView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mOnClickListener.onClick(descriptionList.get(position), imageList.get(position), idList.get(position));
+                }
+            });
+        } else {
+            if (holder instanceof FilterHolder) {
+                List<String> filters = new ArrayList<String>();
+                filters.add("Breed");
+                filters.add("Age");
+                filters.add("Weight");
+
+                ArrayAdapter<String> filterAdapter = new ArrayAdapter<String>(context, R.layout.spinner_layout, filters);
+                filterAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
+
+                FilterHolder filterHolder = (FilterHolder) holder;
+            }
+        }
     }
 
     @Override
     public int getItemCount() {
-        return idList.size();
+        return idList.size() +1;
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    @Override
+    public int getItemViewType(int position) {
+        if (position == 0) {
+            return TYPE_FILTER;
+        } else {
+            return TYPE_PET;
+        }
+    }
+
+    public class PetHolder extends RecyclerView.ViewHolder {
         ImageView image;
         TextView animalID;
         TextView name;
@@ -106,7 +136,7 @@ public class PetListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         TextView rescue;
         View myView;
 
-        public ViewHolder(@NonNull View itemView) {
+        public PetHolder(@NonNull View itemView) {
             super((itemView));
             image = itemView.findViewById(R.id.pet_picture);
             animalID = itemView.findViewById(R.id.pet_id);
@@ -118,7 +148,16 @@ public class PetListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             rescue = itemView.findViewById(R.id.pet_rescue);
 
             myView = newView;
+        }
+    }
 
+    public class FilterHolder extends RecyclerView.ViewHolder {
+        Spinner filter;
+
+
+        public FilterHolder(@NonNull View itemView) {
+            super(itemView);
+            filter = itemView.findViewById(R.id.filter_spinner);
         }
     }
 }
