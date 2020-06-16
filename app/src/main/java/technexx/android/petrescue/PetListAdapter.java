@@ -121,13 +121,15 @@ public class PetListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                 ArrayAdapter<String> filterAdapter = new ArrayAdapter<>(context, R.layout.default_spinner, filters);
                 filterAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
 
-                FilterHolder filterHolder = (FilterHolder) holder;
+                final FilterHolder filterHolder = (FilterHolder) holder;
                 filterHolder.filter.setAdapter(filterAdapter);
+                filterHolder.filter.setSelection(0, false);
 
                 filterHolder.filter.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                     @Override
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                        Toast.makeText(parent.getContext(), filters.get(position), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, filters.get(position), Toast.LENGTH_SHORT).show();
+                        mOnSpinnerClick.onSpinnerClick(filters.get(position));
                     }
 
                     @Override

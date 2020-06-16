@@ -160,6 +160,8 @@ public class DisplayFragment extends Fragment implements PetListAdapter.clickLis
 
     @Override
     public void onSpinnerClick(String filter) {
+//        PetFragment petFragment = new PetFragment();
+//        petFragment.aSyncUriFetch();
         mOnFilterCallback.onFilter(filter);
     }
 }

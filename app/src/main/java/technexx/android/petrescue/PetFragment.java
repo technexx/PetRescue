@@ -153,8 +153,6 @@ public class PetFragment extends Fragment {
         }
         editor.apply();
 
-        urlPre = "https://petharbor.com/results.asp?searchtype=ADOPT&stylesheet=https://www.laanimalservices.com/wp-content/themes/laas/laasph.css&friends=1&samaritans=1&nosuccess=1&orderby=located%20at&rows=500&imght=120&imgres=detail&tWidth=200&view=sysadm.v_lact&nomax=1&fontface=arial&fontsize=10&miles=100&shelterlist=%27LACT%27,%27LACT1%27,%27LACT4%27,%27LACT3%27,%27LACT2%27,%27LACT5%27,%27LACT6%27&atype=&where=type_";
-
         allAnimals.setEnabled(true);
         westValley.setEnabled(true);
         eastValley.setEnabled(true);
@@ -235,11 +233,14 @@ public class PetFragment extends Fragment {
         return root;
     }
 
+
     //Depending on if Dog/Cat/Other is selected, setting uri and scraping data for list.
-    private void aSyncUriFetch() {
+    public void aSyncUriFetch() {
         AsyncTask.execute(new Runnable() {
             @Override
             public void run() {
+
+                urlPre = "https://petharbor.com/results.asp?searchtype=ADOPT&stylesheet=https://www.laanimalservices.com/wp-content/themes/laas/laasph.css&friends=1&samaritans=1&nosuccess=1&orderby=located%20at&rows=500&imght=120&imgres=detail&tWidth=200&view=sysadm.v_lact&nomax=1&fontface=arial&fontsize=10&miles=100&shelterlist=%27LACT%27,%27LACT1%27,%27LACT4%27,%27LACT3%27,%27LACT2%27,%27LACT5%27,%27LACT6%27&atype=&where=type_";
 
                 if (dogs != null || animal.equals("dog")) {
                     url = urlPre + "dog";
@@ -250,6 +251,7 @@ public class PetFragment extends Fragment {
                 if (other != null || animal.equals("other")) {
                     url = urlPre + "other";
                 }
+                //Appending filters
                 if (filterBreed) {
                     url = url + "&NewOrderBy=Breed&PAGE=1";
                 }
@@ -263,11 +265,12 @@ public class PetFragment extends Fragment {
         });
     }
 
-    private void aSyncRetrieveAll() {
+    public void aSyncRetrieveAll() {
         AsyncTask.execute(new Runnable() {
             @Override
             public void run() {
                 try {
+
                     Document doc = Jsoup.connect(url).get();
 
                     Elements content = doc.getElementsByClass("TableContent1");
