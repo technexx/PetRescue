@@ -93,20 +93,22 @@ public class PetListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             petHolder.myView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    mOnClickListener.onClick(descriptionList.get(position), imageList.get(position), idList.get(position));
+                    mOnClickListener.onClick(descriptionList.get(position -1), imageList.get(position -1), idList.get(position -1));
                 }
             });
         } else {
             if (holder instanceof FilterHolder) {
                 List<String> filters = new ArrayList<String>();
+                filters.add("Sort by");
                 filters.add("Breed");
                 filters.add("Age");
                 filters.add("Weight");
 
-                ArrayAdapter<String> filterAdapter = new ArrayAdapter<String>(context, R.layout.spinner_layout, filters);
+                ArrayAdapter<String> filterAdapter = new ArrayAdapter<>(context, R.layout.default_spinner, filters);
                 filterAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
 
                 FilterHolder filterHolder = (FilterHolder) holder;
+                filterHolder.filter.setAdapter(filterAdapter);
             }
         }
     }
