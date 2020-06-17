@@ -290,7 +290,6 @@ public class PetFragment extends Fragment {
                     testListTwo = contentTwo.eachText();
 
                     for (int i=0; i < testList.size(); i++) {
-
                         holder = testList.get(i);
 
                         //LACT1 = Harbor, LACT2 = West LA, LACT3 = South LA

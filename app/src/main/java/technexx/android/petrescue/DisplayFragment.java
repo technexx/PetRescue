@@ -19,6 +19,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -35,6 +36,9 @@ public class DisplayFragment extends Fragment implements PetListAdapter.clickLis
     private ArrayList<String> rescueList;
     private ArrayList<String> descriptionList;
     private String filter;
+
+    private ArrayList<String> ageEdit;
+    private ArrayList<String> weightEdit;
 
     private onShelterMenuCallback mOnShelterMenuCallback;
     private onContactCallback mOnContactCallback;
@@ -99,28 +103,29 @@ public class DisplayFragment extends Fragment implements PetListAdapter.clickLis
             rescueList = args.getStringArrayList("rescue");
             descriptionList = args.getStringArrayList("description");
             filter = args.getString("filter");
+
+            ageEdit = new ArrayList<>();
+            weightEdit = new ArrayList<>();
         }
 
-        Set<String> imageSet = new HashSet<>(imageList);
-        Set<String> idSet = new HashSet<>(idList);
-        Set<String> nameSet = new HashSet<>(nameList);
-        Set<String> breedSet = new HashSet<>(breedList);
-        Set<String> weightSet = new HashSet<>(weightList);
-        Set<String> ageSet = new HashSet<>(ageList);
-        Set<String> locationSet = new HashSet<>(locationList);
-        Set<String> rescueSet = new HashSet<>(rescueList);
-        Set<String> descriptionSet = new HashSet<>(descriptionList);
+        HashMap<Integer, String> ageMap = new HashMap<>();
+        HashMap<Integer, String> weightMap = new HashMap<>();
+        HashMap<Integer, String> breedMap = new HashMap<>();
 
-        editor.putStringSet("imageSet", imageSet);
-        editor.putStringSet("idSet", idSet);
-        editor.putStringSet("nameSet", nameSet);
-        editor.putStringSet("breedSet", breedSet);
-        editor.putStringSet("weightSet", weightSet);
-        editor.putStringSet("ageSet", ageSet);
-        editor.putStringSet("locationSet", locationSet);
-        editor.putStringSet("rescueSet", rescueSet);
-        editor.putStringSet("descriptionSet", descriptionSet);
-        editor.apply();
+        for (int i=0; i<ageList.size(); i++) {
+            ageMap.put(i, ageList.get(i));
+            weightMap.put(i, weightList.get(i));
+            breedMap.put(i, breedList.get(i));
+
+            ageEdit.add(ageList.get(i).replaceAll("[^\\d.]", ""));
+        }
+
+        Log.i("ageMap", ageMap.toString());
+        Log.i("weightMap", weightMap.toString());
+        Log.i("breedMap", breedMap.toString());
+        Log.i("ageCount", String.valueOf(ageMap.size()));
+        Log.i("ageSize", String.valueOf(ageList.size()));
+        Log.i("ageEdit", ageEdit.toString());
 
         RecyclerView animalRecycler = root.findViewById(R.id.pet_recycler);
         PetListAdapter petListAdapter = new PetListAdapter(imageList, idList, nameList, breedList, weightList, ageList, locationList, rescueList, descriptionList, getContext());
