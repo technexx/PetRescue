@@ -52,10 +52,6 @@ public class PetFragment extends Fragment {
 
     private String urlPre;
     private String url;
-    private String urlFilter;
-    boolean filterBreed;
-    boolean filterAge;
-    boolean filterWeight;
 
     private onMainMenuCallback mOnMainMenuCallback;
     private listCallback mListCallback;
@@ -250,16 +246,6 @@ public class PetFragment extends Fragment {
                 }
                 if (other != null || animal.equals("other")) {
                     url = urlPre + "other";
-                }
-                //Appending filters
-                if (filterBreed) {
-                    url = url + "&NewOrderBy=Breed&PAGE=1";
-                }
-                if (filterAge) {
-                    url = url + "&NewOrderBy=Age&PAGE=1";
-                }
-                if (filterWeight) {
-                    url = url + "&NewOrderBy=Weight&PAGE=1";
                 }
             }
         });

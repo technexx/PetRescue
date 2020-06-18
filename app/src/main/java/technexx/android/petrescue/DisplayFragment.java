@@ -3,6 +3,7 @@ package technexx.android.petrescue;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -37,7 +38,9 @@ public class DisplayFragment extends Fragment implements PetListAdapter.clickLis
     private ArrayList<String> descriptionList;
     private String filter;
 
-    private ArrayList<String> ageEdit;
+    private ArrayList<String> ageEditMos;
+    private ArrayList<String> ageEditYrs;
+    private ArrayList<String> ageEditBoth;
     private ArrayList<String> weightEdit;
 
     private onShelterMenuCallback mOnShelterMenuCallback;
@@ -103,29 +106,7 @@ public class DisplayFragment extends Fragment implements PetListAdapter.clickLis
             rescueList = args.getStringArrayList("rescue");
             descriptionList = args.getStringArrayList("description");
             filter = args.getString("filter");
-
-            ageEdit = new ArrayList<>();
-            weightEdit = new ArrayList<>();
         }
-
-        HashMap<Integer, String> ageMap = new HashMap<>();
-        HashMap<Integer, String> weightMap = new HashMap<>();
-        HashMap<Integer, String> breedMap = new HashMap<>();
-
-        for (int i=0; i<ageList.size(); i++) {
-            ageMap.put(i, ageList.get(i));
-            weightMap.put(i, weightList.get(i));
-            breedMap.put(i, breedList.get(i));
-
-            ageEdit.add(ageList.get(i).replaceAll("[^\\d.]", ""));
-        }
-
-        Log.i("ageMap", ageMap.toString());
-        Log.i("weightMap", weightMap.toString());
-        Log.i("breedMap", breedMap.toString());
-        Log.i("ageCount", String.valueOf(ageMap.size()));
-        Log.i("ageSize", String.valueOf(ageList.size()));
-        Log.i("ageEdit", ageEdit.toString());
 
         RecyclerView animalRecycler = root.findViewById(R.id.pet_recycler);
         PetListAdapter petListAdapter = new PetListAdapter(imageList, idList, nameList, breedList, weightList, ageList, locationList, rescueList, descriptionList, getContext());
@@ -165,9 +146,7 @@ public class DisplayFragment extends Fragment implements PetListAdapter.clickLis
 
     @Override
     public void onSpinnerClick(String filter) {
-//        PetFragment petFragment = new PetFragment();
-//        petFragment.aSyncUriFetch();
-        mOnFilterCallback.onFilter(filter);
+//        mOnFilterCallback.onFilter(filter);
     }
 }
 
